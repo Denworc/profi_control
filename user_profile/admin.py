@@ -23,12 +23,12 @@ class ForeignPassportInline(admin.StackedInline):
 class UserAdmin(admin.ModelAdmin):
     filter_horizontal = ('groups', 'user_permissions')
     list_display = (
-        'email',
         'first_name',
         'last_name',
         'patronymic',
         'date_of_birth',
-        'is_admin',
+        'position',
+        'is_worker',
     )
     inlines = [
         ContactInline,
