@@ -26,7 +26,6 @@ class UserAdmin(admin.ModelAdmin):
         'first_name',
         'last_name',
         'patronymic',
-        'date_of_birth',
         'position',
         'is_worker',
     )
@@ -34,7 +33,7 @@ class UserAdmin(admin.ModelAdmin):
         ContactInline,
         UkrainianPassportInline,
         ForeignPassportInline,
-]
+    ]
 
 
 @admin.register(Contact)

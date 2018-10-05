@@ -20,7 +20,7 @@ class UkrainianPassport(models.Model):
 
     class Meta:
         verbose_name = _('Паспорт громадянина України')
-        verbose_name_plural = _('Паспорта громадян України')
+        verbose_name_plural = _('Паспорти громадян України')
 
     def __str__(self):
         return '{} {}'.format(self.series.upper(), self.number)
