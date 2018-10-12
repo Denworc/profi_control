@@ -15,8 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include, re_path
+from profi.settings import MEDIA_ROOT, MEDIA_URL
+from django.conf.urls.static import static
+from .views import DashboardView
+
 
 urlpatterns = [
     re_path(r'^jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
-]
+    path('cabinet/', include([
+        path('', DashboardView.as_view(), name='dashboard'),
+        path('user/', include('user_profile.urls')),
+    ])),
+] + static(MEDIA_URL, document_root=MEDIA_ROOT)
