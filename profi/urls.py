@@ -24,7 +24,8 @@ urlpatterns = [
     re_path(r'^jet/', include('jet.urls', 'jet')),
     path('admin/', admin.site.urls),
     path('cabinet/', include([
-        path('', DashboardView.as_view(), name='dashboard'),
         path('user/', include('user_profile.urls')),
+        path('', DashboardView.as_view(), name='dashboard'),
     ])),
+    path('', DashboardView.as_view(), name='dashboard'),
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)

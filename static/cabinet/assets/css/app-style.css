@@ -41,6 +41,8 @@ File: app-style
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,600,700');
 
 /* General */
+
+
 html {
 	font-family: 'Poppins', sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -415,9 +417,10 @@ hr {
     top: 3px;
 	left: 5px;
     letter-spacing: 2px;
-	font-weight: 400;
+	font-weight: bold;
 	text-align: center;
 	line-height:50px;
+    font-style: italic;
 
 }
 

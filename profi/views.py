@@ -6,6 +6,6 @@ class DashboardView(View):
 
     def get(self, request):
         context = {
-            'name': 'stepa',
+            'name': 'profi',
         }
         return render(request, 'cabinet-base.html', context)

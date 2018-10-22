@@ -35,6 +35,22 @@ password_validator = validators.MinLengthValidator(10)
 
 class AuthForm(Form):
     email = forms.CharField(widget=forms.TextInput(
-        attrs={'class': 'form-control', 'type': 'email', 'placeholder': _('Email')}), validators=[validators.EmailValidator])
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')}))
+        attrs={'class': 'form-control', 'type': 'email',
+               'placeholder': _('Email')}), validators=[validators.EmailValidator])
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'form-control', 'placeholder': _('Password')}))
 
+
+class NewUserForm(forms.ModelForm):
+    # polygon = forms.CharField(widget=forms.TextInput)
+
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+            'patronymic',
+            'position',
+            'is_worker',
+        )

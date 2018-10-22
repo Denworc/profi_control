@@ -2,19 +2,19 @@
 
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-        <a href="index.html">
-            <img src="{% static 'cabinet/' %}assets/images/logo-icon.png" class="logo-icon" alt="logo icon">
-            <h5 class="logo-text"> DashRock</h5>
+        <a href="{% url 'dashboard' %}">
+            <img src="{% static 'cabinet/' %}assets/images/logo_profi.png" class="logo-icon" alt="logo icon">
+            <h5 class="logo-text">&#171;PROFI&#187;</h5>
         </a>
     </div>
     <div class="user-details">
         <div class="media align-items-center user-pointer collapsed" data-toggle="collapse"
              data-target="#user-dropdown">
             <div class="avatar"><img class="mr-3 side-user-img"
-                                     src="{% static 'cabinet/' %}assets/images/avatars/avatar-4.png"
+                                     src="{% static 'cabinet/' %}assets/images/avatars/avatar-1.png"
                                      alt="user avatar"></div>
             <div class="media-body">
-                <h6 class="side-user-name">{{ user }}</h6>
+                <h6 class="side-user-name">{{ user|truncatechars:14 }}</h6>
             </div>
         </div>
         <div id="user-dropdown" class="collapse">

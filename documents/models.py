@@ -9,7 +9,7 @@ class UkrainianPassport(models.Model):
     series = models.CharField(max_length=2, verbose_name=_('Серія'))
     number = models.CharField(max_length=6, verbose_name=_('Номер паспорта'))
     date_of_issue = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='pasports')
     surname = models.CharField(verbose_name=_('Прізвище'), max_length=40)
     last_name = models.CharField(verbose_name=_("Ім'я"), max_length=40)
     patronymic = models.CharField(verbose_name=_('По батькові'), max_length=40)
@@ -29,12 +29,12 @@ class UkrainianPassport(models.Model):
 class ForeignPassport(models.Model):
     number = models.CharField(max_length=6, verbose_name=_('Номер паспорта'))
     date_of_issue = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='foreign_pasport')
     surname = models.CharField(verbose_name=_('Прізвище'), max_length=40)
     last_name = models.CharField(verbose_name=_("Ім'я"), max_length=40)
     type = models.CharField(max_length=1, verbose_name=_('Тип'))
     country_code = models.CharField(max_length=10, verbose_name=_('Код держави'))
-    authority = models.CharField(max_length=10, verbose_name=_('Орган, що видав'))
+    authority = models.CharField(max_length=100, verbose_name=_('Орган, що видав'))
     date_of_expiry = models.DateField(verbose_name=_('Дата закінчення строку дії'), null=True, blank=True)
     first_page = models.ImageField(verbose_name=_('1 сторінка'), blank=True, null=True, upload_to="user/foreign")
 
@@ -50,7 +50,7 @@ class Visa(models.Model):
     """
     Віза пользователя
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='visas')
     visa_scan = models.ImageField(verbose_name=_('Скан копія'), blank=True, null=True, upload_to="user/visa")
     start_on = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата закінчення строку дії'), null=True, blank=True)
@@ -67,7 +67,7 @@ class MilitaryRecords(models.Model):
     """
     Військовий облік
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='military_records')
     start_on = models.DateField(verbose_name=_('Дата взяття на облік'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата зняття з обліку'), null=True, blank=True)
 
@@ -83,7 +83,7 @@ class PersonalID(models.Model):
     """
     Ідентифікаційний код
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE)
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='personal_id')
     personal_id = models.CharField(max_length=10, verbose_name=_('Ідентифікаційний код'), unique=True, blank=True)
     scan_id = models.ImageField(verbose_name=_('Скан копія'), blank=True, null=True, upload_to="user/id")
 

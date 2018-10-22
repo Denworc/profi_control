@@ -23,7 +23,7 @@ class Contact(models.Model):
     """
     Контакти пользователя
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='contacts')
     type = models.ForeignKey(ContactType, on_delete=models.CASCADE, verbose_name=_('Тип контакта'))
     contact = models.CharField(max_length=20, verbose_name=_('Контакт'))
     sort = models.PositiveSmallIntegerField(default=1, verbose_name=_('Порядок сортування'))
@@ -35,6 +35,20 @@ class Contact(models.Model):
 
     def __str__(self):
         return self.contact
+
+
+class Status(models.Model):
+    """
+    Статуси пользователя
+    """
+    status = models.CharField(max_length=20, verbose_name=_('Статус'))
+
+    class Meta:
+        verbose_name = _('Статус')
+        verbose_name_plural = _('Статуси')
+
+    def __str__(self):
+        return self.status
 
 
 class Position(models.Model):
@@ -63,6 +77,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     login = models.CharField(max_length=30, verbose_name=_('Логін'), unique=True, blank=True)
     date_of_birth = models.DateField(verbose_name='Дата народження', null=True, blank=True)
     position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name=_('Посада'), null=True, blank=True)
+    status = models.ForeignKey('user_profile.Status', on_delete=models.CASCADE, verbose_name=_('Статус'),
+                               related_name='user', null=True, blank=True)
     is_admin = models.BooleanField(_('Суперюзер'), default=False)
     is_worker = models.BooleanField(_('Клієнт'), default=True)
 
