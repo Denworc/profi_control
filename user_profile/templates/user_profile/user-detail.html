@@ -14,8 +14,8 @@
 {#	   </div>#}
 {#     <div class="col-sm-3">#}
 {#       <div class="btn-group float-sm-right">#}
-{#        <button type="button" class="btn btn-outline-primary waves-effect waves-light"><i class="fa fa-cog mr-1"></i> Setting</button>#}
-{#        <button type="button" class="btn btn-outline-primary dropdown-toggle dropdown-toggle-split waves-effect waves-light" data-toggle="dropdown">#}
+{#        <button type="button" class="btn btn-outline-dark waves-effect waves-light"><i class="fa fa-cog mr-1"></i> Setting</button>#}
+{#        <button type="button" class="btn btn-outline-dark dropdown-toggle dropdown-toggle-split waves-effect waves-light" data-toggle="dropdown">#}
 {#        <span class="caret"></span>#}
 {#        </button>#}
 {#        <div class="dropdown-menu">#}
@@ -30,7 +30,7 @@
 {#     </div>#}
     <!-- End Breadcrumb-->
       <div class="row">
-        <div class="col-lg-4">
+        <div class="col-lg-2">
            <div class="profile-card-4">
             <div class="card">
               <div class="card-body text-center bg-primary rounded-top">
@@ -39,52 +39,56 @@
               </div>
               <h5 class="mb-1 text-white">{{ user.last_name }} {{ user.first_name }}</h5>
               <h6 class="text-light">{{ user.position }}</h6>
+              <h6 class="text-light">{{ user.status }}</h6>
              </div>
               <div class="card-body">
-                <ul class="list-group shadow-none">
-                <li class="list-group-item">
-                  <div class="list-icon">
-                    <i class="fa fa-calendar"></i>
-                  </div>
-                  <div class="list-details">
-                    <span>{{ user.date_of_birth|default:"не введено" }}</span>
-                    <small>Дата народження</small>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                {% for contact in user.contacts.all %}
-                  <div class="list-icon">
-                    <i class="fa fa-phone-square"></i>
-                  </div>
-                  <div class="list-details">
-                        <span>{{ contact.contact }}</span>
-                        <small>{{ contact.type.title }}</small>
-                  </div>
-                {% empty %}
-                     <div class="list-icon">
-                    <i class="fa fa-phone-square"></i>
-                    </div>
-                {% endfor %}
-                </li>
-                <li class="list-group-item">
-                  <div class="list-icon">
-                    <i class="fa fa-envelope"></i>
-                  </div>
-                  <div class="list-details">
-                    <span>{{ user.email }}</span>
-                    <small>Email</small>
-                  </div>
-                </li>
-                <li class="list-group-item">
-                  <div class="list-icon">
-                    <i class="fa fa-id-card-o"></i>
-                  </div>
-                  <div class="list-details">
-                    <span>{{ user.status }}</span>
-                    <small>Статус</small>
-                  </div>
-                </li>
+                <div class="row">
+			    <div class="">
+                <ul class="nav nav-pills nav-pills-dark flex-column top-icon" role="tablist">
+                  <li class="nav-item">
+                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Профіль</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="javascript:void();" data-target="#skills" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Перевірка професійних навиків</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#legal" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Легалізація</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#work" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Трудові відносини</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#dwelling" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Житло</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#expire" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Повернення в Україну</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="javascript:void();" data-target="#dismissal" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Звільнення</span></a>
+                    </li>
                 </ul>
+               </div>
+{#			   <div class="col-md-9">#}
+{#                <!-- Tab panes -->#}
+{#                <div class="tab-content">#}
+{#                  <div id="piil-21" class="container tab-pane active">#}
+{#                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>#}
+{#					<p>If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet</p>#}
+{#                  </div>#}
+{#                  <div id="piil-22" class="container tab-pane fade">#}
+{#                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>#}
+{#					<p>It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>#}
+{#                  </div>#}
+{#                  <div id="piil-23" class="container tab-pane fade">#}
+{#                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>#}
+{#					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>#}
+{#                  </div>#}
+{#                  <div id="piil-24" class="container tab-pane fade">#}
+{#                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.</p>#}
+{#                  </div>#}
+{#                 </div>#}
+{#				</div>#}
+				</div><!--End row-->
 {#                <div class="row text-center mt-4">#}
 {#                  <div class="col p-2">#}
 {#                   <h4 class="mb-1 line-height-5">154</h4>#}
@@ -109,155 +113,205 @@
              </div>
            </div>
         </div>
-        <div class="col-lg-8">
+        <div class="col-lg-10">
            <div class="card">
             <div class="card-body">
-            <ul class="nav nav-pills nav-pills-primary nav-justified">
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Профіль</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Перевірка професійних навиків</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Легалізація</span></a>
-                </li>
-
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Трудові відносини</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Житло</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Повернення в Україну</span></a>
-                </li>
-                <li class="nav-item">
-                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Звільнення</span></a>
-                </li>
-            </ul>
+{#            <ul class="nav nav-pills nav-pills-dark nav-justified">#}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#profile" data-toggle="pill" class="nav-link active"><i class="icon-user"></i> <span class="hidden-xs">Профіль</span></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Перевірка професійних навиків</span></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Легалізація</span></a>#}
+{#                </li>#}
+{##}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Трудові відносини</span></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Житло</span></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#messages" data-toggle="pill" class="nav-link"><i class="icon-envelope-open"></i> <span class="hidden-xs">Повернення в Україну</span></a>#}
+{#                </li>#}
+{#                <li class="nav-item">#}
+{#                    <a href="javascript:void();" data-target="#edit" data-toggle="pill" class="nav-link"><i class="icon-note"></i> <span class="hidden-xs">Звільнення</span></a>#}
+{#                </li>#}
+{#            </ul>#}
             <div class="tab-content p-3">
                 <div class="tab-pane active" id="profile">
                     <h5 class="mb-3">Профіль користувача</h5>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>
-                                <h6>Паспорт громадянина України</h6>
-                            </p>
-                            {% if user.pasports %}
-                                <div class="list-group-item">
-                                <p>
-                                    Серія та номер: {{ user.pasports.series|upper }} {{ user.pasports.number }}
-                                </p>
-                                <p>
-                                    Виданий: {{ user.pasports.place_of_issue }}
-                                </p>
-                                <p>
-                                    {{ user.pasports.date_of_issue }}
-                                </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Паспорт громадянина України не було додано</p>
-                                </div>
-                            {% endif %}
-                            {% for pasport in user.foreign_pasport.all %}
-                              <p>
-                                <h6>Закордонний паспорт №{{ forloop.counter }}</h6>
-                              </p>
-                              <div class="list-group-item">
-                                <p>
-                                    Номер: {{ pasport.number }}
-                                </p>
-                                <p>
-                                    Виданий: {{ pasport.authority }}
-                                </p>
-                                <p>
-                                    Термін дії: {{ pasport.date_of_expiry }}
-                                </p>
-                                </div>
-                            {% empty %}
-                                <p>
-                                    <h6>Закордонний паспорт</h6>
-                                </p>
-                                <div class="list-group-item">
-                                    <p>Закордонний паспорт не було додано</p>
-                                </div>
-                            {% endfor %}
-                                <p>
-                                    <h6>Ідентифікаційний код</h6>
-                                </p>
-                            {% if user.personal_id %}
-                                <div class="list-group-item">
-                                <p>
-                                    Ідентифікаційний код: {{ user.personal_id }}
-                                </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Ідентифікаційний код не було додано</p>
-                                </div>
-                            {% endif %}
-                            </div>
-                            <div class="col-md-6">
-                                <p>
-                                    <h6>Адреса</h6>
-                                </p>
-                            {% if user.registration %}
-                                <div class="list-group-item">
-                                <p>
-                                    Місце прописки: {{ user.registration }}
-                                </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Місце реєстрації не було додано</p>
-                                </div>
-                            {% endif %}
-                            {% if user.residence_address %}
-                                <div class="list-group-item">
-                                <p>
-                                    Фактичне місце проживання: {{ user.residence_address }}
-                                </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Фактичне місце проживання не було додано</p>
-                                </div>
-                            {% endif %}
-                                <p>
-                                    <h6>Знання мови</h6>
-                                </p>
-                            {% if user.residence_address %}
-                                <div class="list-group-item">
-                                <p>
-                                    Мова: Англійська
-                                </p>
-                                <p>
-                                    Рівень: intermediate
-                                </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Знання мов не оцінено</p>
-                                </div>
-                            {% endif %}
-                                <p>
-                                    <h6>Примітки</h6>
-                                </p>
-                            {% if user.residence_address %}
-                                <div class="list-group-item">
-                                <p>
-                                    Психологічний портрет: Опис психологічного стану робітника
-                                </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Приміток не було додано</p>
-                                </div>
-                            {% endif %}
-                            </div>
-
+{#                    <div class="row">#}
+{#                        <div class="col-md-6">#}
+{#                            <p>#}
+{#                                <h6>Дата народження</h6>#}
+{#                            </p>#}
+{#                            {% if user.date_of_birth %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Дата народження: {{ user.date_of_birth }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Дату народження не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            <p>#}
+{#                                <h6>Електронна адреса</h6>#}
+{#                            </p>#}
+{#                            {% if user.email %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Електронна адреса: {{ user.email }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Електронну адресу не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            {% for contact in user.contacts.all %}#}
+{#                              <p>#}
+{#                                <h6>Контактні дані №{{ forloop.counter }}</h6>#}
+{#                              </p>#}
+{#                              <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Тип контакту: {{ contact.type.title }}#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    Контакт: {{ contact.contact }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% empty %}#}
+{#                                <p>#}
+{#                                    <h6>Контактні дані</h6>#}
+{#                                </p>#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Контактні дані не було додано</p>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                            <p>#}
+{#                                <h6>Паспорт громадянина України</h6>#}
+{#                            </p>#}
+{#                            {% if user.pasports %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Серія та номер: {{ user.pasports.series|upper }} {{ user.pasports.number }}#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    Виданий: {{ user.pasports.place_of_issue }}#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    {{ user.pasports.date_of_issue }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Паспорт громадянина України не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            {% for pasport in user.foreign_pasport.all %}#}
+{#                              <p>#}
+{#                                <h6>Закордонний паспорт №{{ forloop.counter }}</h6>#}
+{#                              </p>#}
+{#                              <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Номер: {{ pasport.number }}#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    Виданий: {{ pasport.authority }}#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    Термін дії: {{ pasport.date_of_expiry }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% empty %}#}
+{#                                <p>#}
+{#                                    <h6>Закордонний паспорт</h6>#}
+{#                                </p>#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Закордонний паспорт не було додано</p>#}
+{#                                </div>#}
+{#                            {% endfor %}#}
+{#                        </div>#}
+{#                        <div class="col-md-6">#}
+{#                                <p>#}
+{#                                    <h6>Ідентифікаційний код</h6>#}
+{#                                </p>#}
+{#                            {% if user.personal_id %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Ідентифікаційний код: {{ user.personal_id }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Ідентифікаційний код не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                                <p>#}
+{#                                    <h6>Адреса</h6>#}
+{#                                </p>#}
+{#                            {% if user.registration %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Місце прописки: {{ user.registration }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Місце реєстрації не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            {% if user.residence_address %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Фактичне місце проживання: {{ user.residence_address }}#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Фактичне місце проживання не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                                <p>#}
+{#                                    <h6>Знання мови</h6>#}
+{#                                </p>#}
+{#                            {% if user.residence_address %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Мова: Англійська#}
+{#                                </p>#}
+{#                                <p>#}
+{#                                    Рівень: intermediate#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Знання мов не оцінено</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                                <p>#}
+{#                                    <h6>Примітки</h6>#}
+{#                                </p>#}
+{#                            {% if user.residence_address %}#}
+{#                                <div class="list-group-item">#}
+{#                                <p>#}
+{#                                    Психологічний портрет: Опис психологічного стану робітника#}
+{#                                </p>#}
+{#                                </div>#}
+{#                            {% else %}#}
+{#                                <div class="list-group-item">#}
+{#                                    <p>Приміток не було додано</p>#}
+{#                                </div>#}
+{#                            {% endif %}#}
+{#                            </div>#}
+{##}
+{##}
+{##}
 {#                        <div class="col-md-6">#}
 {#                            <h6>Recent badges</h6>#}
 {#                            <a href="javascript:void();" class="badge badge-dark badge-pill">html5</a>#}
@@ -269,7 +323,7 @@
 {#                            <a href="javascript:void();" class="badge badge-dark badge-pill">bootstrap</a>#}
 {#                            <a href="javascript:void();" class="badge badge-dark badge-pill">responsive-design</a>#}
 {#                            <hr>#}
-{#                            <span class="badge badge-primary"><i class="fa fa-user"></i> 900 Followers</span>#}
+{#                            <span class="badge badge-dark"><i class="fa fa-user"></i> 900 Followers</span>#}
 {#                            <span class="badge badge-success"><i class="fa fa-cog"></i> 43 Forks</span>#}
 {#                            <span class="badge badge-danger"><i class="fa fa-eye"></i> 245 Views</span>#}
 {#                        </div>#}
@@ -306,124 +360,574 @@
 {#                            </table>#}
 {#                        </div>#}
 {#                    </div>#}
-                    <!--/row-->
-                </div>
-                </div>
-                <div class="tab-pane" id="messages">
-                    <div class="alert alert-info alert-dismissible" role="alert">
-				   <button type="button" class="close" data-dismiss="alert">&times;</button>
-				    <div class="alert-icon">
-					 <i class="icon-info"></i>
-				    </div>
-				    <div class="alert-message">
-				      <span><strong>Info!</strong> Lorem Ipsum is simply dummy text.</span>
-				    </div>
-                  </div>
-                    <table class="table table-hover table-striped">
-                        <tbody>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">3 hrs ago</span> Here is your a link to the latest summary report from the..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">Yesterday</span> There has been a request on your account since that was..
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/10</span> Porttitor vitae ultrices quis, dapibus id dolor. Morbi venenatis lacinia rhoncus.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Vestibulum tincidunt ullamcorper eros eget luctus.
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                   <span class="float-right font-weight-bold">9/4</span> Maxamillion ais the fix for tibulum tincidunt ullamcorper eros.
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane" id="edit">
-                    <form>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">First name</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Mark">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Last name</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="Jhonsan">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Email</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="email" value="mark@example.com">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Change profile</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="file">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Website</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="url" value="">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Address</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="" placeholder="Street">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-6">
-                                <input class="form-control" type="text" value="" placeholder="City">
-                            </div>
-                            <div class="col-lg-3">
-                                <input class="form-control" type="text" value="" placeholder="State">
-                            </div>
-                        </div>
+{#                    <!--/row-->#}
+{#                </div>#}
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion1">
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+                                      Особиста інформація
+                                    </button>
+                                </div>
 
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Username</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="text" value="jhonsanmark">
+                                <div id="collapse-1" class="collapse show" data-parent="#accordion1">
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        <p>
+                                            <h6>Дата народження</h6>
+                                        </p>
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                Дата народження: {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Дату народження не було додано</p>
+                                            </div>
+                                        {% endif %}
+                                        <p>
+                                            <h6>Електронна адреса</h6>
+                                        </p>
+                                        {% if user.email %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                Електронна адреса: {{ user.email }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Електронну адресу не було додано</p>
+                                            </div>
+                                        {% endif %}
+                                        {% for contact in user.contacts.all %}
+                                          <p>
+                                            <h6>Контактні дані №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Тип контакту: {{ contact.type.title }}
+                                            </p>
+                                            <p>
+                                                Контакт: {{ contact.contact }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <p>
+                                                <h6>Контактні дані</h6>
+                                            </p>
+                                            <div class="list-group-item">
+                                                <p>Контактні дані не було додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>
+                                            <h6>Ідентифікаційний код</h6>
+                                        </p>
+                                    {% if user.personal_id %}
+                                        <div class="list-group-item">
+                                        <p>
+                                            Ідентифікаційний код: {{ user.personal_id }}
+                                        </p>
+                                        </div>
+                                    {% else %}
+                                        <div class="list-group-item">
+                                            <p>Ідентифікаційний код не було додано</p>
+                                        </div>
+                                    {% endif %}
+                                        <p>
+                                            <h6>Адреса</h6>
+                                        </p>
+                                    {% if user.registration %}
+                                        <div class="list-group-item">
+                                        <p>
+                                            Місце прописки: {{ user.registration }}
+                                        </p>
+                                        </div>
+                                    {% else %}
+                                        <div class="list-group-item">
+                                            <p>Місце реєстрації не було додано</p>
+                                        </div>
+                                    {% endif %}
+                                    {% if user.residence_address %}
+                                        <div class="list-group-item">
+                                        <p>
+                                            Фактичне місце проживання: {{ user.residence_address }}
+                                        </p>
+                                        </div>
+                                    {% else %}
+                                        <div class="list-group-item">
+                                            <p>Фактичне місце проживання не було додано</p>
+                                        </div>
+                                    {% endif %}
+                                        <p>
+                                            <h6>Знання мови</h6>
+                                        </p>
+                                    {% if user.residence_address %}
+                                        <div class="list-group-item">
+                                        <p>
+                                            Мова: Англійська
+                                        </p>
+                                        <p>
+                                            Рівень: intermediate
+                                        </p>
+                                </div>
+                            {% else %}
+                                <div class="list-group-item">
+                                    <p>Знання мов не оцінено</p>
+                                </div>
+                            {% endif %}
+                            </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+                                      Паспорт громадянина України
+                                    </button>
+                                </div>
+                                <div id="collapse-2" class="collapse" data-parent="#accordion1">
+                                  <div class="card-body row">
+                                      <div class="col-md-6">
+                                        <p>
+                                            <h6>Паспорт громадянина України</h6>
+                                        </p>
+                                        {% if user.pasports %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                Серія та номер: {{ user.pasports.series|upper }} {{ user.pasports.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ user.pasports.place_of_issue }}
+                                            </p>
+                                            <p>
+                                                {{ user.pasports.date_of_issue }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Паспорт громадянина України не було додано</p>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
+                                      Закордонний паспорт
+                                    </button>
+                                </div>
+                                <div id="collapse-3" class="collapse" data-parent="#accordion1">
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        {% for pasport in user.foreign_pasport.all %}
+                                          <p>
+                                            <h6>Закордонний паспорт №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Номер: {{ pasport.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ pasport.authority }}
+                                            </p>
+                                            <p>
+                                                Термін дії: {{ pasport.date_of_expiry }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <p>
+                                                <h6>Закордонний паспорт</h6>
+                                            </p>
+                                            <div class="list-group-item">
+                                                <p>Закордонний паспорт не було додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
+                                      Примітки
+                                    </button>
+                                </div>
+                                <div id="collapse-4" class="collapse" data-parent="#accordion1">
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        <p>
+                                            <h6>Примітки</h6>
+                                        </p>
+                                    {% if user.residence_address %}
+                                        <div class="list-group-item">
+                                        <p>
+                                            Психологічний портрет: Опис психологічного стану робітника
+                                        </p>
+                                        </div>
+                                    {% else %}
+                                        <div class="list-group-item">
+                                            <p>Приміток не було додано</p>
+                                        </div>
+                                    {% endif %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label">Confirm password</label>
-                            <div class="col-lg-9">
-                                <input class="form-control" type="password" value="11111122333">
-                            </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-lg-3 col-form-label form-control-label"></label>
-                            <div class="col-lg-9">
-                                <input type="reset" class="btn btn-secondary" value="Cancel">
-                                <input type="button" class="btn btn-primary" value="Save Changes">
-                            </div>
-                        </div>
-                    </form>
+                      </div><!--End Row-->
                 </div>
+                <div class="tab-pane" id="skills">
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion2">
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-5" aria-expanded="true" aria-controls="collapse-5">
+                                      Співбесіда
+                                    </button>
+                                </div>
+
+                                <div id="collapse-5" class="collapse show" data-parent="#accordion2">
+                                  <div class="card-body row">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-6" aria-expanded="false" aria-controls="collapse-6">
+                                      Тестування
+                                    </button>
+                                </div>
+                                <div id="collapse-6" class="collapse" data-parent="#accordion2">
+                                  <div class="card-body row">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-7" aria-expanded="false" aria-controls="collapse-7">
+                                      Тренування
+                                    </button>
+                                </div>
+                                <div id="collapse-7" class="collapse" data-parent="#accordion2">
+                                  <div class="card-body row">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-8" aria-expanded="false" aria-controls="collapse-8">
+                                      Сертифікати
+                                    </button>
+                                </div>
+                                <div id="collapse-8" class="collapse" data-parent="#accordion2">
+                                  <div class="card-body row">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div><!--End Row-->
+                </div>
+                <div class="tab-pane" id="legal">
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion3">
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-9" aria-expanded="true" aria-controls="collapse-9">
+                                      Дозвіл на працю
+                                    </button>
+                                </div>
+
+                                <div id="collapse-9" class="collapse show" data-parent="#accordion3">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-10" aria-expanded="false" aria-controls="collapse-10">
+                                      Віза
+                                    </button>
+                                </div>
+                                <div id="collapse-10" class="collapse" data-parent="#accordion3">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-11" aria-expanded="false" aria-controls="collapse-11">
+                                      Страхування
+                                    </button>
+                                </div>
+                                <div id="collapse-11" class="collapse" data-parent="#accordion3">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-12" aria-expanded="false" aria-controls="collapse-12">
+                                      Польська мова
+                                    </button>
+                                </div>
+                                <div id="collapse-12" class="collapse" data-parent="#accordion3">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div><!--End Row-->
+                </div>
+                <div class="tab-pane" id="work">
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion4">
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-13" aria-expanded="true" aria-controls="collapse-13">
+                                      Вхідний контроль
+                                    </button>
+                                </div>
+
+                                <div id="collapse-13" class="collapse show" data-parent="#accordion4">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-14" aria-expanded="false" aria-controls="collapse-14">
+                                      Прийняття в штат
+                                    </button>
+                                </div>
+                                <div id="collapse-14" class="collapse" data-parent="#accordion4">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-15" aria-expanded="false" aria-controls="collapse-15">
+                                      Відрядження
+                                    </button>
+                                </div>
+                                <div id="collapse-15" class="collapse" data-parent="#accordion4">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-16" aria-expanded="false" aria-controls="collapse-16">
+                                      Відпустка
+                                    </button>
+                                </div>
+                                <div id="collapse-16" class="collapse" data-parent="#accordion4">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                        </div>
+                      </div><!--End Row-->
+                </div>
+                <div class="tab-pane" id="dwelling">
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion5">
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-17" aria-expanded="true" aria-controls="collapse-17">
+                                      Житло
+                                    </button>
+                                </div>
+
+                                <div id="collapse-17" class="collapse show" data-parent="#accordion5">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+{#                              <div class="card mb-2">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-18" aria-expanded="false" aria-controls="collapse-18">#}
+{#                                      Accordion Group Item #2#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-18" class="collapse" data-parent="#accordion5">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="card mb-2">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-19" aria-expanded="false" aria-controls="collapse-19">#}
+{#                                      Accordion Group Item #2#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-19" class="collapse" data-parent="#accordion5">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="card">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-20" aria-expanded="false" aria-controls="collapse-20">#}
+{#                                      Accordion Group Item #3#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-20" class="collapse" data-parent="#accordion5">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+                            </div>
+                        </div>
+                      </div><!--End Row-->
+                </div>
+                <div class="tab-pane" id="expire">
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion6">
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-21" aria-expanded="true" aria-controls="collapse-21">
+                                      Прогноз
+                                    </button>
+                                </div>
+
+                                <div id="collapse-21" class="collapse show" data-parent="#accordion6">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-22" aria-expanded="false" aria-controls="collapse-22">
+                                      Зникнення працівника
+                                    </button>
+                                </div>
+                                <div id="collapse-22" class="collapse" data-parent="#accordion6">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+{#                              <div class="card mb-2">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-23" aria-expanded="false" aria-controls="collapse-23">#}
+{#                                      Accordion Group Item #2#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-23" class="collapse" data-parent="#accordion6">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="card">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-24" aria-expanded="false" aria-controls="collapse-24">#}
+{#                                      Accordion Group Item #3#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-24" class="collapse" data-parent="#accordion6">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+                            </div>
+                        </div>
+                      </div><!--End Row-->
+                </div>
+                <div class="tab-pane" id="dismissal">
+                    <div class="row">
+                        <div class="col-lg-12">
+                          <div id="accordion7">
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-25" aria-expanded="true" aria-controls="collapse-25">
+                                      Звільнення
+                                    </button>
+                                </div>
+
+                                <div id="collapse-25" class="collapse show" data-parent="#accordion7">
+                                  <div class="card-body">
+                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  </div>
+                                </div>
+                              </div>
+{#                              <div class="card mb-2">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-26" aria-expanded="false" aria-controls="collapse-26">#}
+{#                                      Accordion Group Item #2#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-26" class="collapse" data-parent="#accordion7">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="card mb-2">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-8" aria-expanded="false" aria-controls="collapse-27">#}
+{#                                      Accordion Group Item #2#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-27" class="collapse" data-parent="#accordion7">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+{#                              <div class="card">#}
+{#                                <div class="card-header bg-dark">#}
+{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-9" aria-expanded="false" aria-controls="collapse-28">#}
+{#                                      Accordion Group Item #3#}
+{#                                    </button>#}
+{#                                </div>#}
+{#                                <div id="collapse-28" class="collapse" data-parent="#accordion7">#}
+{#                                  <div class="card-body">#}
+{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
+{#                                  </div>#}
+{#                                </div>#}
+{#                              </div>#}
+                            </div>
+                        </div>
+                      </div><!--End Row-->
+                </div>
+
             </div>
         </div>
       </div>

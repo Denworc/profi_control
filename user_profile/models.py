@@ -65,6 +65,22 @@ class Position(models.Model):
         return self.title
 
 
+class Language(models.Model):
+    """
+    Список мов
+    """
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='languages')
+    title = models.CharField(max_length=40, verbose_name=_('Мова'))
+    level = models.CharField(max_length=40, verbose_name=_('Мови'))
+
+    class Meta:
+        verbose_name = _('Мова')
+        verbose_name_plural = _('Мови')
+
+    def __str__(self):
+        return self.title
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     """
     Пользователи системы
@@ -81,6 +97,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name=_('Посада'), null=True, blank=True)
     status = models.ForeignKey('user_profile.Status', on_delete=models.CASCADE, verbose_name=_('Статус'),
                                related_name='user', null=True, blank=True)
+    note = models.TextField(verbose_name=_('Примітки'), max_length=1000, null=True, blank=True)
     is_admin = models.BooleanField(_('Суперюзер'), default=False)
     is_worker = models.BooleanField(_('Клієнт'), default=True)
 

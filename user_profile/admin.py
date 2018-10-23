@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User, Contact, ContactType, Position, Status
+from .models import User, Contact, ContactType, Position, Status, Language
 from documents.models import UkrainianPassport, ForeignPassport
 
 
@@ -57,4 +57,9 @@ class StatusAdmin(admin.ModelAdmin):
 
 @admin.register(Position)
 class PositionAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Language)
+class LanguageAdmin(admin.ModelAdmin):
     pass
