@@ -381,7 +381,7 @@
                                         {% if user.date_of_birth %}
                                             <div class="list-group-item">
                                             <p>
-                                                Дата народження: {{ user.date_of_birth }}
+                                                {{ user.date_of_birth }}
                                             </p>
                                             </div>
                                         {% else %}
@@ -395,7 +395,7 @@
                                         {% if user.email %}
                                             <div class="list-group-item">
                                             <p>
-                                                Електронна адреса: {{ user.email }}
+                                                {{ user.email }}
                                             </p>
                                             </div>
                                         {% else %}
@@ -598,7 +598,17 @@
 
                                 <div id="collapse-5" class="collapse show" data-parent="#accordion2">
                                   <div class="card-body row">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Співбесіда не проводилась</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -610,7 +620,17 @@
                                 </div>
                                 <div id="collapse-6" class="collapse" data-parent="#accordion2">
                                   <div class="card-body row">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Тестування не проводилось</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -622,7 +642,17 @@
                                 </div>
                                 <div id="collapse-7" class="collapse" data-parent="#accordion2">
                                   <div class="card-body row">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Тренування не проводилось</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -634,7 +664,28 @@
                                 </div>
                                 <div id="collapse-8" class="collapse" data-parent="#accordion2">
                                   <div class="card-body row">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    <div class="col-md-6">
+                                        {% for pasport in user.foreign_pasport.all %}
+                                          <p>
+                                            <h6>Сертифікат №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Номер: {{ pasport.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ pasport.authority }}
+                                            </p>
+                                            <p>
+                                                Термін дії: {{ pasport.date_of_expiry }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <div class="list-group-item">
+                                                <p>Сертифікати не додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -654,8 +705,18 @@
                                 </div>
 
                                 <div id="collapse-9" class="collapse show" data-parent="#accordion3">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Дозвіл на працю не отримано</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -666,8 +727,29 @@
                                     </button>
                                 </div>
                                 <div id="collapse-10" class="collapse" data-parent="#accordion3">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        {% for pasport in user.foreign_pasport.all %}
+                                          <p>
+                                            <h6>Віза №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Номер: {{ pasport.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ pasport.authority }}
+                                            </p>
+                                            <p>
+                                                Термін дії: {{ pasport.date_of_expiry }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <div class="list-group-item">
+                                                <p>Дані про візу не додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -678,8 +760,29 @@
                                     </button>
                                 </div>
                                 <div id="collapse-11" class="collapse" data-parent="#accordion3">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        {% for pasport in user.foreign_pasport.all %}
+                                          <p>
+                                            <h6>Страхування №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Номер: {{ pasport.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ pasport.authority }}
+                                            </p>
+                                            <p>
+                                                Термін дії: {{ pasport.date_of_expiry }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <div class="list-group-item">
+                                                <p>Дані про страхування не додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -690,8 +793,18 @@
                                     </button>
                                 </div>
                                 <div id="collapse-12" class="collapse" data-parent="#accordion3">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Володіння мовою не оцінено</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -711,8 +824,18 @@
                                 </div>
 
                                 <div id="collapse-13" class="collapse show" data-parent="#accordion4">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Вхідний контроль не пройдено</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -723,8 +846,18 @@
                                     </button>
                                 </div>
                                 <div id="collapse-14" class="collapse" data-parent="#accordion4">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Дані про прийняття в штат не додано</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -735,8 +868,29 @@
                                     </button>
                                 </div>
                                 <div id="collapse-15" class="collapse" data-parent="#accordion4">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        {% for pasport in user.foreign_pasport.all %}
+                                          <p>
+                                            <h6>Відрядження №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Номер: {{ pasport.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ pasport.authority }}
+                                            </p>
+                                            <p>
+                                                Термін дії: {{ pasport.date_of_expiry }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <div class="list-group-item">
+                                                <p>Інформацію про відрядження не додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -747,8 +901,29 @@
                                     </button>
                                 </div>
                                 <div id="collapse-16" class="collapse" data-parent="#accordion4">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        {% for pasport in user.foreign_pasport.all %}
+                                          <p>
+                                            <h6>Відпустка №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                Номер: {{ pasport.number }}
+                                            </p>
+                                            <p>
+                                                Виданий: {{ pasport.authority }}
+                                            </p>
+                                            <p>
+                                                Термін дії: {{ pasport.date_of_expiry }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <div class="list-group-item">
+                                                <p>Відпустки не зареєстровані</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -768,8 +943,18 @@
                                 </div>
 
                                 <div id="collapse-17" class="collapse show" data-parent="#accordion5">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Інформація про житло не надана</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -825,8 +1010,18 @@
                                 </div>
 
                                 <div id="collapse-21" class="collapse show" data-parent="#accordion6">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Прогноз не проведений</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -837,8 +1032,18 @@
                                     </button>
                                 </div>
                                 <div id="collapse-22" class="collapse" data-parent="#accordion6">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Інформація про зникнення відсутня</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>
@@ -882,8 +1087,18 @@
                                 </div>
 
                                 <div id="collapse-25" class="collapse show" data-parent="#accordion7">
-                                  <div class="card-body">
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                  <div class="card-body row">
+                                        {% if user.date_of_birth %}
+                                            <div class="list-group-item">
+                                            <p>
+                                                {{ user.date_of_birth }}
+                                            </p>
+                                            </div>
+                                        {% else %}
+                                            <div class="list-group-item">
+                                                <p>Інформація про звільнення відсутня</p>
+                                            </div>
+                                        {% endif %}
                                   </div>
                                 </div>
                               </div>

@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include, re_path
 from profi.settings import MEDIA_ROOT, MEDIA_URL
 from django.conf.urls.static import static
+
+from user_profile.views import UserListView
 from .views import DashboardView
 
 
@@ -27,5 +29,6 @@ urlpatterns = [
         path('user/', include('user_profile.urls')),
         path('', DashboardView.as_view(), name='dashboard'),
     ])),
-    path('', DashboardView.as_view(), name='dashboard'),
+    # path('', DashboardView.as_view(), name='dashboard'),
+    path('', UserListView.as_view(), name='users'),
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)

@@ -2,7 +2,7 @@
 
 <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
     <div class="brand-logo">
-        <a href="{% url 'dashboard' %}">
+        <a href="{% url 'users' %}">
             <img src="{% static 'cabinet/' %}assets/images/logo_profi.png" class="logo-icon" alt="logo icon">
             <h5 class="logo-text">&#171;PROFI&#187;</h5>
         </a>
@@ -14,7 +14,7 @@
                                      src="{% static 'cabinet/' %}assets/images/avatars/avatar-1.png"
                                      alt="user avatar"></div>
             <div class="media-body">
-                <h6 class="side-user-name">{{ user|truncatechars:14 }}</h6>
+                <h6 class="side-user-name">{{ user.get_full_name|truncatechars:14 }}</h6>
             </div>
         </div>
         <div id="user-dropdown" class="collapse">
@@ -25,17 +25,10 @@
     </div>
     <ul class="sidebar-menu do-nicescrol">
         <li class="sidebar-header">MAIN NAVIGATION</li>
-        <li><a href="javaScript:void();" class="waves-effect"><i class="icon-doc text-danger"></i><span>Disk Space</span></a>
+        <li><a href="{% url 'user:users' %}" class="waves-effect"><i class="icon-user"></i><span>Працівники</span></a>
         </li>
-        <li>
-            <a href="index.html" class="waves-effect">
-                <i class="icon-user"></i><span>Люди</span><i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="sidebar-submenu">
-                <li><a href="{% url 'user:users' %}"><i class="fa fa-long-arrow-right"></i> Список персон</a></li>
-            </ul>
+        <li><a href="{% url 'dashboard' %}" class="waves-effect"><i class="icon-doc"></i><span>Звіти</span></a>
         </li>
-
         <li>
             <a href="javaScript:void();" class="waves-effect">
                 <i class="icon-calendar"></i><span>Multilevel</span>
