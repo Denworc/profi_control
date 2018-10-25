@@ -409,10 +409,10 @@
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Тип контакту: {{ contact.type.title }}
+                                                <mark>Тип контакту:</mark> {{ contact.type.title }}
                                             </p>
                                             <p>
-                                                Контакт: {{ contact.contact }}
+                                                <mark>Контакт:</mark> {{ contact.contact }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -431,7 +431,7 @@
                                     {% if user.personal_id %}
                                         <div class="list-group-item">
                                         <p>
-                                            Ідентифікаційний код: {{ user.personal_id }}
+                                            <mark>Ідентифікаційний код:</mark> {{ user.personal_id }}
                                         </p>
                                         </div>
                                     {% else %}
@@ -445,7 +445,7 @@
                                     {% if user.registration %}
                                         <div class="list-group-item">
                                         <p>
-                                            Місце прописки: {{ user.registration }}
+                                            <mark>Місце прописки:</mark> {{ user.registration }}
                                         </p>
                                         </div>
                                     {% else %}
@@ -456,7 +456,7 @@
                                     {% if user.residence_address %}
                                         <div class="list-group-item">
                                         <p>
-                                            Фактичне місце проживання: {{ user.residence_address }}
+                                            <mark>Фактичне місце проживання:</mark> {{ user.residence_address }}
                                         </p>
                                         </div>
                                     {% else %}
@@ -464,24 +464,27 @@
                                             <p>Фактичне місце проживання не було додано</p>
                                         </div>
                                     {% endif %}
-                                        <p>
-                                            <h6>Знання мови</h6>
-                                        </p>
-                                    {% if user.residence_address %}
-                                        <div class="list-group-item">
-                                        <p>
-                                            Мова: Англійська
-                                        </p>
-                                        <p>
-                                            Рівень: intermediate
-                                        </p>
-                                </div>
-                            {% else %}
-                                <div class="list-group-item">
-                                    <p>Знання мов не оцінено</p>
-                                </div>
-                            {% endif %}
-                            </div>
+                                    {% for language in user.languages.all %}
+                                          <p>
+                                            <h6>Мова №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                <mark>Мова:</mark> {{ language.title }}
+                                            </p>
+                                            <p>
+                                                <mark>Рівень:</mark> {{ language.level }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <p>
+                                                <h6>Знання мов</h6>
+                                            </p>
+                                            <div class="list-group-item">
+                                                <p>Знання мов не оцінено</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -500,10 +503,10 @@
                                         {% if user.pasports %}
                                             <div class="list-group-item">
                                             <p>
-                                                Серія та номер: {{ user.pasports.series|upper }} {{ user.pasports.number }}
+                                                <mark>Серія та номер:</mark> {{ user.pasports.series|upper }} {{ user.pasports.number }}
                                             </p>
                                             <p>
-                                                Виданий: {{ user.pasports.place_of_issue }}
+                                                <mark>Виданий:</mark> {{ user.pasports.place_of_issue }}
                                             </p>
                                             <p>
                                                 {{ user.pasports.date_of_issue }}
@@ -533,13 +536,13 @@
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Номер: {{ pasport.number }}
+                                                <mark>Номер:</mark> {{ pasport.number }}
                                             </p>
                                             <p>
-                                                Виданий: {{ pasport.authority }}
+                                                <mark>Виданий:</mark> {{ pasport.authority }}
                                             </p>
                                             <p>
-                                                Термін дії: {{ pasport.date_of_expiry }}
+                                                <mark>Термін дії:</mark> {{ pasport.date_of_expiry }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -566,10 +569,10 @@
                                         <p>
                                             <h6>Примітки</h6>
                                         </p>
-                                    {% if user.residence_address %}
+                                    {% if user.note %}
                                         <div class="list-group-item">
                                         <p>
-                                            Психологічний портрет: Опис психологічного стану робітника
+                                            <mark>Психологічний портрет:</mark> {{ user.note }}
                                         </p>
                                         </div>
                                     {% else %}
@@ -597,19 +600,28 @@
                                 </div>
 
                                 <div id="collapse-5" class="collapse show" data-parent="#accordion2">
-                                  <div class="card-body row">
-                                        {% if user.date_of_birth %}
-                                            <div class="list-group-item">
+                                  <div class="col-md-6">
+                                        {% for interview in user.interviews.all %}
+                                          <p>
+                                            <h6>Співбесіда №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Тип співбесіди:</mark> {{ interview.interview_types.select_related.title }}
+                                            </p>
+                                            <p>
+                                                <mark>Результат:</mark> {{ interview.result }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата проведення:</mark> {{ interview.start_on }}
                                             </p>
                                             </div>
-                                        {% else %}
+                                        {% empty %}
                                             <div class="list-group-item">
                                                 <p>Співбесіда не проводилась</p>
                                             </div>
-                                        {% endif %}
-                                  </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                               </div>
                               <div class="card">
@@ -619,19 +631,28 @@
                                     </button>
                                 </div>
                                 <div id="collapse-6" class="collapse" data-parent="#accordion2">
-                                  <div class="card-body row">
-                                        {% if user.date_of_birth %}
-                                            <div class="list-group-item">
+                                  <div class="col-md-6">
+                                        {% for test in user.tests.all %}
+                                          <p>
+                                            <h6>Тестування №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Тип тестування:</mark> {{ test.test_types.select_related.title }}
+                                            </p>
+                                            <p>
+                                                <mark>Результат:</mark> {{ test.result }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата проведення:</mark> {{ test.start_on }}
                                             </p>
                                             </div>
-                                        {% else %}
+                                        {% empty %}
                                             <div class="list-group-item">
                                                 <p>Тестування не проводилось</p>
                                             </div>
-                                        {% endif %}
-                                  </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                               </div>
                               <div class="card">
@@ -641,19 +662,28 @@
                                     </button>
                                 </div>
                                 <div id="collapse-7" class="collapse" data-parent="#accordion2">
-                                  <div class="card-body row">
-                                        {% if user.date_of_birth %}
-                                            <div class="list-group-item">
+                                  <div class="col-md-6">
+                                        {% for training in user.trainings.all %}
+                                          <p>
+                                            <h6>Тренування №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Результат:</mark> {{ training.result }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата початку:</mark> {{ training.start_on }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата завершення:</mark> {{ training.expire }}
                                             </p>
                                             </div>
-                                        {% else %}
+                                        {% empty %}
                                             <div class="list-group-item">
                                                 <p>Тренування не проводилось</p>
                                             </div>
-                                        {% endif %}
-                                  </div>
+                                        {% endfor %}
+                                    </div>
                                 </div>
                               </div>
                               <div class="card">
@@ -665,19 +695,28 @@
                                 <div id="collapse-8" class="collapse" data-parent="#accordion2">
                                   <div class="card-body row">
                                     <div class="col-md-6">
-                                        {% for pasport in user.foreign_pasport.all %}
+                                        {% for certificate in user.certificates.all %}
                                           <p>
                                             <h6>Сертифікат №{{ forloop.counter }}</h6>
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Номер: {{ pasport.number }}
+                                                <mark>Сертифікуюча організація:</mark> {{ certificate.organization }}
                                             </p>
                                             <p>
-                                                Виданий: {{ pasport.authority }}
+                                                <mark>Метод зварювання</mark> {{ certificate.welding_type }}
                                             </p>
                                             <p>
-                                                Термін дії: {{ pasport.date_of_expiry }}
+                                                <mark>Просторове положення:</mark> {{ certificate.welding_position }}
+                                            </p>
+                                            <p>
+                                                <mark>Товщина:</mark> {{ certificate.thickness }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата видачі:</mark> {{ certificate.start_on }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата завершення:</mark> {{ certificate.expire }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -706,17 +745,46 @@
 
                                 <div id="collapse-9" class="collapse show" data-parent="#accordion3">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
-                                            <div class="list-group-item">
+                                    <div class="col-md-6">
+                                        {% for permission in user.permissions.all %}
+                                          <p>
+                                            <h6>Дозвіл №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Дата відправлення внеску представнику:</mark> {{ permission.number }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата подачі внеску у Воєводство:</mark> {{ permission.authority }}
+                                            </p>
+                                            <p>
+                                                <mark>Прогнозована дата отримання дозволу:</mark> {{ permission.date_of_expiry }}
+                                            </p>
+                                            <p>
+                                                <mark>Воєводство:</mark> {{ permission.number }}
+                                            </p>
+                                            <p>
+                                                <mark>Завод:</mark> {{ permission.factory }}
+                                            </p>
+                                            <p>
+                                                <mark>Підприємство – роботодавець:</mark> {{ permission.employer }}
+                                            </p>
+                                            <p>
+                                                <mark>Від:</mark> {{ permission.number }}
+                                            </p>
+                                            <p>
+                                                <mark>До:</mark> {{ permission.expire }}
+                                            </p>
+                                            <p>
+                                                <mark>Примітки:</mark> {{ permission.date_of_expiry }}
                                             </p>
                                             </div>
-                                        {% else %}
+                                        {% empty %}
                                             <div class="list-group-item">
-                                                <p>Дозвіл на працю не отримано</p>
+                                                <p>Дозвіл на працю не додано</p>
                                             </div>
-                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -729,19 +797,22 @@
                                 <div id="collapse-10" class="collapse" data-parent="#accordion3">
                                   <div class="card-body row">
                                     <div class="col-md-6">
-                                        {% for pasport in user.foreign_pasport.all %}
+                                        {% for visa in user.visas.all %}
                                           <p>
                                             <h6>Віза №{{ forloop.counter }}</h6>
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Номер: {{ pasport.number }}
+                                                <mark>Дата подачі на візу:</mark> {{ visa.adasd }}
                                             </p>
                                             <p>
-                                                Виданий: {{ pasport.authority }}
+                                                <mark>Прогнозована дата отримання візи:</mark> {{ visa.asdasd }}
                                             </p>
                                             <p>
-                                                Термін дії: {{ pasport.date_of_expiry }}
+                                                <mark>Початок:</mark> {{ visa.start_on }}
+                                            </p>
+                                            <p>
+                                                <mark>Завершення:</mark> {{ visa.expire }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -762,19 +833,19 @@
                                 <div id="collapse-11" class="collapse" data-parent="#accordion3">
                                   <div class="card-body row">
                                     <div class="col-md-6">
-                                        {% for pasport in user.foreign_pasport.all %}
+                                        {% for insurance in user.insurances.all %}
                                           <p>
                                             <h6>Страхування №{{ forloop.counter }}</h6>
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Номер: {{ pasport.number }}
+                                                <mark>Вид страхування:</mark> {{ insurance.type }}
                                             </p>
                                             <p>
-                                                Виданий: {{ pasport.authority }}
+                                                <mark>Від:</mark> {{ insurance.authority }}
                                             </p>
                                             <p>
-                                                Термін дії: {{ pasport.date_of_expiry }}
+                                                <mark>До:</mark> {{ insurance.expire }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -794,10 +865,10 @@
                                 </div>
                                 <div id="collapse-12" class="collapse" data-parent="#accordion3">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        {% if user.polish %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                {{ user.polish }}
                                             </p>
                                             </div>
                                         {% else %}
@@ -825,10 +896,13 @@
 
                                 <div id="collapse-13" class="collapse show" data-parent="#accordion4">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        {% if user.incoming_controls %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Дата від’їзду:</mark> {{ user.incoming_controls.expire }}
+                                            </p>
+                                            <p>
+                                                <mark>Завод проходження вхідного контролю:</mark> {{ user.incoming_controls.factory }}
                                             </p>
                                             </div>
                                         {% else %}
@@ -847,10 +921,22 @@
                                 </div>
                                 <div id="collapse-14" class="collapse" data-parent="#accordion4">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        {% if user.adoptions %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Підприємство - роботодавець:</mark> {{ user.adoptions.asd }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата прийняття в штат:</mark> {{ user.adoptions.dismissal_date }}
+                                            </p>
+                                            <p>
+                                                <mark>Номер наказу:</mark> {{ user.adoptions.order_number }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата наказу:</mark> {{ user.adoptions.order_date }}
+                                            </p>
+                                            <p>
+                                                <mark>Посада:</mark> {{ user.adoptions.asd }}
                                             </p>
                                             </div>
                                         {% else %}
@@ -864,25 +950,79 @@
                               <div class="card mb-2">
                                 <div class="card-header bg-dark">
                                     <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-15" aria-expanded="false" aria-controls="collapse-15">
-                                      Відрядження
+                                      Переведення
                                     </button>
                                 </div>
                                 <div id="collapse-15" class="collapse" data-parent="#accordion4">
                                   <div class="card-body row">
                                     <div class="col-md-6">
-                                        {% for pasport in user.foreign_pasport.all %}
+                                        {% for transfer in user.transfers.all %}
+                                          <p>
+                                            <h6>Переведення №{{ forloop.counter }}</h6>
+                                          </p>
+                                          <div class="list-group-item">
+                                            <p>
+                                                <mark>Дата переведення на іншу посаду:</mark> {{ transfer.dismissal_date }}
+                                            </p>
+                                            <p>
+                                                <mark>Номер наказу:</mark> {{ transfer.order_number }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата наказу:</mark> {{ transfer.order_date }}
+                                            </p>
+                                            </div>
+                                        {% empty %}
+                                            <div class="list-group-item">
+                                                <p>Інформацію про переведення не додано</p>
+                                            </div>
+                                        {% endfor %}
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="card mb-2">
+                                <div class="card-header bg-dark">
+                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-35" aria-expanded="false" aria-controls="collapse-35">
+                                      Відрядження
+                                    </button>
+                                </div>
+                                <div id="collapse-35" class="collapse" data-parent="#accordion4">
+                                  <div class="card-body row">
+                                    <div class="col-md-6">
+                                        {% for assignment in user.assignments.all %}
                                           <p>
                                             <h6>Відрядження №{{ forloop.counter }}</h6>
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Номер: {{ pasport.number }}
+                                                <mark>Номер наказу:</mark> {{ assignment.order_number }}
                                             </p>
                                             <p>
-                                                Виданий: {{ pasport.authority }}
+                                                <mark>Дата наказу:</mark> {{ assignment.order_date }}
                                             </p>
                                             <p>
-                                                Термін дії: {{ pasport.date_of_expiry }}
+                                                <mark>Дата початку відрядження:</mark> {{ assignment.start_on }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата закінчення відрядження:</mark> {{ assignment.expire }}
+                                            </p>
+                                            <p>
+                                                <mark>Завод:</mark> {{ assignment.factory }}
+                                            </p>
+                                            <p>
+                                                <mark>Місто відрядження:</mark> {{ assignment.city }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата перетину кордону в Польщу:</mark> {{ assignment.polish_border }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата перетину кордону в Україну:</mark> {{ assignment.ukrainian_border }}
+                                            </p>
+                                            <p>
+                                                <mark>Примітка про дострокове припинення відрядження:</mark> {{ assignment.dismissal_reason }}
+                                            </p>
+                                            <p>
+                                                <mark>Примітка про переривання відрядження:</mark>{{ assignment.dismissal_basis }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -897,25 +1037,37 @@
                               <div class="card">
                                 <div class="card-header bg-dark">
                                     <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-16" aria-expanded="false" aria-controls="collapse-16">
-                                      Відпустка
+                                      Відпустки
                                     </button>
                                 </div>
                                 <div id="collapse-16" class="collapse" data-parent="#accordion4">
                                   <div class="card-body row">
                                     <div class="col-md-6">
-                                        {% for pasport in user.foreign_pasport.all %}
+                                        {% for vocation in user.vocations.all %}
                                           <p>
                                             <h6>Відпустка №{{ forloop.counter }}</h6>
                                           </p>
                                           <div class="list-group-item">
                                             <p>
-                                                Номер: {{ pasport.number }}
+                                                <mark>Тип відпустки:</mark> {{ vocation.type }}
                                             </p>
                                             <p>
-                                                Виданий: {{ pasport.authority }}
+                                                <mark>Період роботи для щорічної основної відпустки:</mark> {{ vocation.number }}
                                             </p>
                                             <p>
-                                                Термін дії: {{ pasport.date_of_expiry }}
+                                                <mark>Дата початку щорічної відпустки:</mark> {{ vocation.start_on }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата закінчення щорічної відпустки:</mark> {{ vocation.expire }}
+                                            </p>
+                                            <p>
+                                                <mark>Номер наказу:</mark> {{ vocation.order_number }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата наказу:</mark> {{ vocation.order_date }}
+                                            </p>
+                                            <p>
+                                                <mark>Примітки:</mark> {{ vocation.comment }}
                                             </p>
                                             </div>
                                         {% empty %}
@@ -944,10 +1096,25 @@
 
                                 <div id="collapse-17" class="collapse show" data-parent="#accordion5">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        {% if user.dwelling %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Адреса проживання в Польщі:</mark> {{ user.dwelling.address }}
+                                            </p>
+                                            <p>
+                                                <mark>Орендодавець:</mark> {{ user.dwelling.landlord_name }}
+                                            </p>
+                                            <p>
+                                                <mark>Сусід по кімнаті:</mark> {{ user.dwelling.neighbor_name }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата заселення:</mark> {{ user.dwelling.start_on }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата вивільнення:</mark> {{ user.dwelling.expire }}
+                                            </p>
+                                            <p>
+                                                <mark>Кінцева дата закріплення житла за працівником без оплати:</mark> {{ user.dwelling.end_date }}
                                             </p>
                                             </div>
                                         {% else %}

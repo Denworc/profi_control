@@ -24,7 +24,7 @@ class InsuranceEvent(models.Model):
     """
     title = models.CharField(max_length=40, verbose_name='Страхова подія')
     expire = models.DateField(verbose_name='Дата завершення', null=True, blank=True)
-    insurance = models.ForeignKey('medicine.Insurance', on_delete=models.CASCADE)
+    insurance = models.ForeignKey('medicine.Insurance', on_delete=models.CASCADE, related_name='events')
 
     class Meta:
         verbose_name = _('Страхова подія')
@@ -38,7 +38,7 @@ class Insurance(models.Model):
     """
     Страхуванн
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='insurances')
     insurance_organization = models.CharField(max_length=20, verbose_name=_('Страхова організація'))
     type = models.ForeignKey(InsuranceType, on_delete=models.CASCADE, verbose_name=_('Тип страхування'))
     expire = models.DateField(verbose_name='Дата завершення', null=True, blank=True)
@@ -68,8 +68,9 @@ class MedicalReviewType(models.Model):
 
 
 class MedicalReview(models.Model):
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE)
-    type = models.ForeignKey(MedicalReviewType, on_delete=models.CASCADE, verbose_name=_('Тип медогляду'))
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='medicals')
+    type = models.ForeignKey(MedicalReviewType, on_delete=models.CASCADE,
+                             verbose_name=_('Тип медогляду'), related_name='medicals')
     early_expire = models.DateField(verbose_name='Дострокове завершення', null=True, blank=True)
     has_review = models.BooleanField(verbose_name=_('Наявність медогляду'), default=False)
 

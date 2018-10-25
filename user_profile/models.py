@@ -71,7 +71,7 @@ class Language(models.Model):
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='languages')
     title = models.CharField(max_length=40, verbose_name=_('Мова'))
-    level = models.CharField(max_length=40, verbose_name=_('Мови'))
+    level = models.CharField(max_length=40, verbose_name=_('Рівень'))
 
     class Meta:
         verbose_name = _('Мова')

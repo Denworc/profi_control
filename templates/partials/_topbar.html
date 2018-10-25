@@ -158,8 +158,8 @@
                                                              src="{% static 'cabinet/' %}assets/images/avatars/avatar-1.png"
                                                              alt="user avatar"></div>
                                     <div class="media-body">
-                                        <h6 class="mt-2 user-title">{{ user.last_name }} {{ user.first_name }}</h6>
-                                        <p class="user-subtitle">{{ user.email }}</p>
+                                        <h6 class="mt-2 user-title">{{ request.user.last_name }} {{ request.user.first_name }}</h6>
+                                        <p class="user-subtitle">{{ request.user.email }}</p>
                                     </div>
                                 </div>
                             </a>
@@ -167,7 +167,7 @@
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item"><i class="icon-envelope mr-2"></i> Inbox</li>
                         <li class="dropdown-divider"></li>
-                        <li class="dropdown-item"><i class="icon-wallet mr-2"></i> Account</li>
+                        <li class="dropdown-item"><a href="{% url 'user:user-detail' request.user.id %}"><i class="icon-wallet mr-2"></i> Account</li>
                         <li class="dropdown-divider"></li>
                         <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
                         <li class="dropdown-divider"></li>
