@@ -377,7 +377,6 @@
                                     <div class="col-md-6">
                                         <p>
                                             <h6>Дата народження</h6>
-                                        </p>
                                         {% if user.date_of_birth %}
                                             <div class="list-group-item">
                                             <p>
@@ -391,7 +390,6 @@
                                         {% endif %}
                                         <p>
                                             <h6>Електронна адреса</h6>
-                                        </p>
                                         {% if user.email %}
                                             <div class="list-group-item">
                                             <p>
@@ -406,7 +404,6 @@
                                         {% for contact in user.contacts.all %}
                                           <p>
                                             <h6>Контактні дані №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Тип контакту:</mark> {{ contact.type.title }}
@@ -418,7 +415,6 @@
                                         {% empty %}
                                             <p>
                                                 <h6>Контактні дані</h6>
-                                            </p>
                                             <div class="list-group-item">
                                                 <p>Контактні дані не було додано</p>
                                             </div>
@@ -427,7 +423,6 @@
                                     <div class="col-md-6">
                                         <p>
                                             <h6>Ідентифікаційний код</h6>
-                                        </p>
                                     {% if user.personal_id %}
                                         <div class="list-group-item">
                                         <p>
@@ -441,7 +436,6 @@
                                     {% endif %}
                                         <p>
                                             <h6>Адреса</h6>
-                                        </p>
                                     {% if user.registration %}
                                         <div class="list-group-item">
                                         <p>
@@ -467,7 +461,6 @@
                                     {% for language in user.languages.all %}
                                           <p>
                                             <h6>Мова №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Мова:</mark> {{ language.title }}
@@ -479,7 +472,6 @@
                                         {% empty %}
                                             <p>
                                                 <h6>Знання мов</h6>
-                                            </p>
                                             <div class="list-group-item">
                                                 <p>Знання мов не оцінено</p>
                                             </div>
@@ -499,7 +491,6 @@
                                       <div class="col-md-6">
                                         <p>
                                             <h6>Паспорт громадянина України</h6>
-                                        </p>
                                         {% if user.pasports %}
                                             <div class="list-group-item">
                                             <p>
@@ -533,7 +524,6 @@
                                         {% for pasport in user.foreign_pasport.all %}
                                           <p>
                                             <h6>Закордонний паспорт №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Номер:</mark> {{ pasport.number }}
@@ -548,7 +538,6 @@
                                         {% empty %}
                                             <p>
                                                 <h6>Закордонний паспорт</h6>
-                                            </p>
                                             <div class="list-group-item">
                                                 <p>Закордонний паспорт не було додано</p>
                                             </div>
@@ -568,7 +557,6 @@
                                     <div class="col-md-6">
                                         <p>
                                             <h6>Примітки</h6>
-                                        </p>
                                     {% if user.note %}
                                         <div class="list-group-item">
                                         <p>
@@ -604,7 +592,6 @@
                                         {% for interview in user.interviews.all %}
                                           <p>
                                             <h6>Співбесіда №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Тип співбесіди:</mark> {{ interview.interview_types.select_related.title }}
@@ -635,7 +622,6 @@
                                         {% for test in user.tests.all %}
                                           <p>
                                             <h6>Тестування №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Тип тестування:</mark> {{ test.test_types.select_related.title }}
@@ -666,7 +652,6 @@
                                         {% for training in user.trainings.all %}
                                           <p>
                                             <h6>Тренування №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Результат:</mark> {{ training.result }}
@@ -698,7 +683,6 @@
                                         {% for certificate in user.certificates.all %}
                                           <p>
                                             <h6>Сертифікат №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Сертифікуюча організація:</mark> {{ certificate.organization }}
@@ -749,7 +733,6 @@
                                         {% for permission in user.permissions.all %}
                                           <p>
                                             <h6>Дозвіл №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Дата відправлення внеску представнику:</mark> {{ permission.number }}
@@ -800,7 +783,6 @@
                                         {% for visa in user.visas.all %}
                                           <p>
                                             <h6>Віза №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Дата подачі на візу:</mark> {{ visa.adasd }}
@@ -836,7 +818,6 @@
                                         {% for insurance in user.insurances.all %}
                                           <p>
                                             <h6>Страхування №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Вид страхування:</mark> {{ insurance.type }}
@@ -959,7 +940,6 @@
                                         {% for transfer in user.transfers.all %}
                                           <p>
                                             <h6>Переведення №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Дата переведення на іншу посаду:</mark> {{ transfer.dismissal_date }}
@@ -992,7 +972,6 @@
                                         {% for assignment in user.assignments.all %}
                                           <p>
                                             <h6>Відрядження №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Номер наказу:</mark> {{ assignment.order_number }}
@@ -1046,7 +1025,6 @@
                                         {% for vocation in user.vocations.all %}
                                           <p>
                                             <h6>Відпустка №{{ forloop.counter }}</h6>
-                                          </p>
                                           <div class="list-group-item">
                                             <p>
                                                 <mark>Тип відпустки:</mark> {{ vocation.type }}

@@ -6,7 +6,7 @@ class Dwelling(models.Model):
     """
     Місце проживання
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='dwelling')
+    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='dwellings')
     address = models.CharField(max_length=40, verbose_name='Адреса проживання')
     landlord_name = models.CharField(max_length=40, verbose_name="Ім'я орендодавця")
     neighbor_name = models.CharField(max_length=40, verbose_name='ПІБ сусіда по кімнаті')

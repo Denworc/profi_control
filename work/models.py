@@ -153,7 +153,7 @@ class Vocation(models.Model):
         return self.type.title
 
 
-class IncomingСontrol(models.Model):
+class IncomingControl(models.Model):
     """
      Вхідний контроль
     """
@@ -167,3 +167,36 @@ class IncomingСontrol(models.Model):
 
     def __str__(self):
         return self.factory
+
+
+class Prognosis(models.Model):
+    """
+     Прогноз
+    """
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='prognoses')
+    reason = models.CharField(max_length=40, verbose_name='Причина повернення')
+    expire = models.DateField(verbose_name=_("Дата прибуття"), null=True, blank=True)
+    agree = models.BooleanField(_('Згода заводу'), default=False)
+
+    class Meta:
+        verbose_name = _('Прогноз')
+        verbose_name_plural = _('Прогнози')
+
+    def __str__(self):
+        return self.reason
+
+
+class Disappearance(models.Model):
+    """
+     Зникнення
+    """
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='disappearances')
+    violation_date = models.DateField(verbose_name=_("Дата порушення"), null=True, blank=True)
+    appeal_date = models.DateField(verbose_name=_("Дата звернення"), null=True, blank=True)
+
+    class Meta:
+        verbose_name = _('Зникнення')
+        verbose_name_plural = _('Зникнення')
+
+    def __str__(self):
+        return self.violation_date

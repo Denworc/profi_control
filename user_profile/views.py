@@ -27,7 +27,7 @@ class AuthView(FormView):
         if user is not None:
             if user.is_active:
                 login(self.request, user)
-                return redirect('dashboard')
+                return redirect('users')
 
         messages.error(self.request, _('Не верный адрес почты или пароль'), 'danger')
         return redirect(self.request.META.get('HTTP_REFERER'))
