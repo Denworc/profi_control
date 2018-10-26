@@ -7,7 +7,7 @@ class Dismissal(models.Model):
     """
     Звільнення
     """
-    user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='dismissals')
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='dismissals')
     dismissal_date = models.DateField(verbose_name=_('Дата звільнення'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=40, verbose_name='№ наказу')

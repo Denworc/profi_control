@@ -1,5 +1,3 @@
-import re
-
 from django.contrib.auth.base_user import BaseUserManager
 from django.utils.translation import ugettext_lazy as _
 
@@ -17,9 +15,9 @@ class UserManager(BaseUserManager):
         )
 
         user.set_password(password)
-        result = re.findall(r'^(\w+)@', email)
-        # id = User.
-        user.login = result[0]+'1'
+        # result = re.findall(r'^(\w+)@', email)
+        # # id = User.
+        # user.login = result[0]+'1'
         user.save(using=self._db)
         return user
 

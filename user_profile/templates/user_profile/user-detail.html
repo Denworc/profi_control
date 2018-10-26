@@ -1233,10 +1233,22 @@
 
                                 <div id="collapse-25" class="collapse show" data-parent="#accordion7">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        {% if user.dismissals %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Дата звільнення:</mark> {{ user.dismissals.dismissal_date }}
+                                            </p>
+                                            <p>
+                                                <mark>Номер наказу:</mark> {{ vocation.dismissals.order.date }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата наказу:</mark> {{ vocation.dismissals.order_number }}
+                                            </p>
+                                            <p>
+                                                <mark>Підстава звільнення:</mark> {{ user.dismissals.dismissal_basis }}
+                                            </p>
+                                            <p>
+                                                <mark>Причина звільнення:</mark> {{ user.dismissals.dismissal_reason }}
                                             </p>
                                             </div>
                                         {% else %}

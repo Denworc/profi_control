@@ -80,6 +80,8 @@ class NewUserView(CreateView):
     template_name = 'user_profile/add_user.html'
     form_class = NewUserForm
 
+    def get_success_url(self):
+        return reverse('user:user-detail', kwargs={'pk': self.object.pk})
 
 # def new_user(request):
 #

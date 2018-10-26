@@ -92,7 +92,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     patronymic = models.CharField(verbose_name=_('По-батькові'), max_length=40)
     registration = models.CharField(verbose_name=_("Адреса прописки"), max_length=200, null=True, blank=True)
     residence_address = models.CharField(verbose_name=_('Фактична адреса'), max_length=200, null=True, blank=True)
-    login = models.CharField(max_length=30, verbose_name=_('Логін'), unique=True, blank=True)
+    # login = models.CharField(max_length=30, verbose_name=_('Логін'), unique=True, blank=True)
     date_of_birth = models.DateField(verbose_name='Дата народження', null=True, blank=True)
     position = models.ForeignKey(Position, on_delete=models.CASCADE, verbose_name=_('Посада'), null=True, blank=True)
     status = models.ForeignKey('user_profile.Status', on_delete=models.CASCADE, verbose_name=_('Статус'),
