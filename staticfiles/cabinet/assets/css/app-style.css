@@ -2199,7 +2199,7 @@ hr {
     color: #ff0000;
 }
 label {
-    color: #6b6b6b;
+    color: #223035;
     font-size: .75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -3451,6 +3451,11 @@ table.grid td {
     margin-bottom: -1px;
     background-color: #fff;
     border: 1px solid rgba(0, 0, 0, 0.10);
+    border-radius: 5px;
+}
+
+.list-group-item p{
+    margin: 0;
 }
 
 .list-group-item-primary {

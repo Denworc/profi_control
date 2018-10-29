@@ -494,6 +494,7 @@
 {#                                                {% endfor %}#}
                                                 {% for field in contact_create_form %}
                                           <div class="form-group">
+                                          <p></p>
                                             {{ field.label_tag }}
 
                                             {% if form.is_bound %}
@@ -518,7 +519,7 @@
                                             {% endif %}
                                           </div>
                                         {% endfor %}
-                                          <input type="submit" value="Добавити">
+                                          <input type="submit" class="btn-outline-success btn" value="Добавити">
                                         </form>
                                     </div>
                                     <div class="col-md-6">
@@ -548,6 +549,7 @@
                                             <p>Місце реєстрації не було додано</p>
                                         </div>
                                     {% endif %}
+                                    <p></p>
                                     {% if user.residence_address %}
                                         <div class="list-group-item">
                                         <p>
@@ -589,6 +591,7 @@
 {#                                                {% endfor %}#}
                                     {% for field in language_create_form %}
                                       <div class="form-group">
+                                          <p></p>
                                         {{ field.label_tag }}
 
                                         {% if form.is_bound %}
@@ -613,7 +616,7 @@
                                         {% endif %}
                                       </div>
                                     {% endfor %}
-                                                <input type="submit" value="Добавити">
+                                                <input type="submit" class="btn-outline-success btn" value="Добавити">
                                         </form>
                                     </div>
                                   </div>
@@ -649,7 +652,7 @@
                                             <form method="post" action="{% url 'documents:create_ua_passport' user.pk %}">
                                                 {% csrf_token %}
                                                 {% include 'includes/form.html'%}
-                                                <input type="submit" value="Добавити">
+                                                <input type="submit" class="btn-outline-success btn" value="Добавити">
                                             </form>
                                         {% endif %}
                                     </div>
@@ -691,7 +694,7 @@
                                                 {% include 'includes/foreign_passport_form.html'%}
 {#                                            <label>Autoclose Datepicker</label>#}
 {#                 <input type="text" id="autoclose-datepicker" class="form-control">#}
-                                                <input type="submit" value="Добавити">
+                                                <input type="submit" class="btn-outline-success btn" value="Добавити">
                                         </form>
                                     </div>
                                   </div>
@@ -730,7 +733,9 @@
 {#                                                {% endfor %}#}
                                         {% for field in note_create_form %}
                                           <div class="form-group">
+                                          <p></p>
                                             {{ field.label_tag }}
+{#                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>#}
 
                                             {% if form.is_bound %}
                                               {% if field.errors %}
@@ -754,7 +759,7 @@
                                             {% endif %}
                                           </div>
                                         {% endfor %}
-                                                <input type="submit" value="Добавити">
+                                                <input type="submit" class="btn-outline-success btn" value="Добавити">
                                         </form>
                                     {% endif %}
                                     </div>
