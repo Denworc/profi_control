@@ -12,6 +12,16 @@
     <title>PROFI Dashboard</title>
     <!--favicon-->
     <link rel="icon" href="{% static 'cabinet/' %}assets/images/favicon.ico" type="image/x-icon">
+      <!--Select Plugins-->
+  <link href="{% static 'cabinet/' %}assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
+  <!--inputtags-->
+  <link href="{% static 'cabinet/' %}assets/plugins/inputtags/css/bootstrap-tagsinput.css" rel="stylesheet" />
+  <!--multi select-->
+  <link href="{% static 'cabinet/' %}assets/plugins/jquery-multi-select/multi-select.css" rel="stylesheet" type="text/css">
+  <!--Bootstrap Datepicker-->
+  <link href="{% static 'cabinet/' %}assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+  <!--Touchspin-->
+  <link href="{% static 'cabinet/' %}assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css" rel="stylesheet" type="text/css">
     <!-- simplebar CSS-->
     <link href="{% static 'cabinet/' %}assets/plugins/simplebar/css/simplebar.css" rel="stylesheet"/>
     <!-- Bootstrap core CSS-->
@@ -27,6 +37,7 @@
     <link href="{% static 'cabinet/' %}assets/css/sidebar-menu.css" rel="stylesheet"/>
     <!-- Custom Style-->
     <link href="{% static 'cabinet/' %}assets/css/app-style.css" rel="stylesheet"/>
+
 
 </head>
 
@@ -110,6 +121,25 @@
 
     </script>
 
+        <!--Bootstrap Datepicker Js-->
+    <script src="{% static 'cabinet/' %}assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+    <script>
+      $('#default-datepicker').datepicker({
+        todayHighlight: true
+      });
+      $('#autoclose-datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true
+      });
+
+      $('#inline-datepicker').datepicker({
+         todayHighlight: true
+      });
+
+      $('#dateragne-picker .input-daterange').datepicker({
+       });
+
+    </script>
 
 </body>
 </html>

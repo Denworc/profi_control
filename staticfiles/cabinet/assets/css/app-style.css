@@ -43,12 +43,6 @@ File: app-style
 /* General */
 
 
-.btn-rigth{
-    margin-left: auto !important;
-    display: block !important;
-    margin-bottom: 10px;
-}
-
 html {
 	font-family: 'Poppins', sans-serif;
 	-webkit-text-size-adjust: 100%;
@@ -423,9 +417,10 @@ hr {
     top: 3px;
 	left: 5px;
     letter-spacing: 2px;
-	font-weight: 400;
+	font-weight: bold;
 	text-align: center;
 	line-height:50px;
+    font-style: italic;
 
 }
 

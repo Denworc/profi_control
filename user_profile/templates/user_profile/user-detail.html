@@ -1,5 +1,6 @@
 {% extends 'cabinet-base.html' %}
 {% load staticfiles%}
+{% load widget_tweaks %}
 
 {% block content %}
       <!-- Breadcrumb-->
@@ -158,14 +159,43 @@
                               <div class="modal-body">
 
                                                 {% csrf_token %}
-                                                {% for field in user_edit_form %}
-                                                    <div class="form-group">
-                                                        <div class="position-relative has-icon-left">
-                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
-                                                            {{ field }}
-                                                        </div>
-                                                    </div>
-                                                {% endfor %}
+{#                                                {% for field in user_edit_form %}#}
+{#                                                    <div class="form-group">#}
+{#                                                        <div class="position-relative has-icon-left">#}
+{#                                                            {{ field.label_tag }}#}
+{#                                                            {{ field }}#}
+{#                                                            <label>Autoclose Datepicker</label>#}
+{#                                                            <input type="text" id="autoclose-datepicker" class="form-control">#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                {% endfor %}#}
+                              {% for field in user_edit_form %}
+                                  <div class="form-group">
+                                    {{ field.label_tag }}
+
+                                    {% if form.is_bound %}
+                                      {% if field.errors %}
+                                        {% render_field field class="form-control is-invalid" %}
+                                        {% for error in field.errors %}
+                                          <div class="invalid-feedback">
+                                            {{ error }}
+                                          </div>
+                                        {% endfor %}
+                                      {% else %}
+                                        {% render_field field class="form-control is-valid" %}
+                                      {% endif %}
+                                    {% else %}
+                                      {% render_field field class="form-control" %}
+                                    {% endif %}
+
+                                    {% if field.help_text %}
+                                      <small class="form-text text-muted">
+                                        {{ field.help_text }}
+                                      </small>
+                                    {% endif %}
+                                  </div>
+                                {% endfor %}
+
 
                               </div>
                               <div class="modal-footer">
@@ -454,15 +484,41 @@
                                         {% endfor %}
                                         <form method="post" action="{% url 'user:contact-create' user.pk %}">
                                                 {% csrf_token %}
+{#                                                {% for field in contact_create_form %}#}
+{#                                                    <div class="form-group">#}
+{#                                                        <div class="position-relative has-icon-left">#}
+{#                                                            {{ field.label_tag }}#}
+{#                                                            {{ field }}#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                {% endfor %}#}
                                                 {% for field in contact_create_form %}
-                                                    <div class="form-group">
-                                                        <div class="position-relative has-icon-left">
-                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
-                                                            {{ field }}
-                                                        </div>
-                                                    </div>
+                                          <div class="form-group">
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
                                                 {% endfor %}
-                                                <input type="submit" value="Добавити">
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                          <input type="submit" value="Добавити">
                                         </form>
                                     </div>
                                     <div class="col-md-6">
@@ -523,14 +579,40 @@
                                         {% endfor %}
                                     <form method="post" action="{% url 'user:language-create' user.pk %}">
                                                 {% csrf_token %}
-                                                {% for field in language_create_form %}
-                                                    <div class="form-group">
-                                                        <div class="position-relative has-icon-left">
-                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
-                                                            {{ field }}
-                                                        </div>
-                                                    </div>
-                                                {% endfor %}
+{#                                                {% for field in language_create_form %}#}
+{#                                                    <div class="form-group">#}
+{#                                                        <div class="position-relative has-icon-left">#}
+{#                                                            {{ field.label_tag }}#}
+{#                                                            {{ field }}#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                {% endfor %}#}
+                                    {% for field in language_create_form %}
+                                      <div class="form-group">
+                                        {{ field.label_tag }}
+
+                                        {% if form.is_bound %}
+                                          {% if field.errors %}
+                                            {% render_field field class="form-control is-invalid" %}
+                                            {% for error in field.errors %}
+                                              <div class="invalid-feedback">
+                                                {{ error }}
+                                              </div>
+                                            {% endfor %}
+                                          {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                          {% endif %}
+                                        {% else %}
+                                          {% render_field field class="form-control" %}
+                                        {% endif %}
+
+                                        {% if field.help_text %}
+                                          <small class="form-text text-muted">
+                                            {{ field.help_text }}
+                                          </small>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
                                                 <input type="submit" value="Добавити">
                                         </form>
                                     </div>
@@ -607,6 +689,8 @@
                                         <form method="post" action="{% url 'documents:create_foreign_passport' user.pk %}">
                                                 {% csrf_token %}
                                                 {% include 'includes/foreign_passport_form.html'%}
+{#                                            <label>Autoclose Datepicker</label>#}
+{#                 <input type="text" id="autoclose-datepicker" class="form-control">#}
                                                 <input type="submit" value="Добавити">
                                         </form>
                                     </div>
@@ -636,14 +720,40 @@
                                         </div>
                                         <form method="post" action="{% url 'user:note-create' user.pk %}">
                                                 {% csrf_token %}
-                                                {% for field in note_create_form %}
-                                                    <div class="form-group">
-                                                        <div class="position-relative has-icon-left">
-                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
-                                                            {{ field }}
-                                                        </div>
-                                                    </div>
+{#                                                {% for field in note_create_form %}#}
+{#                                                    <div class="form-group">#}
+{#                                                        <div class="position-relative has-icon-left">#}
+{#                                                            {{ field.label_tag }}#}
+{#                                                            {{ field }}#}
+{#                                                        </div>#}
+{#                                                    </div>#}
+{#                                                {% endfor %}#}
+                                        {% for field in note_create_form %}
+                                          <div class="form-group">
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
                                                 {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
                                                 <input type="submit" value="Добавити">
                                         </form>
                                     {% endif %}
