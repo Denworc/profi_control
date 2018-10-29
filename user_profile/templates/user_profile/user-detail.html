@@ -30,7 +30,7 @@
 {#     </div>#}
 {#     </div>#}
     <!-- End Breadcrumb-->
-      <div class="row">
+    <div class="row" xmlns="http://www.w3.org/1999/html">
         <div class="col-lg-2">
            <div class="profile-card-4">
             <div class="card">
@@ -631,9 +631,11 @@
                                 <div id="collapse-2" class="collapse" data-parent="#accordion1">
                                   <div class="card-body row">
                                       <div class="col-md-6">
-                                        <p>
+
                                             <h6>Паспорт громадянина України</h6>
+
                                         {% if user.pasports %}
+
                                             <div class="list-group-item">
                                             <p>
                                                 <mark>Серія та номер:</mark> {{ user.pasports.series|upper }} {{ user.pasports.number }}
@@ -651,6 +653,7 @@
                                             </div>
                                             <form method="post" action="{% url 'documents:create_ua_passport' user.pk %}">
                                                 {% csrf_token %}
+                                                <p></p>
                                                 {% include 'includes/form.html'%}
                                                 <input type="submit" class="btn-outline-success btn" value="Добавити">
                                             </form>
@@ -669,7 +672,9 @@
                                   <div class="card-body row">
                                     <div class="col-md-6">
                                         {% for pasport in user.foreign_pasport.all %}
-                                          <p>
+                                            {% if forloop.counter != 1 %}
+                                                <p></p>
+                                            {% endif %}
                                             <h6>Закордонний паспорт №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
@@ -683,7 +688,6 @@
                                             </p>
                                             </div>
                                         {% empty %}
-                                            <p>
                                                 <h6>Закордонний паспорт</h6>
                                             <div class="list-group-item">
                                                 <p>Закордонний паспорт не було додано</p>
@@ -691,6 +695,7 @@
                                         {% endfor %}
                                         <form method="post" action="{% url 'documents:create_foreign_passport' user.pk %}">
                                                 {% csrf_token %}
+                                            <p></p>
                                                 {% include 'includes/foreign_passport_form.html'%}
 {#                                            <label>Autoclose Datepicker</label>#}
 {#                 <input type="text" id="autoclose-datepicker" class="form-control">#}
@@ -782,6 +787,7 @@
                                 </div>
 
                                 <div id="collapse-5" class="collapse show" data-parent="#accordion2">
+                                <div class="card-body row">
                                   <div class="col-md-6">
                                         {% for interview in user.interviews.all %}
                                           <p>
@@ -804,6 +810,7 @@
                                         {% endfor %}
                                     </div>
                                 </div>
+                                </div>
                               </div>
                               <div class="card">
                                 <div class="card-header bg-dark">
@@ -812,6 +819,7 @@
                                     </button>
                                 </div>
                                 <div id="collapse-6" class="collapse" data-parent="#accordion2">
+                                <div class="card-body row">
                                   <div class="col-md-6">
                                         {% for test in user.tests.all %}
                                           <p>
@@ -834,6 +842,7 @@
                                         {% endfor %}
                                     </div>
                                 </div>
+                                </div>
                               </div>
                               <div class="card">
                                 <div class="card-header bg-dark">
@@ -842,6 +851,7 @@
                                     </button>
                                 </div>
                                 <div id="collapse-7" class="collapse" data-parent="#accordion2">
+                                <div class="card-body row">
                                   <div class="col-md-6">
                                         {% for training in user.trainings.all %}
                                           <p>
@@ -863,6 +873,7 @@
                                             </div>
                                         {% endfor %}
                                     </div>
+                                </div>
                                 </div>
                               </div>
                               <div class="card">
@@ -1040,6 +1051,7 @@
                                 </div>
                                 <div id="collapse-12" class="collapse" data-parent="#accordion3">
                                   <div class="card-body row">
+                                  <div class="col-md-6">
                                         {% if user.polish %}
                                             <div class="list-group-item">
                                             <p>
@@ -1051,6 +1063,7 @@
                                                 <p>Володіння мовою не оцінено</p>
                                             </div>
                                         {% endif %}
+                                  </div>
                                   </div>
                                 </div>
                               </div>
@@ -1071,6 +1084,7 @@
 
                                 <div id="collapse-13" class="collapse show" data-parent="#accordion4">
                                   <div class="card-body row">
+                                  <div class="col-md-6">
                                         {% if user.incoming_controls %}
                                             <div class="list-group-item">
                                             <p>
@@ -1086,6 +1100,7 @@
                                             </div>
                                         {% endif %}
                                   </div>
+                                  </div>
                                 </div>
                               </div>
                               <div class="card mb-2">
@@ -1096,6 +1111,7 @@
                                 </div>
                                 <div id="collapse-14" class="collapse" data-parent="#accordion4">
                                   <div class="card-body row">
+                                  <div class="col-md-6">
                                         {% if user.adoptions %}
                                             <div class="list-group-item">
                                             <p>
@@ -1119,6 +1135,7 @@
                                                 <p>Дані про прийняття в штат не додано</p>
                                             </div>
                                         {% endif %}
+                                  </div>
                                   </div>
                                 </div>
                               </div>
@@ -1268,6 +1285,7 @@
 
                                 <div id="collapse-17" class="collapse show" data-parent="#accordion5">
                                   <div class="card-body row">
+                                  <div class="col-md-6">
                                         {% if user.dwelling %}
                                             <div class="list-group-item">
                                             <p>
@@ -1294,6 +1312,7 @@
                                                 <p>Інформація про житло не надана</p>
                                             </div>
                                         {% endif %}
+                                  </div>
                                   </div>
                                 </div>
                               </div>
@@ -1350,6 +1369,7 @@
 
                                 <div id="collapse-21" class="collapse show" data-parent="#accordion6">
                                   <div class="card-body row">
+                                  <div class="col-md-6">
                                         {% if user.prognoses %}
                                             <div class="list-group-item">
                                             <p>
@@ -1368,6 +1388,7 @@
                                             </div>
                                         {% endif %}
                                   </div>
+                                  </div>
                                 </div>
                               </div>
                               <div class="card mb-2">
@@ -1378,7 +1399,8 @@
                                 </div>
                                 <div id="collapse-22" class="collapse" data-parent="#accordion6">
                                   <div class="card-body row">
-                                        go{% if user.disappearances %}
+                                  <div class="col-md-6">
+                                        {% if user.disappearances %}
                                             <div class="list-group-item">
                                             <p>
                                                 <mark>Дата порушення строку повернення:</mark> {{ user.disappearances.violation_date }}
@@ -1392,6 +1414,7 @@
                                                 <p>Інформація про зникнення відсутня</p>
                                             </div>
                                         {% endif %}
+                                  </div>
                                   </div>
                                 </div>
                               </div>
@@ -1436,6 +1459,7 @@
 
                                 <div id="collapse-25" class="collapse show" data-parent="#accordion7">
                                   <div class="card-body row">
+                                  <div class="col-md-6">
                                         {% if user.dismissals %}
                                             <div class="list-group-item">
                                             <p>
@@ -1459,6 +1483,7 @@
                                                 <p>Інформація про звільнення відсутня</p>
                                             </div>
                                         {% endif %}
+                                  </div>
                                   </div>
                                 </div>
                               </div>
