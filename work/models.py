@@ -183,7 +183,10 @@ class Prognosis(models.Model):
         verbose_name_plural = _('Прогнози')
 
     def __str__(self):
-        return self.reason
+        if self.agree:
+            return "Погоджено з заводом"
+        else:
+            return "Не погоджено"
 
 
 class Disappearance(models.Model):

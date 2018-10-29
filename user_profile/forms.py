@@ -2,7 +2,7 @@ from django import forms
 from django.forms import Form
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
-from .models import User
+from .models import User, Language, Contact
 from django.contrib.auth.hashers import check_password
 
 
@@ -52,5 +52,52 @@ class NewUserForm(forms.ModelForm):
             'last_name',
             'patronymic',
             'position',
-            'is_worker',
+        )
+
+
+class NoteCreateForm(forms.ModelForm):
+    # polygon = forms.CharField(widget=forms.TextInput)
+
+    class Meta:
+        model = User
+        fields = (
+            'note',
+        )
+
+
+class ContactCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = (
+            'type',
+            'contact',
+        )
+
+
+class LanguageCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Language
+        fields = (
+            'title',
+            'level',
+        )
+
+
+class UserEditForm(forms.ModelForm):
+    # polygon = forms.CharField(widget=forms.TextInput)
+
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'first_name',
+            'last_name',
+            'patronymic',
+            'position',
+            'status',
+            'date_of_birth',
+            'registration',
+            'residence_address',
         )

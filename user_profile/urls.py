@@ -7,7 +7,10 @@ from .views import (
     NewUserView,
     # new_user,
     user_detail_view,
-)
+    NoteCreateView,
+    ContactCreateView,
+    LanguageCreateView,
+    UserEditView)
 
 
 app_name = 'user'
@@ -16,6 +19,10 @@ urlpatterns = [
     path('logout/', user_logout, name='logout'),
     path('users/', UserListView.as_view(), name='users'),
     path('new/', NewUserView.as_view(), name='new-user'),
+    re_path(r'^note_create/(?P<pk>\d+)$', NoteCreateView.as_view(), name='note-create'),
+    re_path(r'^contact_create/(?P<pk>\d+)$', ContactCreateView.as_view(), name='contact-create'),
+    re_path(r'^language_create/(?P<pk>\d+)$', LanguageCreateView.as_view(), name='language-create'),
+    re_path(r'^user_edit/(?P<pk>\d+)$', UserEditView.as_view(), name='user-edit'),
     # path('new/', new_user, name='new-user'),
     # re_path(r'^(?P<pk>\d+)$', UserDetailView.as_view(), name='user-detail'),
     re_path(r'^(?P<pk>\d+)$', user_detail_view, name='user-detail'),

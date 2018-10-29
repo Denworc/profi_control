@@ -3,9 +3,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, reverse, render, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import FormView, ListView, DeleteView, View, DetailView, CreateView
-from user_profile.forms import AuthForm, NewUserForm
+from django.views.generic import FormView, ListView, DeleteView, View, DetailView, CreateView, UpdateView
+from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
+    UserEditForm
 from django.utils.translation import ugettext as _
+from documents.forms import UAPassportForm, ForeignPassportForm
 
 from user_profile.models import User
 
@@ -51,13 +53,6 @@ class UserListView(LoginRequiredMixin, ListView):
     #     print(self.request.GET.get('param'))
     #     return User.objects.filter(id=self.request.user.id)
 
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(UserListView, self).get_context_data(*args, **kwargs)
-    #     context['superpuper'] = 'Blalaasdfdsfsfd'
-    #     print('-'*80)
-    #     print(context)
-    #     return context
-
 
 # class UserDetailView(LoginRequiredMixin, DetailView):
 #     template_name = 'user_profile/user-detail.html'
@@ -68,7 +63,28 @@ class UserListView(LoginRequiredMixin, ListView):
 
 def user_detail_view(request, pk):
     user = get_object_or_404(User, pk=pk)
-    return render(request, 'user_profile/user-detail.html', context={'user': user})
+    ua_passport_form = UAPassportForm
+    foreign_passport_form = ForeignPassportForm
+    note_create_form = NoteCreateForm
+    contact_create_form = ContactCreateForm
+    language_create_form = LanguageCreateForm
+    user_edit_form = UserEditForm
+    return render(request, 'user_profile/user-detail.html', context={
+        'user': user,
+        'ua_passport_form': ua_passport_form,
+        'foreign_passport_form': foreign_passport_form,
+        'note_create_form': note_create_form,
+        'contact_create_form': contact_create_form,
+        'language_create_form': language_create_form,
+        'user_edit_form': user_edit_form,
+    })
+
+
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(UserListView, self).get_context_data(*args, **kwargs)
+    #     context['ua_passport_form'] = UAPassportForm
+    #
+    #     return context
 
 # def user_profile(request, pk):
 #     user = user_profile.objects.get(pk=pk)
@@ -105,3 +121,55 @@ class NewUserView(CreateView):
 #         return redirect('user:user-detail', pk=user.pk)
 #
 #     return render(request, 'user_profile/add_user.html')
+
+
+class NoteCreateView(UpdateView):
+    login_url = reverse_lazy('user:note-create')
+    # template_name = 'user_profile/add_user.html'
+    model = User
+    form_class = NoteCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ContactCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = ContactCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class LanguageCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = LanguageCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class UserEditView(UpdateView):
+    login_url = reverse_lazy('user:user-edit')
+    # template_name = 'user_profile/add_user.html'
+    model = User
+    form_class = UserEditForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))

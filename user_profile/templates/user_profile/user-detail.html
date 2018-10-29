@@ -142,7 +142,40 @@
 {#            </ul>#}
             <div class="tab-content p-3">
                 <div class="tab-pane active" id="profile">
-                    <h5 class="mb-3">Профіль користувача</h5>
+                    <h5 class="mb-3" style="display: inline-block">Профіль користувача</h5>
+                     <!--Dark Modal -->
+                       <button class="btn btn-dark m-1" data-toggle="modal" data-target="#darkmodal">Редагувати</button>
+                        <div class="modal fade" id="darkmodal">
+                          <div class="modal-dialog">
+                            <div class="modal-content border-dark">
+                              <div class="modal-header bg-dark">
+                                <h5 class="modal-title text-white"><i class="fa fa-star"></i>Профіль користувача</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                             <form method="post" action="{% url 'user:user-edit' user.pk %}">
+                              <div class="modal-body">
+
+                                                {% csrf_token %}
+                                                {% for field in user_edit_form %}
+                                                    <div class="form-group">
+                                                        <div class="position-relative has-icon-left">
+                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
+                                                            {{ field }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
+                                <input type="submit" class="btn btn-dark" value="Добавити">
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!--End Modal -->
 {#                    <div class="row">#}
 {#                        <div class="col-md-6">#}
 {#                            <p>#}
@@ -419,6 +452,18 @@
                                                 <p>Контактні дані не було додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'user:contact-create' user.pk %}">
+                                                {% csrf_token %}
+                                                {% for field in contact_create_form %}
+                                                    <div class="form-group">
+                                                        <div class="position-relative has-icon-left">
+                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
+                                                            {{ field }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                <input type="submit" value="Добавити">
+                                        </form>
                                     </div>
                                     <div class="col-md-6">
                                         <p>
@@ -476,6 +521,18 @@
                                                 <p>Знання мов не оцінено</p>
                                             </div>
                                         {% endfor %}
+                                    <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                                {% csrf_token %}
+                                                {% for field in language_create_form %}
+                                                    <div class="form-group">
+                                                        <div class="position-relative has-icon-left">
+                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
+                                                            {{ field }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                <input type="submit" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -507,6 +564,11 @@
                                             <div class="list-group-item">
                                                 <p>Паспорт громадянина України не було додано</p>
                                             </div>
+                                            <form method="post" action="{% url 'documents:create_ua_passport' user.pk %}">
+                                                {% csrf_token %}
+                                                {% include 'includes/form.html'%}
+                                                <input type="submit" value="Добавити">
+                                            </form>
                                         {% endif %}
                                     </div>
                                   </div>
@@ -542,6 +604,11 @@
                                                 <p>Закордонний паспорт не було додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'documents:create_foreign_passport' user.pk %}">
+                                                {% csrf_token %}
+                                                {% include 'includes/foreign_passport_form.html'%}
+                                                <input type="submit" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -567,6 +634,18 @@
                                         <div class="list-group-item">
                                             <p>Приміток не було додано</p>
                                         </div>
+                                        <form method="post" action="{% url 'user:note-create' user.pk %}">
+                                                {% csrf_token %}
+                                                {% for field in note_create_form %}
+                                                    <div class="form-group">
+                                                        <div class="position-relative has-icon-left">
+                                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>
+                                                            {{ field }}
+                                                        </div>
+                                                    </div>
+                                                {% endfor %}
+                                                <input type="submit" value="Добавити">
+                                        </form>
                                     {% endif %}
                                     </div>
                                   </div>
@@ -1156,10 +1235,16 @@
 
                                 <div id="collapse-21" class="collapse show" data-parent="#accordion6">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        {% if user.prognoses %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Відмітка про згоду заводу:</mark> {{ user.prognoses }}
+                                            </p>
+                                            <p>
+                                                <mark>Очікувана дата прибуття в офіс:</mark> {{ user.prognoses.expire }}
+                                            </p>
+                                            <p>
+                                                <mark>Причина повернення:</mark> {{ user.prognoses.reason }}
                                             </p>
                                             </div>
                                         {% else %}
@@ -1178,10 +1263,13 @@
                                 </div>
                                 <div id="collapse-22" class="collapse" data-parent="#accordion6">
                                   <div class="card-body row">
-                                        {% if user.date_of_birth %}
+                                        go{% if user.disappearances %}
                                             <div class="list-group-item">
                                             <p>
-                                                {{ user.date_of_birth }}
+                                                <mark>Дата порушення строку повернення:</mark> {{ user.disappearances.violation_date }}
+                                            </p>
+                                            <p>
+                                                <mark>Дата подачі заяви до правоохоронних органів про розшук працівника:</mark> {{ user.disappearances.appeal_date }}
                                             </p>
                                             </div>
                                         {% else %}
