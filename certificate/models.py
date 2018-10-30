@@ -42,7 +42,6 @@ class InterviewType(models.Model):
     Тип співбесіди
     """
     title = models.CharField(max_length=40, verbose_name=_('Тип співбесіди'))
-    interview = models.ForeignKey('certificate.Interview', on_delete=models.CASCADE, related_name='interview_types')
 
     class Meta:
         verbose_name = _('Тип співбесіди')
@@ -57,6 +56,7 @@ class Interview(models.Model):
     Співбесіда
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='interviews')
+    type = models.ForeignKey('certificate.InterviewType', on_delete=models.CASCADE, verbose_name=_('Тип співбесіди'), related_name='interviews')
     result = models.CharField(max_length=40, verbose_name=_('Результат співбесіди'))
     start_on = models.DateField(verbose_name=_('Дата співбесіди'), null=True, blank=True)
 

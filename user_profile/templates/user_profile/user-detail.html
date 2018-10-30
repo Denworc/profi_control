@@ -808,6 +808,37 @@
                                                 <p>Співбесіда не проводилась</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'certificate:create_interview' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in interview_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                 </div>
                                 </div>
@@ -840,6 +871,37 @@
                                                 <p>Тестування не проводилось</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in language_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                 </div>
                                 </div>
@@ -872,6 +934,37 @@
                                                 <p>Тренування не проводилось</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in language_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                 </div>
                                 </div>
@@ -913,6 +1006,37 @@
                                                 <p>Сертифікати не додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in language_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -972,6 +1096,37 @@
                                                 <p>Дозвіл на працю не додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'work:create_permission' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in permission_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -1007,6 +1162,37 @@
                                                 <p>Дані про візу не додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in language_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -1039,6 +1225,37 @@
                                                 <p>Дані про страхування не додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'medicine:create_insurance' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in insurance_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -1062,6 +1279,37 @@
                                             <div class="list-group-item">
                                                 <p>Володіння мовою не оцінено</p>
                                             </div>
+                                            <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in language_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>
@@ -1098,6 +1346,37 @@
                                             <div class="list-group-item">
                                                 <p>Вхідний контроль не пройдено</p>
                                             </div>
+                                            <form method="post" action="{% url 'work:create_incoming_control' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in control_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>
@@ -1134,6 +1413,37 @@
                                             <div class="list-group-item">
                                                 <p>Дані про прийняття в штат не додано</p>
                                             </div>
+                                            <form method="post" action="{% url 'work:create_adoption' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in adoption_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>
@@ -1167,6 +1477,37 @@
                                                 <p>Інформацію про переведення не додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'work:create_transfer' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in transfer_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -1220,6 +1561,37 @@
                                                 <p>Інформацію про відрядження не додано</p>
                                             </div>
                                         {% endfor %}
+                                        <form method="post" action="{% url 'work:create_assignment' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in assignment_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -1264,6 +1636,38 @@
                                                 <p>Відпустки не зареєстровані</p>
                                             </div>
                                         {% endfor %}
+
+                                        <form method="post" action="{% url 'work:create_vocation' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in vocation_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                     </div>
                                   </div>
                                 </div>
@@ -1311,6 +1715,37 @@
                                             <div class="list-group-item">
                                                 <p>Інформація про житло не надана</p>
                                             </div>
+                                            <form method="post" action="{% url 'dwelling:create_dwelling' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in dwelling_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>
@@ -1386,6 +1821,37 @@
                                             <div class="list-group-item">
                                                 <p>Прогноз не проведений</p>
                                             </div>
+                                            <form method="post" action="{% url 'work:create_prognosis' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in prognosis_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>
@@ -1413,6 +1879,37 @@
                                             <div class="list-group-item">
                                                 <p>Інформація про зникнення відсутня</p>
                                             </div>
+                                            <form method="post" action="{% url 'work:create_disappearance' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in disappearance_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>
@@ -1482,6 +1979,37 @@
                                             <div class="list-group-item">
                                                 <p>Інформація про звільнення відсутня</p>
                                             </div>
+                                            <form method="post" action="{% url 'work:create_dismissal' user.pk %}">
+                                        {% csrf_token %}
+                                        {% for field in dismissal_create_form %}
+                                          <div class="form-group">
+                                              <p></p>
+                                            {{ field.label_tag }}
+
+                                            {% if form.is_bound %}
+                                              {% if field.errors %}
+                                                {% render_field field class="form-control is-invalid" %}
+                                                {% for error in field.errors %}
+                                                  <div class="invalid-feedback">
+                                                    {{ error }}
+                                                  </div>
+                                                {% endfor %}
+                                              {% else %}
+                                                {% render_field field class="form-control is-valid" %}
+                                              {% endif %}
+                                            {% else %}
+                                              {% render_field field class="form-control" %}
+                                            {% endif %}
+
+                                            {% if field.help_text %}
+                                              <small class="form-text text-muted">
+                                                {{ field.help_text }}
+                                              </small>
+                                            {% endif %}
+                                          </div>
+                                        {% endfor %}
+                                        <input type="submit" class="btn-outline-success btn" value="Добавити">
+                                        </form>
                                         {% endif %}
                                   </div>
                                   </div>

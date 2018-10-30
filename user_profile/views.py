@@ -4,6 +4,23 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect, reverse, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, DeleteView, View, DetailView, CreateView, UpdateView
+
+from certificate.forms import InterviewCreateForm
+from dwelling.forms import DwellingCreateForm
+from medicine.forms import InsuranceCreateForm
+from privileges.forms import QuotaCreateForm
+from work.forms import (
+    DismissalCreateForm,
+    AssignmentCreateForm,
+    AdoptionCreateForm,
+    TransferCreateForm,
+    PermissionCreateForm,
+    VnosokCreateForm,
+    VocationCreateForm,
+    ControlCreateForm,
+    PrognosisCreateForm,
+    DisappearanceCreateForm,
+)
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
     UserEditForm
 from django.utils.translation import ugettext as _
@@ -69,6 +86,20 @@ def user_detail_view(request, pk):
     contact_create_form = ContactCreateForm
     language_create_form = LanguageCreateForm
     user_edit_form = UserEditForm
+    interview_create_form = InterviewCreateForm
+    dwelling_create_form = DwellingCreateForm
+    insurance_create_form = InsuranceCreateForm
+    quota_create_form = QuotaCreateForm
+    dismissal_create_form = DismissalCreateForm
+    assignment_create_form = AssignmentCreateForm
+    adoption_create_form = AdoptionCreateForm
+    transfer_create_form = TransferCreateForm
+    permission_create_form = PermissionCreateForm
+    # vnosok_create_form = VnosokCreateForm
+    vocation_create_form = VocationCreateForm
+    control_create_form = ControlCreateForm
+    prognosis_create_form = PrognosisCreateForm
+    disappearance_create_form = DisappearanceCreateForm
     return render(request, 'user_profile/user-detail.html', context={
         'user': user,
         'ua_passport_form': ua_passport_form,
@@ -77,8 +108,20 @@ def user_detail_view(request, pk):
         'contact_create_form': contact_create_form,
         'language_create_form': language_create_form,
         'user_edit_form': user_edit_form,
+        'interview_create_form': interview_create_form,
+        'dwelling_create_form': dwelling_create_form,
+        'insurance_create_form': insurance_create_form,
+        'quota_create_form': quota_create_form,
+        'dismissal_create_form': dismissal_create_form,
+        'assignment_create_form': assignment_create_form,
+        'adoption_create_form': adoption_create_form,
+        'permission_create_form': permission_create_form,
+        'vocation_create_form': vocation_create_form,
+        'control_create_form': control_create_form,
+        'prognosis_create_form': prognosis_create_form,
+        'disappearance_create_form': disappearance_create_form,
+        'transfer_create_form': transfer_create_form,
     })
-
 
     # def get_context_data(self, *args, **kwargs):
     #     context = super(UserListView, self).get_context_data(*args, **kwargs)

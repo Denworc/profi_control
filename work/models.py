@@ -20,6 +20,22 @@ class Dismissal(models.Model):
 
     def __str__(self):
         return self.order_number
+#
+#
+# class AssignmentNote(models.Model):
+#     """
+#     Примітки по відрядженню
+#     """
+#     title = models.CharField(max_length=200)
+#     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
+#     order_number = models.CharField(max_length=40, verbose_name='№ наказу')
+#
+#     class Meta:
+#         verbose_name = _('Примітка')
+#         verbose_name_plural = _('Примітки')
+#
+#     def __str__(self):
+#         return self.title
 
 
 class Assignment(models.Model):
@@ -35,8 +51,12 @@ class Assignment(models.Model):
     expire = models.DateField(verbose_name=_('Закінчення відрядження'), null=True, blank=True)
     polish_border = models.DateField(verbose_name=_('Перетин кордону в Польщу'), null=True, blank=True)
     ukrainian_border = models.DateField(verbose_name=_('Перетин кордону в Україну'), null=True, blank=True)
-    dismissal_reason = models.CharField(max_length=400, verbose_name='Дострокове закінчення')
-    dismissal_basis = models.CharField(max_length=400, verbose_name='Переривання відрядження')
+    dismissal_reason = models.CharField(max_length=200, verbose_name='Дострокове закінчення')
+    reason_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
+    reason_number = models.CharField(max_length=40, verbose_name='№ наказу')
+    dismissal_basis = models.CharField(max_length=200, verbose_name='Переривання відрядження')
+    basis_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
+    basis_number = models.CharField(max_length=40, verbose_name='№ наказу')
 
     class Meta:
         verbose_name = _('Відрядження')
@@ -54,6 +74,9 @@ class AdoptionInState(models.Model):
     dismissal_date = models.DateField(verbose_name=_('Дата прийняття'))
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=20, verbose_name='№ наказу')
+    employer = models.CharField(max_length=40, verbose_name='Підприємство-роботодавець')
+    # factory = models.CharField(max_length=40, verbose_name='Завод')
+    position = models.CharField(max_length=40, verbose_name='Посада')
 
     class Meta:
         verbose_name = _('Прийняття в штат')
@@ -85,9 +108,15 @@ class Permission(models.Model):
     Дозвіл на роботу
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='permissions')
+    prediction_date = models.DateField(verbose_name=_('Дата відправлення внеску'), null=True, blank=True)
+    input_date = models.DateField(verbose_name=_('Дата подачі внеск'), null=True, blank=True)
+    receiving_date = models.DateField(verbose_name=_('Прогнозована дата отримання дозволу'), null=True, blank=True)
+    voivodship = models.CharField(max_length=40, verbose_name='Воєводство')
     employer = models.CharField(max_length=40, verbose_name='Підприємство-роботодавець')
     factory = models.CharField(max_length=40, verbose_name='Завод')
+    start_date = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення'), null=True, blank=True)
+    note = models.CharField(max_length=40, verbose_name='Примітки')
     scan_copy = models.ImageField(verbose_name=_("Скан дозволу"), blank=True, null=True, upload_to="user/permission")
 
     class Meta:
@@ -139,6 +168,7 @@ class Vocation(models.Model):
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='vocations')
     type = models.ForeignKey(VocationType, on_delete=models.CASCADE, verbose_name=_('Тип відпустки'))
     agreement = models.BooleanField(_('Згода заводу'), default=False)
+    period = models.CharField(max_length=40, verbose_name='Період для відпустки')
     start_on = models.DateField(verbose_name=_('Дата початку відпустки'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата закінчення відпустки'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)

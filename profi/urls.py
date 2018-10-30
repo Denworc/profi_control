@@ -30,6 +30,11 @@ urlpatterns = [
         path('', DashboardView.as_view(), name='dashboard'),
     ])),
     path('documents/', include('documents.urls')),
+    path('work/', include('work.urls')),
+    path('privileges/', include('privileges.urls')),
+    path('medicine/', include('medicine.urls')),
+    path('dwelling/', include('dwelling.urls')),
+    path('certificate/', include('certificate.urls')),
     # path('', DashboardView.as_view(), name='dashboard'),
     path('', UserListView.as_view(), name='users'),
 ] + static(MEDIA_URL, document_root=MEDIA_ROOT)

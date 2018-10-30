@@ -41,6 +41,7 @@ class Insurance(models.Model):
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='insurances')
     insurance_organization = models.CharField(max_length=20, verbose_name=_('Страхова організація'))
     type = models.ForeignKey(InsuranceType, on_delete=models.CASCADE, verbose_name=_('Тип страхування'))
+    start_on = models.DateField(verbose_name='Дата початку', null=True, blank=True)
     expire = models.DateField(verbose_name='Дата завершення', null=True, blank=True)
     scan_copy = models.ImageField(verbose_name=_('Скан страхування'), blank=True, null=True, upload_to="user/insurance")
 
