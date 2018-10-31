@@ -14,9 +14,9 @@ class UkrainianPassport(models.Model):
     last_name = models.CharField(verbose_name=_("Ім'я"), max_length=40)
     patronymic = models.CharField(verbose_name=_('По батькові'), max_length=40)
     place_of_issue = models.CharField(max_length=200, verbose_name=_('Ким був виданий'))
-    first_page = models.ImageField(verbose_name=_('2 сторінка'), blank=True, null=True, upload_to="user/ua_passport")
-    second_page = models.ImageField(verbose_name=_('3 сторінка'), blank=True, null=True, upload_to="user/ua_passport")
-    registration = models.ImageField(verbose_name=_('Прописка'), blank=True, null=True, upload_to="user/ua_passport")
+    first_page = models.ImageField(verbose_name=_('2 сторінка'), blank=True, null=True, upload_to="user/ua_first")
+    second_page = models.ImageField(verbose_name=_('3 сторінка'), blank=True, null=True, upload_to="user/ua_second")
+    registration = models.ImageField(verbose_name=_('Прописка'), blank=True, null=True, upload_to="user/ua_registration")
 
     class Meta:
         verbose_name = _('Паспорт громадянина України')
@@ -52,6 +52,8 @@ class Visa(models.Model):
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='visas')
     visa_scan = models.ImageField(verbose_name=_('Скан копія'), blank=True, null=True, upload_to="user/visa")
+    first_date = models.DateField(verbose_name=_('Дата подачі'), null=True, blank=True)
+    prediction_date = models.DateField(verbose_name=_('Прогнозована дата отримання'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата закінчення строку дії'), null=True, blank=True)
 

@@ -5,7 +5,13 @@ from django.shortcuts import redirect, reverse, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, DeleteView, View, DetailView, CreateView, UpdateView
 
-from certificate.forms import InterviewCreateForm
+from certificate.forms import (
+    InterviewCreateForm,
+    CertificateCreateForm,
+    TestCreateForm,
+    TrainingCreateForm,
+    PolishCreateForm,
+)
 from dwelling.forms import DwellingCreateForm
 from medicine.forms import InsuranceCreateForm
 from privileges.forms import QuotaCreateForm
@@ -24,7 +30,7 @@ from work.forms import (
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
     UserEditForm
 from django.utils.translation import ugettext as _
-from documents.forms import UAPassportForm, ForeignPassportForm
+from documents.forms import UAPassportForm, ForeignPassportForm, VisaCreateForm
 
 from user_profile.models import User
 
@@ -100,6 +106,12 @@ def user_detail_view(request, pk):
     control_create_form = ControlCreateForm
     prognosis_create_form = PrognosisCreateForm
     disappearance_create_form = DisappearanceCreateForm
+    certificate_create_form = CertificateCreateForm
+    test_create_form = TestCreateForm
+    training_create_form = TrainingCreateForm
+    polish_create_form = PolishCreateForm
+    visa_create_form = VisaCreateForm
+
     return render(request, 'user_profile/user-detail.html', context={
         'user': user,
         'ua_passport_form': ua_passport_form,
@@ -121,6 +133,12 @@ def user_detail_view(request, pk):
         'prognosis_create_form': prognosis_create_form,
         'disappearance_create_form': disappearance_create_form,
         'transfer_create_form': transfer_create_form,
+        'certificate_create_form': certificate_create_form,
+        'test_create_form': test_create_form,
+        'training_create_form': training_create_form,
+        'polish_create_form': polish_create_form,
+        'visa_create_form': visa_create_form,
+
     })
 
     # def get_context_data(self, *args, **kwargs):

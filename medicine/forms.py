@@ -10,4 +10,5 @@ class InsuranceCreateForm(forms.ModelForm):
             'type',
             'start_on',
             'expire',
+            'scan_copy',
         )

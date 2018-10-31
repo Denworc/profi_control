@@ -26,8 +26,11 @@ class Certificate(models.Model):
     organization = models.CharField(max_length=60, verbose_name=_('Сертифікуюча організація'))
     welding_position = models.CharField(max_length=60, verbose_name=_('Просторове положення'))
     thickness = models.CharField(max_length=60, verbose_name=_('Товщина'))
+    certification_date = models.DateField(verbose_name=_('Дата сертифікації'), null=True, blank=True)
+    paying_date = models.DateField(verbose_name=_('Дата оплати'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення'), null=True, blank=True)
+    certificate_scan = models.ImageField(verbose_name=_('Скан копія'), blank=True, null=True, upload_to="user/certificates")
 
     class Meta:
         verbose_name = _('Сертифікат')
@@ -73,7 +76,6 @@ class TestType(models.Model):
     Тип тестування
     """
     title = models.CharField(max_length=40, verbose_name=_('Тип тестування'))
-    interview = models.ForeignKey('certificate.Test', on_delete=models.CASCADE, related_name='test_types')
 
     class Meta:
         verbose_name = _('Тип тестування')
@@ -88,6 +90,7 @@ class Test(models.Model):
     Тестування
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='tests')
+    type = models.ForeignKey('certificate.TestType', on_delete=models.CASCADE, related_name='tests')
     result = models.CharField(max_length=40, verbose_name=_('Результат тестування'))
     start_on = models.DateField(verbose_name=_('Дата тестування'), null=True, blank=True)
 

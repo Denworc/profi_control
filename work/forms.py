@@ -86,6 +86,7 @@ class PermissionCreateForm(forms.ModelForm):
             'start_date',
             'expire',
             'note',
+            'scan_copy',
         )
 
 

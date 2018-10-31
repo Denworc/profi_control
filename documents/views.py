@@ -3,7 +3,7 @@ from django.views.generic.edit import CreateView
 
 # from documents.models import UkrainianPassport
 from user_profile.models import User
-from .forms import UAPassportForm, ForeignPassportForm
+from .forms import UAPassportForm, ForeignPassportForm, VisaCreateForm, PersonalIDCreateForm
 
 
 class UAPassportCreate(CreateView):
@@ -26,6 +26,34 @@ class UAPassportCreate(CreateView):
 class ForeignPassportCreate(CreateView):
     # model = UkrainianPassport
     form_class = ForeignPassportForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VisaCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = VisaCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PersonalIDCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = PersonalIDCreateForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)

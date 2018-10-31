@@ -871,9 +871,9 @@
                                                 <p>Тестування не проводилось</p>
                                             </div>
                                         {% endfor %}
-                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        <form method="post" action="{% url 'certificate:create_test' user.pk %}">
                                         {% csrf_token %}
-                                        {% for field in language_create_form %}
+                                        {% for field in test_create_form %}
                                           <div class="form-group">
                                               <p></p>
                                             {{ field.label_tag }}
@@ -934,9 +934,9 @@
                                                 <p>Тренування не проводилось</p>
                                             </div>
                                         {% endfor %}
-                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        <form method="post" action="{% url 'certificate:create_training' user.pk %}">
                                         {% csrf_token %}
-                                        {% for field in language_create_form %}
+                                        {% for field in training_create_form %}
                                           <div class="form-group">
                                               <p></p>
                                             {{ field.label_tag }}
@@ -1006,9 +1006,9 @@
                                                 <p>Сертифікати не додано</p>
                                             </div>
                                         {% endfor %}
-                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        <form method="post" action="{% url 'certificate:create_certificate' user.pk %}">
                                         {% csrf_token %}
-                                        {% for field in language_create_form %}
+                                        {% for field in certificate_create_form %}
                                           <div class="form-group">
                                               <p></p>
                                             {{ field.label_tag }}
@@ -1162,9 +1162,9 @@
                                                 <p>Дані про візу не додано</p>
                                             </div>
                                         {% endfor %}
-                                        <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                        <form method="post" action="{% url 'documents:create_visa' user.pk %}">
                                         {% csrf_token %}
-                                        {% for field in language_create_form %}
+                                        {% for field in visa_create_form %}
                                           <div class="form-group">
                                               <p></p>
                                             {{ field.label_tag }}
@@ -1279,9 +1279,9 @@
                                             <div class="list-group-item">
                                                 <p>Володіння мовою не оцінено</p>
                                             </div>
-                                            <form method="post" action="{% url 'user:language-create' user.pk %}">
+                                            <form method="post" action="{% url 'certificate:create_polish' user.pk %}">
                                         {% csrf_token %}
-                                        {% for field in language_create_form %}
+                                        {% for field in polish_create_form %}
                                           <div class="form-group">
                                               <p></p>
                                             {{ field.label_tag }}
