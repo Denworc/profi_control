@@ -25,7 +25,7 @@ datepicker.regional['ta'] = {
 	dayNamesShort: ['ஞாயிறு','திங்கள்','செவ்வாய்','புதன்','வியாழன்','வெள்ளி','சனி'],
 	dayNamesMin: ['ஞா','தி','செ','பு','வி','வெ','ச'],
 	weekHeader: 'Не',
-	dateFormat: 'dd/mm/yy',
+	dateFormat: 'dd.mm.yy',
 	firstDay: 1,
 	isRTL: false,
 	showMonthAfterYear: false,

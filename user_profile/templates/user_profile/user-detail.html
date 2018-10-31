@@ -176,6 +176,12 @@
 {#                                                {% endfor %}#}
                               {% for field in user_edit_form %}
                                   <div class="form-group">
+{#                                  {% if forloop.counter == 8 %}#}
+{#                                      <div class="position-relative has-icon-left">#}
+{#                                                            {{ field.label_tag }}#}
+{#                                                            <input type="text" id="autoclose-datepicker" class="form-control">#}
+{#                                                        </div>#}
+{#                                  {% else %}#}
                                     {{ field.label_tag }}
 
                                     {% if form.is_bound %}
@@ -198,6 +204,7 @@
                                         {{ field.help_text }}
                                       </small>
                                     {% endif %}
+{#                                  {% endif %}#}
                                   </div>
                                 {% endfor %}
 
@@ -2208,6 +2215,12 @@
                                         {% for field in dismissal_create_form %}
                                           <div class="form-group">
                                               <p></p>
+                                          {% if forloop.counter == 1 %}
+                                      <div class="position-relative has-icon-left">
+                                                            {{ field.label_tag }}
+                                                            <input type="text" id="autoclose-datepicker" class="form-control">
+                                                        </div>
+                                  {% else %}
                                             {{ field.label_tag }}
 
                                             {% if form.is_bound %}
@@ -2230,6 +2243,7 @@
                                                 {{ field.help_text }}
                                               </small>
                                             {% endif %}
+                                          {% endif %}
                                           </div>
                                         {% endfor %}
                                         <input type="submit" class="btn-outline-success btn" value="Добавити">

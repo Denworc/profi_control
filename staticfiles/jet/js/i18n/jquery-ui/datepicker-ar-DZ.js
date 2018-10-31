@@ -25,7 +25,7 @@ datepicker.regional['ar-DZ'] = {
 	dayNamesShort: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
 	dayNamesMin: ['الأحد', 'الاثنين', 'الثلاثاء', 'الأربعاء', 'الخميس', 'الجمعة', 'السبت'],
 	weekHeader: 'أسبوع',
-	dateFormat: 'dd/mm/yy',
+	dateFormat: 'dd.mm.yy',
 	firstDay: 6,
 		isRTL: true,
 	showMonthAfterYear: false,

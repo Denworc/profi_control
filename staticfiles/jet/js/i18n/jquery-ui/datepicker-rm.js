@@ -23,7 +23,7 @@ datepicker.regional['rm'] = {
 	dayNamesShort: ['Dum','Gli','Mar','Mes','Gie','Ven','Som'],
 	dayNamesMin: ['Du','Gl','Ma','Me','Gi','Ve','So'],
 	weekHeader: 'emna',
-	dateFormat: 'dd/mm/yy',
+	dateFormat: 'dd.mm.yy',
 	firstDay: 1,
 	isRTL: false,
 	showMonthAfterYear: false,

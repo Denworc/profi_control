@@ -25,7 +25,7 @@ datepicker.regional['lt'] = {
 	dayNamesShort: ['sek','pir','ant','tre','ket','pen','šeš'],
 	dayNamesMin: ['Se','Pr','An','Tr','Ke','Pe','Še'],
 	weekHeader: 'SAV',
-	dateFormat: 'yy-mm-dd',
+	dateFormat: 'dd.mm.yy',
 	firstDay: 1,
 	isRTL: false,
 	showMonthAfterYear: true,
