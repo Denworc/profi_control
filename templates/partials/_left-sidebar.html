@@ -10,9 +10,17 @@
     <div class="user-details">
         <div class="media align-items-center user-pointer collapsed" data-toggle="collapse"
              data-target="#user-dropdown">
-            <div class="avatar"><img class="mr-3 side-user-img"
+            <div class="avatar">
+            {% if user.avatar %}
+            <img class="mr-3 side-user-img"
+                                     src="{{ user.avatar.url }}"
+                                     alt="user_avatar"/>
+            {% else %}
+            <img class="mr-3 side-user-img"
                                      src="{% static 'cabinet/' %}assets/images/avatars/avatar-1.png"
-                                     alt="user avatar"></div>
+                                     alt="user_avatar"/>
+            {% endif %}
+            </div>
             <div class="media-body">
                 <h6 class="side-user-name">{{ request.user.get_full_name|truncatechars:14 }}</h6>
             </div>
@@ -24,39 +32,39 @@
         </div>
     </div>
     <ul class="sidebar-menu do-nicescrol">
-        <li class="sidebar-header">MAIN NAVIGATION</li>
+        <li class="sidebar-header">Головне меню</li>
         <li><a href="{% url 'user:users' %}" class="waves-effect"><i class="icon-user"></i><span>Працівники</span></a>
         </li>
         <li><a href="{% url 'dashboard' %}" class="waves-effect"><i class="icon-doc"></i><span>Звіти</span></a>
         </li>
-        <li>
-            <a href="javaScript:void();" class="waves-effect">
-                <i class="icon-calendar"></i><span>Multilevel</span>
-                <i class="fa fa-angle-left pull-right"></i>
-            </a>
-            <ul class="sidebar-submenu">
-                <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level One</a></li>
-                <li>
-                    <a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level One <i
-                            class="fa fa-angle-left pull-right"></i></a>
-                    <ul class="sidebar-submenu">
-                        <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Two</a></li>
-                        <li>
-                            <a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Two <i
-                                    class="fa fa-angle-left pull-right"></i></a>
-                            <ul class="sidebar-submenu">
-                                <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Three</a>
-                                </li>
-                                <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Three</a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="javaScript:void();" class="waves-effect"><i class="fa fa-long-arrow-right"></i> Level
-                    One</a></li>
-            </ul>
-        </li>
+{#        <li>#}
+{#            <a href="javaScript:void();" class="waves-effect">#}
+{#                <i class="icon-calendar"></i><span>Multilevel</span>#}
+{#                <i class="fa fa-angle-left pull-right"></i>#}
+{#            </a>#}
+{#            <ul class="sidebar-submenu">#}
+{#                <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level One</a></li>#}
+{#                <li>#}
+{#                    <a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level One <i#}
+{#                            class="fa fa-angle-left pull-right"></i></a>#}
+{#                    <ul class="sidebar-submenu">#}
+{#                        <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Two</a></li>#}
+{#                        <li>#}
+{#                            <a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Two <i#}
+{#                                    class="fa fa-angle-left pull-right"></i></a>#}
+{#                            <ul class="sidebar-submenu">#}
+{#                                <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Three</a>#}
+{#                                </li>#}
+{#                                <li><a href="javaScript:void();"><i class="fa fa-long-arrow-right"></i> Level Three</a>#}
+{#                                </li>#}
+{#                            </ul>#}
+{#                        </li>#}
+{#                    </ul>#}
+{#                </li>#}
+{#                <li><a href="javaScript:void();" class="waves-effect"><i class="fa fa-long-arrow-right"></i> Level#}
+{#                    One</a></li>#}
+{#            </ul>#}
+{#        </li>#}
     </ul>
 
 </div>

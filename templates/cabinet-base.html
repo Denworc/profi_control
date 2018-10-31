@@ -12,6 +12,8 @@
     <title>PROFI Dashboard</title>
     <!--favicon-->
     <link rel="icon" href="{% static 'cabinet/' %}assets/images/favicon.ico" type="image/x-icon">
+      <!--lightboxgallery Css-->
+  <link rel="stylesheet" href="{% static 'cabinet/' %}assets/plugins/lightboxgallery/css/lightboxgallery-min.css"/>
       <!--Select Plugins-->
   <link href="{% static 'cabinet/' %}assets/plugins/select2/css/select2.min.css" rel="stylesheet" />
   <!--inputtags-->
@@ -140,6 +142,21 @@
        });
 
     </script>
+
+  <!--lightboxgallery-->
+  <script src="{% static 'cabinet/' %}assets/plugins/lightboxgallery/js/lightboxgallery-min.js"></script>
+  <script type="text/javascript">
+    jQuery(function($) {
+     $(document).on('click', '.lightboxgallery-gallery-item', function(event) {
+      event.preventDefault();
+      $(this).lightboxgallery({
+        showCounter: true,
+        showTitle: true,
+        showDescription: true
+      });
+    });
+  });
+  </script>
 
 </body>
 </html>

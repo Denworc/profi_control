@@ -134,7 +134,7 @@ class Polish(models.Model):
     def __str__(self):
         if self.solo:
             return "Вивчив сам"
-        elif self.solo:
+        elif self.course:
             return "Прослухав курс"
         else:
             return "Не вивчав"

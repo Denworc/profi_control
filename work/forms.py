@@ -129,6 +129,7 @@ class ControlCreateForm(forms.ModelForm):
 
 
 class PrognosisCreateForm(forms.ModelForm):
+    # agree = forms.BooleanField(widget=forms.CheckboxInput())
 
     class Meta:
         model = Prognosis

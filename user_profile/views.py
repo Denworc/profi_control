@@ -30,7 +30,7 @@ from work.forms import (
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
     UserEditForm
 from django.utils.translation import ugettext as _
-from documents.forms import UAPassportForm, ForeignPassportForm, VisaCreateForm
+from documents.forms import UAPassportForm, ForeignPassportForm, VisaCreateForm, PersonalIDCreateForm
 
 from user_profile.models import User
 
@@ -111,9 +111,11 @@ def user_detail_view(request, pk):
     training_create_form = TrainingCreateForm
     polish_create_form = PolishCreateForm
     visa_create_form = VisaCreateForm
+    id_create_form = PersonalIDCreateForm
 
     return render(request, 'user_profile/user-detail.html', context={
         'user': user,
+        'id_create_form': id_create_form,
         'ua_passport_form': ua_passport_form,
         'foreign_passport_form': foreign_passport_form,
         'note_create_form': note_create_form,
@@ -226,11 +228,14 @@ class LanguageCreateView(CreateView):
 
 class UserEditView(UpdateView):
     login_url = reverse_lazy('user:user-edit')
-    # template_name = 'user_profile/add_user.html'
+    template_name = 'user_profile/add_user.html'
     model = User
     form_class = UserEditForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
         return redirect(self.request.META.get('HTTP_REFERER'))
