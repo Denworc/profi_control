@@ -3,12 +3,12 @@ from django.views.generic.edit import CreateView
 
 # from documents.models import UkrainianPassport
 from user_profile.models import User
-from .forms import UAPassportForm, ForeignPassportForm, VisaCreateForm, PersonalIDCreateForm
+from .forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
 
 class UAPassportCreate(CreateView):
     # model = UkrainianPassport
-    form_class = UAPassportForm
+    form_class = UAPassportCreateForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -25,7 +25,7 @@ class UAPassportCreate(CreateView):
 
 class ForeignPassportCreate(CreateView):
     # model = UkrainianPassport
-    form_class = ForeignPassportForm
+    form_class = ForeignPassportCreateForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)

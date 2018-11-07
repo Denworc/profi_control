@@ -11,6 +11,7 @@ from certificate.forms import (
     TestCreateForm,
     TrainingCreateForm,
     PolishCreateForm,
+    InterviewUpdateForm,
 )
 from dwelling.forms import DwellingCreateForm
 from medicine.forms import InsuranceCreateForm
@@ -30,7 +31,7 @@ from work.forms import (
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
     UserEditForm
 from django.utils.translation import ugettext as _
-from documents.forms import UAPassportForm, ForeignPassportForm, VisaCreateForm, PersonalIDCreateForm
+from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
 from user_profile.models import User
 
@@ -86,13 +87,13 @@ class UserListView(LoginRequiredMixin, ListView):
 
 def user_detail_view(request, pk):
     user = get_object_or_404(User, pk=pk)
-    ua_passport_form = UAPassportForm
-    foreign_passport_form = ForeignPassportForm
-    note_create_form = NoteCreateForm
+    ua_passport_form = UAPassportCreateForm
+    foreign_passport_form = ForeignPassportCreateForm
+    note_create_form = NoteCreateForm(initial={'note': user.note})
     contact_create_form = ContactCreateForm
     language_create_form = LanguageCreateForm
-    user_edit_form = UserEditForm
-    interview_create_form = InterviewCreateForm
+    user_edit_form = UserEditForm(pk)
+    interview_create_form = InterviewUpdateForm(pk)
     dwelling_create_form = DwellingCreateForm
     insurance_create_form = InsuranceCreateForm
     quota_create_form = QuotaCreateForm
@@ -191,6 +192,12 @@ class NoteCreateView(UpdateView):
     # template_name = 'user_profile/add_user.html'
     model = User
     form_class = NoteCreateForm
+    #
+    # def get_initial(self):
+    #     super(NoteCreateView, self).get_initial()
+    #     user = User.objects.get(pk=self.kwargs['pk'])
+    #     self.initial = {'note': user.note}
+    #     return self.initial
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -230,7 +237,19 @@ class UserEditView(UpdateView):
     login_url = reverse_lazy('user:user-edit')
     template_name = 'user_profile/add_user.html'
     model = User
-    form_class = UserEditForm
+    # form_class = UserEditForm
+    fields = (
+        'avatar',
+        'email',
+        'first_name',
+        'last_name',
+        'patronymic',
+        'position',
+        'status',
+        'date_of_birth',
+        'registration',
+        'residence_address',
+    )
 
     def form_valid(self, form):
         obj = form.save(commit=False)

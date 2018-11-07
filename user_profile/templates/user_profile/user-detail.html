@@ -873,26 +873,19 @@
                                             <mark>Психологічний портрет:</mark> {{ user.note }}
                                         </p>
                                         </div>
+
                                     {% else %}
                                         <div class="list-group-item">
                                             <p>Приміток не було додано</p>
                                         </div>
-                                        <form method="post" action="{% url 'user:note-create' user.pk %}">
+
+                                    {% endif %}
+                                     <form method="post" action="{% url 'user:note-create' user.pk %}">
                                                 {% csrf_token %}
-{#                                                {% for field in note_create_form %}#}
-{#                                                    <div class="form-group">#}
-{#                                                        <div class="position-relative has-icon-left">#}
-{#                                                            {{ field.label_tag }}#}
-{#                                                            {{ field }}#}
-{#                                                        </div>#}
-{#                                                    </div>#}
-{#                                                {% endfor %}#}
                                         {% for field in note_create_form %}
                                           <div class="form-group">
                                           <p></p>
                                             {{ field.label_tag }}
-{#                                            <label for="{{ field.id_for_label }}" class="sr-only-">{{ field.name }}</label>#}
-
                                             {% if form.is_bound %}
                                               {% if field.errors %}
                                                 {% render_field field class="form-control is-invalid" %}
@@ -917,7 +910,6 @@
                                         {% endfor %}
                                                 <input type="submit" class="btn-outline-success btn" value="Добавити">
                                         </form>
-                                    {% endif %}
                                     </div>
                                   </div>
                                 </div>

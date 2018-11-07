@@ -1,6 +1,7 @@
 from django.shortcuts import redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
+from certificate.models import Interview
 from user_profile.models import User
 from .forms import (
     InterviewCreateForm,
@@ -13,8 +14,9 @@ from .forms import (
 # Create your views here.
 
 
-class InterviewCreateView(CreateView):
+class InterviewCreateView(UpdateView):
     form_class = InterviewCreateForm
+    model = Interview
 
     def form_valid(self, form):
         obj = form.save(commit=False)

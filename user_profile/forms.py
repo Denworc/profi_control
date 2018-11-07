@@ -64,6 +64,14 @@ class NoteCreateForm(forms.ModelForm):
             'note',
         )
 
+    # def __init__(self, pk, *args, **kwargs):
+    #     super(NoteCreateForm, self).__init__(*args, **kwargs)
+    #     user = User.objects.get(pk=pk)
+    #     self.fields['note'].initial = user.note
+
+    # def get_initial_for_field(self, field, field_name):
+    #     user = User.objects.get(pk=kwargs.pop('pk'))
+
 
 class ContactCreateForm(forms.ModelForm):
 
@@ -102,3 +110,17 @@ class UserEditForm(forms.ModelForm):
             'registration',
             'residence_address',
         )
+
+    def __init__(self, pk, *args, **kwargs):
+        super(UserEditForm, self).__init__(*args, **kwargs)
+        user = User.objects.get(pk=pk)
+        self.fields['avatar'].initial = user.avatar
+        self.fields['email'].initial = user.email
+        self.fields['first_name'].initial = user.first_name
+        self.fields['last_name'].initial = user.last_name
+        self.fields['position'].initial = user.position
+        self.fields['patronymic'].initial = user.patronymic
+        self.fields['status'].initial = user.status
+        self.fields['date_of_birth'].initial = user.date_of_birth
+        self.fields['registration'].initial = user.registration
+        self.fields['residence_address'].initial = user.residence_address
