@@ -662,19 +662,21 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.pasports.series class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.pasports.number class="form-control" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.pasports.place_of_issue class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
-                                                        {% elif forloop.counter == 5 %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
-                                                        {% elif forloop.counter == 6 %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.pasports.date_of_issue class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field class="form-control" %}
+{#                                                        {% elif forloop.counter == 5 %}#}
+{#                                                          {% render_field field value=user.pasports.first_page.url class="form-control" %}#}
+{#                                                        {% elif forloop.counter == 6 %}#}
+{#                                                          {% render_field field value=user.pasports.second_page.url class="form-control" %}#}
+{#                                                        {% else %}#}
+{#                                                          {% render_field field value=user.pasports.registration.url class="form-control" %}#}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -802,9 +804,13 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=pasport.number class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=pasport.authority class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=pasport.date_of_expiry class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field  class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -989,9 +995,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=interview.interview_types.select_related.title class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=interview.result class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=interview.start_on class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1105,6 +1113,8 @@
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=contact.type.title class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=user.pasports.number class="form-control" %}
                                                         {% else %}
                                                           {% render_field field value=contact.contact class="form-control" %}
                                                         {% endif %}
@@ -1219,9 +1229,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=training.result class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=training.start_on class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=training.expire class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1355,9 +1367,17 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=certificate.organization class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=certificate.welding_type class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=certificate.welding_position class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=certificate.thickness class="form-control" %}
+                                                        {% elif forloop.counter == 5 %}
+                                                          {% render_field field value=certificate.start_on class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=certificate.expire class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1509,9 +1529,23 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=permission.number class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=permission.authority class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=permission.date_of_expiry class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=permission.number class="form-control" %}
+                                                        {% elif forloop.counter == 5 %}
+                                                          {% render_field field value=permission.factory class="form-control" %}
+                                                        {% elif forloop.counter == 6 %}
+                                                          {% render_field field value=permission.employer class="form-control" %}
+                                                        {% elif forloop.counter == 7 %}
+                                                          {% render_field field value=permission.number class="form-control" %}
+                                                        {% elif forloop.counter == 8 %}
+                                                          {% render_field field value=permission.expire class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=permission.date_of_expiry class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1584,10 +1618,10 @@
                                             <h6>Віза №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
-                                                <mark>Дата подачі на візу:</mark> {{ visa.adasd }}
+                                                <mark>Дата подачі на візу:</mark> {{ visa.first_date }}
                                             </p>
                                             <p>
-                                                <mark>Прогнозована дата отримання візи:</mark> {{ visa.asdasd }}
+                                                <mark>Прогнозована дата отримання візи:</mark> {{ visa.prediction_date }}
                                             </p>
                                             <p>
                                                 <mark>Початок:</mark> {{ visa.start_on }}
@@ -1637,9 +1671,13 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=visa.first_date class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=visa.prediction_date class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=visa.start_on class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=visa.expire class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1762,9 +1800,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=insurance.type class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=insurance.authority class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=insurance.expire class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1869,9 +1909,9 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.polish.solo class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.polish.course class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1984,9 +2024,9 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.incoming_controls.expire class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.incoming_controls.factory class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2057,7 +2097,7 @@
                                         {% if user.adoptions %}
                                             <div class="list-group-item">
                                             <p>
-                                                <mark>Підприємство - роботодавець:</mark> {{ user.adoptions.asd }}
+                                                <mark>Підприємство - роботодавець:</mark> {{ user.adoptions.employer }}
                                             </p>
                                             <p>
                                                 <mark>Дата прийняття в штат:</mark> {{ user.adoptions.dismissal_date }}
@@ -2069,7 +2109,7 @@
                                                 <mark>Дата наказу:</mark> {{ user.adoptions.order_date }}
                                             </p>
                                             <p>
-                                                <mark>Посада:</mark> {{ user.adoptions.asd }}
+                                                <mark>Посада:</mark> {{ user.adoptions.position }}
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
@@ -2103,9 +2143,15 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.adoptions.employer class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=user.adoptions.dismissal_date class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=user.adoptions.order_number class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=user.adoptions.order_date class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.adoptions.position class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2218,9 +2264,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=transfer.dismissal_date class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=transfer.order_number class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=transfer.order_date class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2354,9 +2402,25 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=assignment.order_number class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=assignment.order_date class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=assignment.start_on class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=assignment.expire class="form-control" %}
+                                                        {% elif forloop.counter == 5 %}
+                                                          {% render_field field value=assignment.factory class="form-control" %}
+                                                        {% elif forloop.counter == 6 %}
+                                                          {% render_field field value=assignment.city class="form-control" %}
+                                                        {% elif forloop.counter == 7 %}
+                                                          {% render_field field value=assignment.polish_border class="form-control" %}
+                                                        {% elif forloop.counter == 8 %}
+                                                          {% render_field field value=assignment.ukrainian_border class="form-control" %}
+                                                        {% elif forloop.counter == 9 %}
+                                                          {% render_field field value=assignment.dismissal_reason class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=assignment.dismissal_basis class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2481,9 +2545,19 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=vocation.type class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=vocation.number class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=vocation.start_on class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=vocation.expire class="form-control" %}
+                                                        {% elif forloop.counter == 5 %}
+                                                          {% render_field field value=vocation.order_number class="form-control" %}
+                                                        {% elif forloop.counter == 6 %}
+                                                          {% render_field field value=vocation.order_date class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=vocation.comment class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2615,9 +2689,17 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=dwelling.address class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=dwelling.landlord_name class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=dwelling.neighbor_name class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=dwelling.start_on class="form-control" %}
+                                                        {% elif forloop.counter == 5 %}
+                                                          {% render_field field value=dwelling.expire class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=dwelling.end_date class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2737,9 +2819,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.prognoses class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=user.prognoses.expire class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.prognoses.reason class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2857,9 +2941,9 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.disappearances.violation_date class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.disappearances.appeal_date class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2942,10 +3026,10 @@
                                                 <mark>Дата звільнення:</mark> {{ user.dismissals.dismissal_date }}
                                             </p>
                                             <p>
-                                                <mark>Номер наказу:</mark> {{ vocation.dismissals.order.date }}
+                                                <mark>Номер наказу:</mark> {{ user.dismissals.order.date }}
                                             </p>
                                             <p>
-                                                <mark>Дата наказу:</mark> {{ vocation.dismissals.order_number }}
+                                                <mark>Дата наказу:</mark> {{ user.dismissals.order_number }}
                                             </p>
                                             <p>
                                                 <mark>Підстава звільнення:</mark> {{ user.dismissals.dismissal_basis }}
@@ -2985,9 +3069,15 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=user.dismissals.dismissal_date class="form-control" %}
+                                                        {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=user.dismissals.order.date class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
+                                                          {% render_field field value=user.dismissals.order_number class="form-control" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=user.dismissals.dismissal_basis class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=user.dismissals.dismissal_reason class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -3053,42 +3143,6 @@
                                   </div>
                                 </div>
                               </div>
-{#                              <div class="card mb-2">#}
-{#                                <div class="card-header bg-dark">#}
-{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-26" aria-expanded="false" aria-controls="collapse-26">#}
-{#                                      Accordion Group Item #2#}
-{#                                    </button>#}
-{#                                </div>#}
-{#                                <div id="collapse-26" class="collapse" data-parent="#accordion7">#}
-{#                                  <div class="card-body">#}
-{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
-{#                                  </div>#}
-{#                                </div>#}
-{#                              </div>#}
-{#                              <div class="card mb-2">#}
-{#                                <div class="card-header bg-dark">#}
-{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-8" aria-expanded="false" aria-controls="collapse-27">#}
-{#                                      Accordion Group Item #2#}
-{#                                    </button>#}
-{#                                </div>#}
-{#                                <div id="collapse-27" class="collapse" data-parent="#accordion7">#}
-{#                                  <div class="card-body">#}
-{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
-{#                                  </div>#}
-{#                                </div>#}
-{#                              </div>#}
-{#                              <div class="card">#}
-{#                                <div class="card-header bg-dark">#}
-{#                                    <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-9" aria-expanded="false" aria-controls="collapse-28">#}
-{#                                      Accordion Group Item #3#}
-{#                                    </button>#}
-{#                                </div>#}
-{#                                <div id="collapse-28" class="collapse" data-parent="#accordion7">#}
-{#                                  <div class="card-body">#}
-{#                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.#}
-{#                                  </div>#}
-{#                                </div>#}
-{#                              </div>#}
                             </div>
                         </div>
                       </div><!--End Row-->
