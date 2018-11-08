@@ -29,11 +29,11 @@ from work.forms import (
     DisappearanceCreateForm,
 )
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
-    UserEditForm
+    UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm
 from django.utils.translation import ugettext as _
 from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
-from user_profile.models import User
+from user_profile.models import User, Contact, Language
 
 
 class AuthView(FormView):
@@ -89,11 +89,12 @@ def user_detail_view(request, pk):
     user = get_object_or_404(User, pk=pk)
     ua_passport_form = UAPassportCreateForm
     foreign_passport_form = ForeignPassportCreateForm
-    note_create_form = NoteCreateForm(initial={'note': user.note})
+    note_create_form = NoteCreateForm
+    note_update_form = NoteUpdateForm(initial={'note': user.note})
     contact_create_form = ContactCreateForm
     language_create_form = LanguageCreateForm
     user_edit_form = UserEditForm(pk)
-    interview_create_form = InterviewUpdateForm(pk)
+    interview_create_form = InterviewCreateForm
     dwelling_create_form = DwellingCreateForm
     insurance_create_form = InsuranceCreateForm
     quota_create_form = QuotaCreateForm
@@ -113,6 +114,8 @@ def user_detail_view(request, pk):
     polish_create_form = PolishCreateForm
     visa_create_form = VisaCreateForm
     id_create_form = PersonalIDCreateForm
+    contact_update_form = ContactUpdateForm
+    language_update_form = LanguageUpdateForm
 
     return render(request, 'user_profile/user-detail.html', context={
         'user': user,
@@ -141,6 +144,9 @@ def user_detail_view(request, pk):
         'training_create_form': training_create_form,
         'polish_create_form': polish_create_form,
         'visa_create_form': visa_create_form,
+        'contact_update_form': contact_update_form,
+        'language_update_form': language_update_form,
+        'note_update_form': note_update_form,
 
     })
 
@@ -253,6 +259,54 @@ class UserEditView(UpdateView):
 
     def form_valid(self, form):
         obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class NoteUpdateView(UpdateView):
+    login_url = reverse_lazy('user:note-create')
+    model = User
+    form_class = NoteUpdateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ContactUpdateView(UpdateView):
+    model = Contact
+    pk_url_kwarg = 'count'
+    context_object_name = 'contact'
+    fields = (
+        'type',
+        'contact',
+    )
+
+    def form_valid(self, form):
+        contact = form.save(commit=False)
+        contact.user = User.objects.get(pk=self.kwargs['pk'])
+        contact.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class LanguageUpdateView(UpdateView):
+    model = Language
+    pk_url_kwarg = 'count'
+    fields = (
+        'title',
+        'level',
+    )
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
         obj.save()
         return redirect(self.request.META.get('HTTP_REFERER'))
 

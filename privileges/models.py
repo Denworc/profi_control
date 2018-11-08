@@ -39,8 +39,8 @@ class Quota(models.Model):
     """
     Квоти
     """
-    user = models.ForeignKey(User, verbose_name='Працівник', on_delete=models.CASCADE)
-    type = models.ForeignKey(QuotaType, verbose_name=_('Тип квоти'), on_delete=models.CASCADE)
+    user = models.ForeignKey(User, verbose_name='Працівник', on_delete=models.CASCADE, related_name='qoutas')
+    type = models.ForeignKey(QuotaType, verbose_name=_('Тип квоти'), on_delete=models.CASCADE, related_name='qoutas')
     expire = models.DateField(verbose_name=_('Закінчення квоти'), null=True, blank=True)
 
     class Meta:

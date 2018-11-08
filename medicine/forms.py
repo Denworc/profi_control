@@ -1,4 +1,6 @@
 from django import forms
+
+from user_profile.models import User
 from .models import Insurance
 
 
@@ -26,12 +28,10 @@ class InsuranceUpdateForm(forms.ModelForm):
         )
 
     def __init__(self, pk, *args, **kwargs):
-        super(DwellingUpdateForm, self).__init__(*args, **kwargs)
+        super(InsuranceUpdateForm, self).__init__(*args, **kwargs)
         user = User.objects.get(pk=pk)
-        dwelling = user.dwellings.get(id=1)
-        self.fields['address'].initial = dwelling.address
-        self.fields['landlord_name'].initial = dwelling.landlord_name
-        self.fields['neighbor_name'].initial = dwelling.neighbor_name
-        self.fields['start_on'].initial = dwelling.start_on
-        self.fields['expire'].initial = dwelling.expire
-        self.fields['end_date'].initial = dwelling.end_date
+        insurance = user.insurances.get(id=1)
+        self.fields['type'].initial = insurance.type
+        self.fields['start_on'].initial = insurance.start_on
+        self.fields['expire'].initial = insurance.expire
+        self.fields['scan_copy'].initial = insurance.scan_copy

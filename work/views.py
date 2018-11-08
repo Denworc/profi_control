@@ -1,7 +1,9 @@
 from django.shortcuts import redirect
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from user_profile.models import User
+from work.models import Dismissal, Assignment, AdoptionInState, Permission, TransferInState, Vnosok, Vocation, \
+    IncomingControl, Prognosis, Disappearance
 from .forms import (
     DismissalCreateForm,
     AssignmentCreateForm,
@@ -137,6 +139,156 @@ class PrognosisCreateView(CreateView):
 
 class DisappearanceCreateView(CreateView):
     form_class = DisappearanceCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class DismissalUpdateView(UpdateView):
+    form_class = DismissalCreateForm
+    pk_url_kwarg = 'count'
+    model = Dismissal
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class AssignmentUpdateView(UpdateView):
+    form_class = AssignmentCreateForm
+    pk_url_kwarg = 'count'
+    model = Assignment
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class AdoptionUpdateView(UpdateView):
+    form_class = AdoptionCreateForm
+    pk_url_kwarg = 'count'
+    model = AdoptionInState
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class TransferUpdateView(UpdateView):
+    form_class = TransferCreateForm
+    pk_url_kwarg = 'count'
+    model = TransferInState
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PermissionUpdateView(UpdateView):
+    form_class = PermissionCreateForm
+    pk_url_kwarg = 'count'
+    model = Permission
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VnosokUpdateView(UpdateView):
+    form_class = VnosokCreateForm
+    pk_url_kwarg = 'count'
+    model = Vnosok
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VocationUpdateView(UpdateView):
+    form_class = VocationCreateForm
+    pk_url_kwarg = 'count'
+    model = Vocation
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ControlUpdateView(UpdateView):
+    form_class = ControlCreateForm
+    pk_url_kwarg = 'count'
+    model = IncomingControl
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PrognosisUpdateView(UpdateView):
+    form_class = PrognosisCreateForm
+    pk_url_kwarg = 'count'
+    model = Prognosis
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class DisappearanceUpdateView(UpdateView):
+    form_class = DisappearanceCreateForm
+    pk_url_kwarg = 'count'
+    model = Disappearance
 
     def form_valid(self, form):
         obj = form.save(commit=False)

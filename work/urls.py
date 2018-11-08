@@ -10,6 +10,15 @@ from .views import (
     ControlCreateView,
     PrognosisCreateView,
     DisappearanceCreateView,
+    DisappearanceUpdateView,
+    PrognosisUpdateView,
+    ControlUpdateView,
+    VocationUpdateView,
+    PermissionUpdateView,
+    TransferUpdateView,
+    AdoptionUpdateView,
+    AssignmentUpdateView,
+    DismissalUpdateView,
 )
 
 
@@ -25,4 +34,14 @@ urlpatterns = [
     re_path(r'^create_incoming_control/(?P<pk>\d+)$', ControlCreateView.as_view(), name='create_incoming_control'),
     re_path(r'^create_prognosis/(?P<pk>\d+)$', PrognosisCreateView.as_view(), name='create_prognosis'),
     re_path(r'^create_disappearance/(?P<pk>\d+)$', DisappearanceCreateView.as_view(), name='create_disappearance'),
+    re_path(r'^update_dismissal/(?P<pk>\d+)-(?P<count>\d+)$', DismissalUpdateView.as_view(), name='update_dismissal'),
+    re_path(r'^update_assignment/(?P<pk>\d+)-(?P<count>\d+)$', AssignmentUpdateView.as_view(), name='update_assignment'),
+    re_path(r'^update_adoption/(?P<pk>\d+)-(?P<count>\d+)$', AdoptionUpdateView.as_view(), name='update_adoption'),
+    re_path(r'^update_transfer/(?P<pk>\d+)-(?P<count>\d+)$', TransferUpdateView.as_view(), name='update_transfer'),
+    re_path(r'^update_dismissal/(?P<pk>\d+)-(?P<count>\d+)$', PermissionUpdateView.as_view(), name='update_permission'),
+    # re_path(r'^update_vnosok_list/(?P<pk>\d+)$', VnosokUpdateView.as_view(), name='update_vnosok_list'),
+    re_path(r'^update_vocation/(?P<pk>\d+)-(?P<count>\d+)$', VocationUpdateView.as_view(), name='update_vocation'),
+    re_path(r'^update_incoming_control/(?P<pk>\d+)-(?P<count>\d+)$', ControlUpdateView.as_view(), name='update_incoming_control'),
+    re_path(r'^update_prognosis/(?P<pk>\d+)-(?P<count>\d+)$', PrognosisUpdateView.as_view(), name='update_prognosis'),
+    re_path(r'^update_disappearance/(?P<pk>\d+)-(?P<count>\d+)$', DisappearanceUpdateView.as_view(), name='update_disappearance'),
 ]

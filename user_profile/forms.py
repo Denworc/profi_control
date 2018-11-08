@@ -124,3 +124,51 @@ class UserEditForm(forms.ModelForm):
         self.fields['date_of_birth'].initial = user.date_of_birth
         self.fields['registration'].initial = user.registration
         self.fields['residence_address'].initial = user.residence_address
+
+
+class NoteUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = (
+            'note',
+        )
+
+
+class ContactUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Contact
+        fields = (
+            'type',
+            'contact',
+        )
+
+    # def __init__(self, pk, *args, **kwargs):
+    #     super(ContactUpdateForm, self).__init__(*args, **kwargs)
+    #     user = User.objects.get(pk=pk)
+    #     contact = user.contacts.first()
+    #     # print('-' * 80)
+    #     # print(contact)
+    #     # print('-' * 80)
+    #     if contact:
+    #         self.fields['type'].initial = contact.type
+    #         self.fields['contact'].initial = contact.contact
+
+
+class LanguageUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = Language
+        fields = (
+            'title',
+            'level',
+        )
+
+    # def __init__(self, pk, *args, **kwargs):
+    #     super(LanguageUpdateForm, self).__init__(*args, **kwargs)
+    #     user = User.objects.get(pk=pk)
+    #     language = user.languages.first()
+    #     if language:
+    #         self.fields['title'].initial = language.title
+    #         self.fields['level'].initial = language.level
