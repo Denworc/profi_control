@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.exceptions import ImproperlyConfigured
 from django.shortcuts import redirect, reverse, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, DeleteView, View, DetailView, CreateView, UpdateView
@@ -161,7 +162,7 @@ def user_detail_view(request, pk):
 #     return render(request, 'user_profile.html', {'user': user})
 
 
-class NewUserView(CreateView):
+class NewUserView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('user:login')
     template_name = 'user_profile/add_user.html'
     form_class = NewUserForm
@@ -269,7 +270,10 @@ class UserEditView(UpdateView):
 class NoteUpdateView(UpdateView):
     login_url = reverse_lazy('user:note-create')
     model = User
-    form_class = NoteUpdateForm
+    # form_class = NoteUpdateForm
+    fields = (
+        'note',
+    )
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -311,4 +315,44 @@ class LanguageUpdateView(UpdateView):
         return redirect(self.request.META.get('HTTP_REFERER'))
 
     def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ContactDeleteView(DeleteView):
+    model = Contact
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    # context_object_name = 'contact'
+    # fields = (
+    #     'type',
+    #     'contact',
+    # )
+    #
+    # def form_valid(self, form):
+    #     contact = self.get_object()
+    #     contact.delete()
+    #     # contact = form.save(commit=False)
+    #     # contact.user = User.objects.get(pk=self.kwargs['pk'])
+    #     # contact.save()
+    #     return redirect(self.request.META.get('HTTP_REFERER'))
+    #
+    # def form_invalid(self, form):
+    #     return redirect(self.request.META.get('HTTP_REFERER'))
+    #
+    # def get_success_url(self):
+    #     return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class LanguageDeleteView(DeleteView):
+    model = Language
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
         return redirect(self.request.META.get('HTTP_REFERER'))

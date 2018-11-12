@@ -13,7 +13,9 @@ from .views import (
     UserEditView,
     NoteUpdateView,
     ContactUpdateView,
-    LanguageUpdateView)
+    LanguageUpdateView,
+    ContactDeleteView,
+    LanguageDeleteView)
 
 
 app_name = 'user'
@@ -28,6 +30,9 @@ urlpatterns = [
     re_path(r'^note_update/(?P<pk>\d+)$', NoteUpdateView.as_view(), name='note-update'),
     re_path(r'^contact_update/(?P<pk>\d+)-(?P<count>\d+)$', ContactUpdateView.as_view(), name='contact-update'),
     re_path(r'^language_update/(?P<pk>\d+)-(?P<count>\d+)$', LanguageUpdateView.as_view(), name='language-update'),
+    # re_path(r'^note_update/(?P<pk>\d+)$', NoteUpdateView.as_view(), name='note-update'),
+    re_path(r'^contact_delete/(?P<pk>\d+)-(?P<count>\d+)$', ContactDeleteView.as_view(), name='contact-delete'),
+    re_path(r'^language_delete/(?P<pk>\d+)-(?P<count>\d+)$', LanguageDeleteView.as_view(), name='language-delete'),
     re_path(r'^user_edit/(?P<pk>\d+)$', UserEditView.as_view(), name='user-edit'),
     # path('new/', new_user, name='new-user'),
     # re_path(r'^(?P<pk>\d+)$', UserDetailView.as_view(), name='user-detail'),

@@ -245,13 +245,13 @@
                                             <p>
                                                 <mark>Контакт:</mark> {{ contact.contact }}
                                             </p>
-                                            </div>
+</div>
                                              <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_2_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_2_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_2_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -292,12 +292,37 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_2_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_2_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'user:contact-delete' user.pk contact.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити контактні дані №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+
                                         {% empty %}
                                             <p>
                                                 <h6>Контактні дані</h6>
@@ -357,20 +382,20 @@
                                         </div>
                                         {% endif %}
                                         <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_2_{{ forloop.counter }}">Редагувати</button>
-                                            <div class="modal fade" id="darkmodal_2_{{ forloop.counter }}">
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_25_{{ forloop.counter }}">Редагувати</button>
+                                            <div class="modal fade" id="darkmodal_25_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Ідентифікаційний код</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
                                                     </button>
                                                   </div>
-                                                 <form method="post" action="{% url 'user:contact-update' user.pk user.pk %}" enctype="multipart/form-data">
+                                                 <form method="post" action="{% url 'documents:update_id' user.pk user.pk %}" enctype="multipart/form-data">
                                                   <div class="modal-body">
                                                   {% csrf_token %}
-                                                  {% for field in contact_update_form %}
+                                                  {% for field in id_create_form %}
                                                   <div class="form-group">
                                                       <p></p>
                                                     {{ field.label_tag }}
@@ -402,7 +427,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -497,8 +522,20 @@
                                                 <mark>Рівень:</mark> {{ language.level }}
                                             </p>
                                             </div>
-                                        <form method="post" action="{% url 'user:language-update' user.pk language.pk %}">
+                                         <!--Dark Modal -->
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_4_{{ forloop.counter }}">Редагувати</button>
+                                            <div class="modal fade" id="darkmodal_4_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i> Мова</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'user:language-update' user.pk language.pk %}">
                                                 {% csrf_token %}
+                                                 <div class="modal-body">
                                                 {% for field in language_create_form %}
                                                   <div class="form-group">
                                                       <p></p>
@@ -530,8 +567,40 @@
                                                     {% endif %}
                                                   </div>
                                                 {% endfor %}
-                                                <input type="submit" class="btn-outline-success btn" value="Редагувати">
-                                        </form>
+                                                 </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_4_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_4_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'user:language-delete' user.pk language.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити мову №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+
                                         {% empty %}
                                             <p>
                                                 <h6>Знання мов</h6>
@@ -632,11 +701,11 @@
                                                 {% endif %}
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_5_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_5_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_5_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Паспорт громадянина України</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -689,7 +758,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -762,10 +831,10 @@
                                             </p>
                                             </div>
                                             <div class="lightboxgallery-gallery clearfix bg-white shadow">
-                                                {% if user.pasports.first_page %}
+                                                {% if pasport.first_page %}
                                                 <a class="lightboxgallery-gallery-item" target="_blank" href="{{ pasport.first_page.url }}" data-title="Перша сторінка" data-alt="Перша сторінка">
                                                   <div>
-                                                    <img src="{{ user.pasports.first_page.url }}" title="Перша сторінка" alt="Перша сторінка">
+                                                    <img src="{{ pasport.first_page.url }}" title="Перша сторінка" alt="Перша сторінка">
                                                     <div class="lightboxgallery-gallery-item-content">
                                                       <span class="lightboxgallery-gallery-item-title">Перша сторінка</span>
                                                     </div>
@@ -774,11 +843,11 @@
                                                 {% endif %}
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_6_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_6_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_6_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -823,7 +892,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -890,7 +959,7 @@
                                             {% endif %}
                                           </div>
                                         {% endfor %}
-                                                <input type="submit" class="btn-outline-success btn" value="Редагувати">
+                                                <input type="submit" class="btn-outline-warning btn" value="Редагувати">
                                         </form>
                                     {% else %}
                                         <div class="list-group-item">
@@ -965,11 +1034,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_7_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_7_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_7_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1012,7 +1081,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1082,11 +1151,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_8_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_8_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_8_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1129,7 +1198,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1199,11 +1268,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_9_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_9_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_9_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1246,7 +1315,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1337,11 +1406,11 @@
                                                 {% endif %}
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_10_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_10_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_10_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1390,7 +1459,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1499,11 +1568,11 @@
                                                 {% endif %}
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_11_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_11_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_11_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1558,7 +1627,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1630,6 +1699,7 @@
                                                 <mark>Завершення:</mark> {{ visa.expire }}
                                             </p>
                                             </div>
+                                            <div class="lightboxgallery-gallery clearfix bg-white shadow">
                                             {% if visa.visa_scan %}
                                                 <a class="lightboxgallery-gallery-item" target="_blank" href="{{ visa.visa_scan.url }}" data-title="Віза" data-alt="Віза">
                                                   <div>
@@ -1640,12 +1710,13 @@
                                                   </div>
                                                 </a>
                                             {% endif %}
+                                            </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_12_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_12_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_12_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1690,7 +1761,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1770,11 +1841,11 @@
                                                 </a>
                                             {% endif %}
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_13_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_13_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_13_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1817,7 +1888,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1879,11 +1950,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_14_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_14_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_14_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -1924,7 +1995,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1994,11 +2065,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_15_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_15_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_15_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2039,7 +2110,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2113,11 +2184,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_16_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_16_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_16_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2164,7 +2235,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2234,11 +2305,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_17_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_17_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_17_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2281,7 +2352,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2372,11 +2443,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_18_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_18_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_18_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2433,7 +2504,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2515,11 +2586,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_19_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_19_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_19_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2570,7 +2641,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2659,11 +2730,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_20_{{ forloop.counter }}">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_20_{{ forloop.counter }}">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_20_{{ forloop.counter }}">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2712,7 +2783,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2789,11 +2860,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_21_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_21_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_21_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2836,7 +2907,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -2911,11 +2982,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_22_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_22_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_22_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Контактні дані</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -2956,7 +3027,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -3026,10 +3097,10 @@
                                                 <mark>Дата звільнення:</mark> {{ user.dismissals.dismissal_date }}
                                             </p>
                                             <p>
-                                                <mark>Номер наказу:</mark> {{ user.dismissals.order.date }}
+                                                <mark>Номер наказу:</mark> {{ user.dismissals.order_number }}
                                             </p>
                                             <p>
-                                                <mark>Дата наказу:</mark> {{ user.dismissals.order_number }}
+                                                <mark>Дата наказу:</mark> {{ user.dismissals.order_date }}
                                             </p>
                                             <p>
                                                 <mark>Підстава звільнення:</mark> {{ user.dismissals.dismissal_basis }}
@@ -3039,11 +3110,11 @@
                                             </p>
                                             </div>
                                             <!--Dark Modal -->
-                                           <button class="btn btn-outline-success m-1" data-toggle="modal" data-target="#darkmodal_23_">Редагувати</button>
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_23_">Редагувати</button>
                                             <div class="modal fade" id="darkmodal_23_">
                                               <div class="modal-dialog">
-                                                <div class="modal-content border-dark">
-                                                  <div class="modal-header bg-dark">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
                                                     <h5 class="modal-title text-white"><i class="fa fa-star"></i>Звільнення</h5>
                                                     <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
                                                       <span aria-hidden="true">&times;</span>
@@ -3071,7 +3142,7 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=user.dismissals.dismissal_date class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=user.dismissals.order.date class="form-control" %}
+                                                          {% render_field field value=user.dismissals.order_date class="form-control" %}
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=user.dismissals.order_number class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
@@ -3090,7 +3161,7 @@
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                                    <input type="submit" class="btn btn-dark" value="Редагувати">
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
                                                   </div>
                                                   </form>
                                                 </div>
