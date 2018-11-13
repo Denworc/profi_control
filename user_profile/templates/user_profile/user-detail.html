@@ -846,7 +846,11 @@
                                                         {% render_field field class="form-control is-valid" %}
                                                       {% endif %}
                                                     {% else %}
+                                                      {% if forloop.counter == 4 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
                                                       {% render_field field class="form-control" %}
+                                                {% endif %}
                                                     {% endif %}
 
                                                     {% if field.help_text %}
@@ -1218,7 +1222,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter == 1 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -1359,7 +1367,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter == 1 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -1500,7 +1512,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter <= 2 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -1668,7 +1684,13 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter <= 2 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% elif forloop.counter >= 4 and forloop.counter <= 5 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -1860,7 +1882,13 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter <= 3 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% elif forloop.counter >= 7 and forloop.counter <= 8 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -2018,7 +2046,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter <= 4 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -2169,7 +2201,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter >= 2 and forloop.counter <= 3 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -2445,7 +2481,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter == 1 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -2595,7 +2635,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter >= 2 and forloop.counter <= 3 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -2737,7 +2781,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter <= 2 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -2913,7 +2961,15 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter >= 2 and forloop.counter <= 4 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% elif forloop.counter >= 7 and forloop.counter <= 8 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% elif forloop.counter == 11 or forloop.counter == 14 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -3075,7 +3131,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter >= 3 and forloop.counter <= 5 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -3240,7 +3300,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter >= 4 and forloop.counter <= 6 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}
@@ -3396,7 +3460,11 @@
                                                         {% render_field field class="form-control is-valid" %}
                                                       {% endif %}
                                                     {% else %}
+                                                      {% if forloop.counter == 2 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
                                                       {% render_field field class="form-control" %}
+                                                {% endif %}
                                                     {% endif %}
 
                                                     {% if field.help_text %}
@@ -3531,7 +3599,11 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                              {% if forloop.counter <= 2 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
                                             {% endif %}
 
                                             {% if field.help_text %}

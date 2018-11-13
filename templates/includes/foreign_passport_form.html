@@ -16,7 +16,11 @@
         {% render_field field class="form-control is-valid" %}
       {% endif %}
     {% else %}
-      {% render_field field class="form-control" %}
+      {% if forloop.counter == 3 %}
+          {% render_field field class="form-control autoclose-datepicker" %}
+      {% else %}
+          {% render_field field class="form-control" %}
+      {% endif %}
     {% endif %}
 
     {% if field.help_text %}
