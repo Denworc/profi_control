@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from certificate.models import Interview, Certificate, Training, Polish, Test
 from user_profile.models import User
@@ -152,4 +152,54 @@ class PolishUpdateView(UpdateView):
         return redirect(self.request.META.get('HTTP_REFERER'))
 
     def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class InterviewDeleteView(DeleteView):
+    model = Interview
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class CertificateDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Certificate
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class TestDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Test
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class TrainingDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Training
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PolishDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Polish
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
         return redirect(self.request.META.get('HTTP_REFERER'))

@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from user_profile.models import User
 from work.models import Dismissal, Assignment, AdoptionInState, Permission, TransferInState, Vnosok, Vocation, \
@@ -297,4 +297,104 @@ class DisappearanceUpdateView(UpdateView):
         return redirect(self.request.META.get('HTTP_REFERER'))
 
     def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class DismissalDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Dismissal
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class AssignmentDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Assignment
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class AdoptionDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = AdoptionInState
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class TransferDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = TransferInState
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PermissionDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Permission
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VnosokDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Vnosok
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VocationDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Vocation
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ControlDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = IncomingControl
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PrognosisDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Prognosis
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class DisappearanceDeleteView(DeleteView):
+    pk_url_kwarg = 'count'
+    model = Disappearance
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
         return redirect(self.request.META.get('HTTP_REFERER'))

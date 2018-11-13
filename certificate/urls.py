@@ -9,7 +9,11 @@ from .views import (
     CertificateUpdateView,
     TestUpdateView,
     TrainingUpdateView,
-    PolishUpdateView
+    PolishUpdateView,
+    InterviewDeleteView,
+    TestDeleteView,
+    TrainingDeleteView,
+    PolishDeleteView,
 )
 
 
@@ -29,5 +33,14 @@ urlpatterns = [
     re_path(r'^update_test/(?P<pk>\d+)-(?P<count>\d+)$', TestUpdateView.as_view(), name='update_test'),
     re_path(r'^update_training/(?P<pk>\d+)-(?P<count>\d+)$', TrainingUpdateView.as_view(), name='update_training'),
     re_path(r'^update_polish/(?P<pk>\d+)-(?P<count>\d+)$', PolishUpdateView.as_view(), name='update_polish'),
+    re_path(r'^delete_interview/(?P<pk>\d+)-(?P<count>\d+)$', InterviewDeleteView.as_view(), name='delete_interview'),
+    re_path(
+        r'^delete_certificate/(?P<pk>\d+)-(?P<count>\d+)$',
+        CertificateUpdateView.as_view(),
+        name='delete_certificate'
+    ),
+    re_path(r'^delete_test/(?P<pk>\d+)-(?P<count>\d+)$', TestDeleteView.as_view(), name='delete_test'),
+    re_path(r'^delete_training/(?P<pk>\d+)-(?P<count>\d+)$', TrainingDeleteView.as_view(), name='delete_training'),
+    re_path(r'^delete_polish/(?P<pk>\d+)-(?P<count>\d+)$', PolishDeleteView.as_view(), name='delete_polish'),
 
 ]

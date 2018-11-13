@@ -392,7 +392,7 @@
                                                       <span aria-hidden="true">&times;</span>
                                                     </button>
                                                   </div>
-                                                 <form method="post" action="{% url 'documents:update_id' user.pk user.pk %}" enctype="multipart/form-data">
+                                                 <form method="post" action="{% url 'documents:update_id' user.pk user.personal_id.pk %}" enctype="multipart/form-data">
                                                   <div class="modal-body">
                                                   {% csrf_token %}
                                                   {% for field in id_create_form %}
@@ -414,7 +414,17 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=user.personal_id class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=user.personal_id.scan_id class="form-control" %}
+                                                             {% if user.personal_id.scan_id %}
+                                                                 <p></p>
+                                                              Наразі: <a href="{{ user.personal_id.scan_id.url }}">{{ user.personal_id.scan_id.url }}</a>
+                                                            <input name="scan_id-clear" id="scan_id-clear_id" type="checkbox">
+                                                            <label for="scan_id-clear_id">Очистити</label><br>
+                                                            Змінити:
+                                                            <input name="scan_id" class="form-control" id="id_scan_id" type="file">
+{#                                                          {% render_field field value=user.personal_id.scan_id class="form-control" %}#}
+                                                             {% else %}
+                                                                 {% render_field field value=user.personal_id.scan_id class="form-control" %}
+                                                             {% endif %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -428,6 +438,30 @@
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
                                                     <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+                                        <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_3">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_3">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Ідентифікаційний код</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'documents:delete_id' user.pk user.personal_id.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити ідентифікаційний код?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -485,6 +519,7 @@
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+
                                     {% endif %}
                                         <p>
                                             <h6>Адреса</h6>
@@ -764,6 +799,30 @@
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_5">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_5">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Український паспорт</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'documents:delete_ua_passport' user.pk user.pasports.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити паспорт громадянина України?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
                                         {% else %}
                                             <div class="list-group-item">
                                                 <p>Паспорт громадянина України не було додано</p>
@@ -893,6 +952,30 @@
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
                                                     <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+                                             <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_6_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_6_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Закордонний паспорт</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'documents:delete_foreign_passport' user.pk pasport.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити закордонний паспорт №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1087,6 +1170,30 @@
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_7_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_7_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Співбесіда №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'certificate:delete_interview' user.pk interview.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити співбесіду №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
                                         {% empty %}
                                             <div class="list-group-item">
                                                 <p>Співбесіда не проводилась</p>
@@ -1204,6 +1311,30 @@
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_8_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_8_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Тестування №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'certificate:delete_test' user.pk test.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити тестування №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
                                         {% empty %}
                                             <div class="list-group-item">
                                                 <p>Тестування не проводилось</p>
@@ -1316,6 +1447,30 @@
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
                                                     <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_9_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_9_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Тренування №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'certificate:delete_training' user.pk training.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити тренування №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1460,6 +1615,30 @@
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
                                                     <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_10_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_10_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Сертифікат №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'certificate:delete_certificate' user.pk certificate.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити сертифікат №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
                                                   </div>
                                                   </form>
                                                 </div>
@@ -1633,6 +1812,30 @@
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_11_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_11_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Дозвіл №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'work:delete_permission' user.pk permission.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити дозвіл №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
                                         {% empty %}
                                             <div class="list-group-item">
                                                 <p>Дозвіл на працю не додано</p>
@@ -1767,6 +1970,30 @@
                                                 </div>
                                               </div>
                                             </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_12_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_12_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Віза №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'documents:delete_visa' user.pk visa.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити візу №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
                                         {% empty %}
                                             <div class="list-group-item">
                                                 <p>Дані про візу не додано</p>
@@ -1889,6 +2116,30 @@
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
                                                     <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
+                                            <!--Dark Modal -->
+                                           <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_1_13_{{ forloop.counter }}">Видалити</button>
+                                            <div class="modal fade" id="darkmodal_1_13_{{ forloop.counter }}">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-danger">
+                                                  <div class="modal-header bg-danger">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Страхування №{{ forloop.counter }}</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'medicine:delete_insurance' user.pk insurance.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                      <h6>Видалити страхування №{{ forloop.counter }} ?</h6>
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                    <input type="submit" class="btn btn-danger" value="Видалити">
                                                   </div>
                                                   </form>
                                                 </div>

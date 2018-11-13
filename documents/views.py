@@ -1,5 +1,5 @@
 from django.shortcuts import redirect
-from django.views.generic.edit import CreateView, UpdateView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # from documents.models import UkrainianPassport
 from documents.models import PersonalID, ForeignPassport, Visa, UkrainianPassport
@@ -127,3 +127,44 @@ class PersonalIDUpdateView(UpdateView):
 
     def form_invalid(self, form):
         return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class UAPassportDelete(DeleteView):
+    model = UkrainianPassport
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ForeignPassportDelete(DeleteView):
+    model = ForeignPassport
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VisaDeleteView(DeleteView):
+    model = Visa
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PersonalIDDeleteView(DeleteView):
+    model = PersonalID
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
