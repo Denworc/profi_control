@@ -772,7 +772,7 @@
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=user.pasports.place_of_issue class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=user.pasports.date_of_issue class="form-control" %}
+                                                          {% render_field field value=user.pasports.date_of_issue class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field class="form-control" %}
 {#                                                        {% elif forloop.counter == 5 %}#}
@@ -936,7 +936,7 @@
                                                         {% elif forloop.counter == 2 %}
                                                           {% render_field field value=pasport.authority class="form-control" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=pasport.date_of_expiry class="form-control" %}
+                                                          {% render_field field value=pasport.date_of_expiry class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field  class="form-control" %}
                                                         {% endif %}
@@ -1107,7 +1107,7 @@
                                             <h6>Співбесіда №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
-                                                <mark>Тип співбесіди:</mark> {{ interview.interview_types.select_related.title }}
+                                                <mark>Тип співбесіди:</mark> {{ interview.type }}
                                             </p>
                                             <p>
                                                 <mark>Результат:</mark> {{ interview.result }}
@@ -1147,11 +1147,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=interview.interview_types.select_related.title class="form-control" %}
+                                                          {% render_field field value=interview.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=interview.result class="form-control" %}
+                                                          {% render_field field value=interview.type class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=interview.start_on class="form-control" %}
+                                                          {% render_field field value=interview.result class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1248,7 +1248,7 @@
                                             <h6>Тестування №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
-                                                <mark>Тип тестування:</mark> {{ test.test_types.select_related.title }}
+                                                <mark>Тип тестування:</mark> {{ test.type }}
                                             </p>
                                             <p>
                                                 <mark>Результат:</mark> {{ test.result }}
@@ -1288,11 +1288,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=contact.type.title class="form-control" %}
+                                                          {% render_field field value=test.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=user.pasports.number class="form-control" %}
+                                                          {% render_field field value=test.test_types.select_related.title class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=contact.contact class="form-control" %}
+                                                          {% render_field field value=test.result class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1429,11 +1429,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=training.result class="form-control" %}
+                                                          {% render_field field value=training.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=training.start_on class="form-control" %}
+                                                          {% render_field field value=training.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=training.expire class="form-control" %}
+                                                          {% render_field field value=training.result class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1599,9 +1599,9 @@
                                                         {% elif forloop.counter == 4 %}
                                                           {% render_field field value=certificate.thickness class="form-control" %}
                                                         {% elif forloop.counter == 5 %}
-                                                          {% render_field field value=certificate.start_on class="form-control" %}
+                                                          {% render_field field value=certificate.start_on class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=certificate.expire class="form-control" %}
+                                                          {% render_field field value=certificate.expire class="form-control autoclose-datepicker" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1707,16 +1707,16 @@
                                             <h6>Дозвіл №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
-                                                <mark>Дата відправлення внеску представнику:</mark> {{ permission.number }}
+                                                <mark>Дата відправлення внеску представнику:</mark> {{ permission.prediction_date }}
                                             </p>
                                             <p>
-                                                <mark>Дата подачі внеску у Воєводство:</mark> {{ permission.authority }}
+                                                <mark>Дата подачі внеску у Воєводство:</mark> {{ permission.input_date }}
                                             </p>
                                             <p>
-                                                <mark>Прогнозована дата отримання дозволу:</mark> {{ permission.date_of_expiry }}
+                                                <mark>Прогнозована дата отримання дозволу:</mark> {{ permission.receiving_date }}
                                             </p>
                                             <p>
-                                                <mark>Воєводство:</mark> {{ permission.number }}
+                                                <mark>Воєводство:</mark> {{ permission.voivodship }}
                                             </p>
                                             <p>
                                                 <mark>Завод:</mark> {{ permission.factory }}
@@ -1725,13 +1725,13 @@
                                                 <mark>Підприємство – роботодавець:</mark> {{ permission.employer }}
                                             </p>
                                             <p>
-                                                <mark>Від:</mark> {{ permission.number }}
+                                                <mark>Від:</mark> {{ permission.start_date }}
                                             </p>
                                             <p>
                                                 <mark>До:</mark> {{ permission.expire }}
                                             </p>
                                             <p>
-                                                <mark>Примітки:</mark> {{ permission.date_of_expiry }}
+                                                <mark>Примітки:</mark> {{ permission.note }}
                                             </p>
                                             </div>
                                             <div class="lightboxgallery-gallery clearfix bg-white shadow">
@@ -1777,23 +1777,23 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=permission.number class="form-control" %}
+                                                          {% render_field field value=permission.prediction_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=permission.authority class="form-control" %}
+                                                          {% render_field field value=permission.input_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=permission.date_of_expiry class="form-control" %}
+                                                          {% render_field field value=permission.receiving_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=permission.number class="form-control" %}
+                                                          {% render_field field value=permission.voivodship class="form-control" %}
                                                         {% elif forloop.counter == 5 %}
                                                           {% render_field field value=permission.factory class="form-control" %}
                                                         {% elif forloop.counter == 6 %}
                                                           {% render_field field value=permission.employer class="form-control" %}
                                                         {% elif forloop.counter == 7 %}
-                                                          {% render_field field value=permission.number class="form-control" %}
+                                                          {% render_field field value=permission.start_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 8 %}
-                                                          {% render_field field value=permission.expire class="form-control" %}
+                                                          {% render_field field value=permission.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=permission.date_of_expiry class="form-control" %}
+                                                          {% render_field field value=permission.note class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -1945,13 +1945,13 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=visa.first_date class="form-control" %}
+                                                          {% render_field field value=visa.first_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=visa.prediction_date class="form-control" %}
+                                                          {% render_field field value=visa.prediction_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=visa.start_on class="form-control" %}
+                                                          {% render_field field value=visa.start_on class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=visa.expire class="form-control" %}
+                                                          {% render_field field value=visa.expire class="form-control autoclose-datepicker" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2051,7 +2051,7 @@
                                                 <mark>Вид страхування:</mark> {{ insurance.type }}
                                             </p>
                                             <p>
-                                                <mark>Від:</mark> {{ insurance.authority }}
+                                                <mark>Від:</mark> {{ insurance.start_on }}
                                             </p>
                                             <p>
                                                 <mark>До:</mark> {{ insurance.expire }}
@@ -2100,9 +2100,9 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=insurance.type class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=insurance.authority class="form-control" %}
+                                                          {% render_field field value=insurance.start_on class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=insurance.expire class="form-control" %}
+                                                          {% render_field field value=insurance.expire class="form-control autoclose-datepicker" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2370,7 +2370,7 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=user.incoming_controls.expire class="form-control" %}
+                                                          {% render_field field value=user.incoming_controls.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field value=user.incoming_controls.factory class="form-control" %}
                                                         {% endif %}
@@ -2522,11 +2522,11 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=user.adoptions.employer class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=user.adoptions.dismissal_date class="form-control" %}
+                                                          {% render_field field value=user.adoptions.dismissal_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=user.adoptions.order_number class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=user.adoptions.order_date class="form-control" %}
+                                                          {% render_field field value=user.adoptions.order_date class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field value=user.adoptions.position class="form-control" %}
                                                         {% endif %}
@@ -2666,11 +2666,11 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=transfer.dismissal_date class="form-control" %}
+                                                          {% render_field field value=transfer.dismissal_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
                                                           {% render_field field value=transfer.order_number class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=transfer.order_date class="form-control" %}
+                                                          {% render_field field value=transfer.order_date class="form-control autoclose-datepicker" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2830,19 +2830,19 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=assignment.order_number class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=assignment.order_date class="form-control" %}
+                                                          {% render_field field value=assignment.order_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=assignment.start_on class="form-control" %}
+                                                          {% render_field field value=assignment.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=assignment.expire class="form-control" %}
+                                                          {% render_field field value=assignment.expire class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 5 %}
                                                           {% render_field field value=assignment.factory class="form-control" %}
                                                         {% elif forloop.counter == 6 %}
                                                           {% render_field field value=assignment.city class="form-control" %}
                                                         {% elif forloop.counter == 7 %}
-                                                          {% render_field field value=assignment.polish_border class="form-control" %}
+                                                          {% render_field field value=assignment.polish_border class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 8 %}
-                                                          {% render_field field value=assignment.ukrainian_border class="form-control" %}
+                                                          {% render_field field value=assignment.ukrainian_border class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 9 %}
                                                           {% render_field field value=assignment.dismissal_reason class="form-control" %}
                                                         {% else %}
@@ -2999,13 +2999,13 @@
                                                         {% elif forloop.counter == 2 %}
                                                           {% render_field field value=vocation.number class="form-control" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=vocation.start_on class="form-control" %}
+                                                          {% render_field field value=vocation.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=vocation.expire class="form-control" %}
+                                                          {% render_field field value=vocation.expire class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 5 %}
                                                           {% render_field field value=vocation.order_number class="form-control" %}
                                                         {% elif forloop.counter == 6 %}
-                                                          {% render_field field value=vocation.order_date class="form-control" %}
+                                                          {% render_field field value=vocation.order_date class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field value=vocation.comment class="form-control" %}
                                                         {% endif %}
@@ -3169,11 +3169,11 @@
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=dwelling.neighbor_name class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=dwelling.start_on class="form-control" %}
+                                                          {% render_field field value=dwelling.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 5 %}
-                                                          {% render_field field value=dwelling.expire class="form-control" %}
+                                                          {% render_field field value=dwelling.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=dwelling.end_date class="form-control" %}
+                                                          {% render_field field value=dwelling.end_date class="form-control autoclose-datepicker" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -3319,7 +3319,7 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=user.prognoses class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=user.prognoses.expire class="form-control" %}
+                                                          {% render_field field value=user.prognoses.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field value=user.prognoses.reason class="form-control" %}
                                                         {% endif %}
@@ -3463,9 +3463,9 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=user.disappearances.violation_date class="form-control" %}
+                                                          {% render_field field value=user.disappearances.violation_date class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=user.disappearances.appeal_date class="form-control" %}
+                                                          {% render_field field value=user.disappearances.appeal_date class="form-control autoclose-datepicker" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -3615,9 +3615,9 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=user.dismissals.dismissal_date class="form-control" %}
+                                                          {% render_field field value=user.dismissals.dismissal_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=user.dismissals.order_date class="form-control" %}
+                                                          {% render_field field value=user.dismissals.order_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=user.dismissals.order_number class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
@@ -3671,43 +3671,41 @@
                                                 <p>Інформація про звільнення відсутня</p>
                                             </div>
                                             <form method="post" action="{% url 'work:create_dismissal' user.pk %}">
-                                        {% csrf_token %}
-                                        {% for field in dismissal_create_form %}
-                                          <div class="form-group">
-                                              <p></p>
-                                          {% if forloop.counter == 1 %}
-                                      <div class="position-relative has-icon-left">
-                                                            {{ field.label_tag }}
-                                                            <input type="text" id="autoclose-datepicker" class="form-control">
-                                                        </div>
-                                  {% else %}
-                                            {{ field.label_tag }}
+                                            {% csrf_token %}
+                                            {% for field in dismissal_create_form %}
+                                              <div class="form-group">
+                                                  <p></p>
 
-                                            {% if form.is_bound %}
-                                              {% if field.errors %}
-                                                {% render_field field class="form-control is-invalid" %}
-                                                {% for error in field.errors %}
-                                                  <div class="invalid-feedback">
-                                                    {{ error }}
-                                                  </div>
-                                                {% endfor %}
-                                              {% else %}
-                                                {% render_field field class="form-control is-valid" %}
+                                                {{ field.label_tag }}
+
+                                                {% if form.is_bound %}
+                                                  {% if field.errors %}
+                                                    {% render_field field class="form-control is-invalid" %}
+                                                    {% for error in field.errors %}
+                                                      <div class="invalid-feedback">
+                                                        {{ error }}
+                                                      </div>
+                                                    {% endfor %}
+                                                  {% else %}
+                                                    {% render_field field class="form-control is-valid" %}
+                                                  {% endif %}
+                                                {% else %}
+                                                    {% if forloop.counter <= 2 %}
+                                                        {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                {% endif %}
+
+                                                {% if field.help_text %}
+                                                  <small class="form-text text-muted">
+                                                    {{ field.help_text }}
+                                                  </small>
+                                                {% endif %}
                                               {% endif %}
-                                            {% else %}
-                                              {% render_field field class="form-control" %}
-                                            {% endif %}
-
-                                            {% if field.help_text %}
-                                              <small class="form-text text-muted">
-                                                {{ field.help_text }}
-                                              </small>
-                                            {% endif %}
-                                          {% endif %}
-                                          </div>
-                                        {% endfor %}
-                                        <input type="submit" class="btn-outline-success btn" value="Додати">
-                                        </form>
+                                              </div>
+                                            {% endfor %}
+                                            <input type="submit" class="btn-outline-success btn" value="Додати">
+                                            </form>
                                         {% endif %}
                                   </div>
                                   </div>

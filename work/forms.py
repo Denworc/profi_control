@@ -1,5 +1,6 @@
 from django import forms
 
+from profi import settings
 from user_profile.models import User
 from .models import (
     Dismissal,
@@ -30,6 +31,10 @@ class DismissalCreateForm(forms.ModelForm):
         #     'dismissal_date': forms.DateInput(format='%m/%d/%Y'),
         #     'order_date': forms.DateInput(format='%m/%d/%Y'),
         # }
+
+        # def __init__(self, *args, **kwargs):
+        #     self.fields['dismissal_date'].input_formats = settings.DATE_INPUT_FORMATS
+        #     self.fields['order_date'].input_formats = settings.DATE_INPUT_FORMATS
 
 
 class AssignmentCreateForm(forms.ModelForm):

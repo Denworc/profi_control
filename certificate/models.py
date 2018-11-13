@@ -90,7 +90,7 @@ class Test(models.Model):
     Тестування
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='tests')
-    type = models.ForeignKey('certificate.TestType', on_delete=models.CASCADE, related_name='tests')
+    type = models.ForeignKey('certificate.TestType', on_delete=models.CASCADE, related_name='tests', verbose_name=_('Тип тестування'))
     result = models.CharField(max_length=40, verbose_name=_('Результат тестування'))
     start_on = models.DateField(verbose_name=_('Дата тестування'), null=True, blank=True)
 
