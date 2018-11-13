@@ -26,6 +26,10 @@ class DismissalCreateForm(forms.ModelForm):
             'dismissal_basis',
             'dismissal_reason',
         )
+        # widgets = {
+        #     'dismissal_date': forms.DateInput(format='%m/%d/%Y'),
+        #     'order_date': forms.DateInput(format='%m/%d/%Y'),
+        # }
 
 
 class AssignmentCreateForm(forms.ModelForm):

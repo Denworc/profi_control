@@ -122,6 +122,8 @@ LANGUAGE_CODE = 'uk-Uk'
 
 TIME_ZONE = 'UTC'
 
+DATE_INPUT_FORMATS = ('%m/%d/%Y', '%d-%m-%Y', '%Y-%m-%d')
+
 USE_I18N = True
 
 USE_L10N = True

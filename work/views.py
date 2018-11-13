@@ -1,3 +1,5 @@
+import re
+
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
@@ -24,6 +26,7 @@ class DismissalCreateView(CreateView):
     form_class = DismissalCreateForm
 
     def form_valid(self, form):
+        # form.fields['dismissal_date'].value = re.sub('[^0-9]', '.', form.fields['dismissal_date'].value)
         obj = form.save(commit=False)
         obj.user = User.objects.get(pk=self.kwargs['pk'])
         obj.save()

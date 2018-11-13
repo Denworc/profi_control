@@ -51,12 +51,12 @@ class Assignment(models.Model):
     expire = models.DateField(verbose_name=_('Закінчення відрядження'), null=True, blank=True)
     polish_border = models.DateField(verbose_name=_('Перетин кордону в Польщу'), null=True, blank=True)
     ukrainian_border = models.DateField(verbose_name=_('Перетин кордону в Україну'), null=True, blank=True)
-    dismissal_reason = models.CharField(max_length=200, verbose_name='Дострокове закінчення')
+    dismissal_reason = models.CharField(max_length=200, verbose_name='Причина дострокове закінчення', null=True, blank=True)
     reason_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    reason_number = models.CharField(max_length=40, verbose_name='№ наказу')
-    dismissal_basis = models.CharField(max_length=200, verbose_name='Переривання відрядження')
+    reason_number = models.CharField(max_length=40, verbose_name='№ наказу', null=True, blank=True)
+    dismissal_basis = models.CharField(max_length=200, verbose_name='Причина переривання відрядження', null=True, blank=True)
     basis_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    basis_number = models.CharField(max_length=40, verbose_name='№ наказу')
+    basis_number = models.CharField(max_length=40, verbose_name='№ наказу', null=True, blank=True)
 
     class Meta:
         verbose_name = _('Відрядження')
