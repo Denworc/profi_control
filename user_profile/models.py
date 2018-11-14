@@ -85,7 +85,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     Пользователи системы
     """
-    email = models.EmailField(verbose_name=_('email'), max_length=255, unique=True, db_index=True)
+    email = models.EmailField(verbose_name=_('email'), max_length=255, unique=True, null=True, blank=True)
     avatar = models.ImageField(verbose_name=_('Аватар'), blank=True, null=True, upload_to="user/avatar")
     first_name = models.CharField(verbose_name=_('Прізвище'), max_length=40)
     last_name = models.CharField(verbose_name=_("Ім'я"), max_length=40)
@@ -110,7 +110,10 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name_plural = _('Користувачі')
 
     def __str__(self):
-        return self.email
+        if self.email:
+            return self.email
+        else:
+            return '{} {}.{}.'.format(self.first_name, self.last_name[0].upper(), self.patronymic[0].upper())
 
     @property
     def get_full_name(self):
