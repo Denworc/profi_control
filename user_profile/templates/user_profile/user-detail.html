@@ -382,8 +382,8 @@
                                         </div>
                                         {% endif %}
                                         <!--Dark Modal -->
-                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_25_{{ forloop.counter }}">Редагувати</button>
-                                            <div class="modal fade" id="darkmodal_25_{{ forloop.counter }}">
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_25_">Редагувати</button>
+                                            <div class="modal fade" id="darkmodal_25_">
                                               <div class="modal-dialog">
                                                 <div class="modal-content border-warning">
                                                   <div class="modal-header bg-warning">
@@ -1018,36 +1018,56 @@
                                             <mark>Психологічний портрет:</mark> {{ user.note }}
                                         </p>
                                         </div>
-                                        <form method="post" action="{% url 'user:note-create' user.pk %}">
-                                                {% csrf_token %}
-                                        {% for field in note_update_form %}
-                                          <div class="form-group">
-                                          <p></p>
-                                            {{ field.label_tag }}
-                                            {% if form.is_bound %}
-                                              {% if field.errors %}
-                                                {% render_field field class="form-control is-invalid" %}
-                                                {% for error in field.errors %}
-                                                  <div class="invalid-feedback">
-                                                    {{ error }}
+                                        <!--Dark Modal -->
+                                           <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_27_">Редагувати</button>
+                                            <div class="modal fade" id="darkmodal_27_">
+                                              <div class="modal-dialog">
+                                                <div class="modal-content border-warning">
+                                                  <div class="modal-header bg-warning">
+                                                    <h5 class="modal-title text-white"><i class="fa fa-star"></i>Психологічний портрет</h5>
+                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                      <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                  </div>
+                                                 <form method="post" action="{% url 'user:note-create' user.pk %}" enctype="multipart/form-data">
+                                                  <div class="modal-body">
+                                                  {% csrf_token %}
+                                                  {% for field in note_update_form %}
+                                                  <div class="form-group">
+                                                  <p></p>
+                                                    {{ field.label_tag }}
+                                                    {% if form.is_bound %}
+                                                      {% if field.errors %}
+                                                        {% render_field field class="form-control is-invalid" %}
+                                                        {% for error in field.errors %}
+                                                          <div class="invalid-feedback">
+                                                            {{ error }}
+                                                          </div>
+                                                        {% endfor %}
+                                                      {% else %}
+                                                        {% render_field field class="form-control is-valid" %}
+                                                      {% endif %}
+                                                    {% else %}
+                                                      {% render_field field class="form-control" %}
+                                                    {% endif %}
+
+                                                    {% if field.help_text %}
+                                                      <small class="form-text text-muted">
+                                                        {{ field.help_text }}
+                                                      </small>
+                                                    {% endif %}
                                                   </div>
                                                 {% endfor %}
-                                              {% else %}
-                                                {% render_field field class="form-control is-valid" %}
-                                              {% endif %}
-                                            {% else %}
-                                              {% render_field field class="form-control" %}
-                                            {% endif %}
+                                                  </div>
+                                                  <div class="modal-footer">
+                                                    <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
+                                                    <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                  </div>
+                                                  </form>
+                                                </div>
+                                              </div>
+                                            </div><!--End Modal -->
 
-                                            {% if field.help_text %}
-                                              <small class="form-text text-muted">
-                                                {{ field.help_text }}
-                                              </small>
-                                            {% endif %}
-                                          </div>
-                                        {% endfor %}
-                                                <input type="submit" class="btn-outline-warning btn" value="Редагувати">
-                                        </form>
                                     {% else %}
                                         <div class="list-group-item">
                                             <p>Приміток не було додано</p>
@@ -1545,17 +1565,24 @@
                                           <p>
                                             <h6>Сертифікат №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
-                                            <p>
-                                                <mark>Сертифікуюча організація:</mark> {{ certificate.organization }}
-                                            </p>
+{#                                            <p>#}
+{#                                                <mark>Сертифікуюча організація:</mark> {{ certificate.organization }}#}
+{#                                            </p>#}
                                             <p>
                                                 <mark>Метод зварювання</mark> {{ certificate.welding_type }}
                                             </p>
+{#                                            <p>#}
+{#                                                <mark>Просторове положення:</mark> {{ certificate.welding_position }}#}
+{#                                            </p>#}
+{#                                            <p>#}
+{#                                                <mark>Товщина:</mark> {{ certificate.thickness }}#}
+{#                                            </p>#}
+
                                             <p>
-                                                <mark>Просторове положення:</mark> {{ certificate.welding_position }}
+                                                <mark>Дата сертифікації:</mark> {{ certificate.certification_date }}
                                             </p>
                                             <p>
-                                                <mark>Товщина:</mark> {{ certificate.thickness }}
+                                                <mark>Дата оплати:</mark> {{ certificate.paying_date }}
                                             </p>
                                             <p>
                                                 <mark>Дата видачі:</mark> {{ certificate.start_on }}
@@ -1607,17 +1634,17 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=certificate.organization class="form-control" %}
+                                                          {% render_field field value=certificate.certification_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=certificate.welding_type class="form-control" %}
+                                                          {% render_field field value=certificate.paying_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=certificate.welding_position class="form-control" %}
+                                                          {% render_field field value=certificate.welding_type class="form-control" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=certificate.thickness class="form-control" %}
-                                                        {% elif forloop.counter == 5 %}
                                                           {% render_field field value=certificate.start_on class="form-control autoclose-datepicker" %}
-                                                        {% else %}
+                                                        {% elif forloop.counter == 5 %}
                                                           {% render_field field value=certificate.expire class="form-control autoclose-datepicker" %}
+                                                        {% else %}
+                                                          {% render_field field class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2251,34 +2278,22 @@
                                                   <div class="modal-body">
                                                   {% csrf_token %}
                                                   {% for field in polish_create_form %}
-                                                  <div class="form-group">
-                                                      <p></p>
-                                                    {{ field.label_tag }}
-                                                    {% if form.is_bound %}
-                                                      {% if field.errors %}
-                                                        {% render_field field class="form-control is-invalid" %}
-                                                        {% for error in field.errors %}
-                                                          <div class="invalid-feedback">
-                                                            {{ error }}
-                                                          </div>
-                                                        {% endfor %}
-                                                      {% else %}
-                                                        {% render_field field class="form-control is-valid" %}
-                                                      {% endif %}
-                                                    {% else %}
-                                                      {% if forloop.counter == 1 %}
-                                                          {% render_field field value=user.polish.solo class="form-control" %}
-                                                        {% else %}
-                                                          {% render_field field value=user.polish.course class="form-control" %}
-                                                        {% endif %}
-                                                    {% endif %}
-                                                    {% if field.help_text %}
-                                                      <small class="form-text text-muted">
-                                                        {{ field.help_text }}
-                                                      </small>
-                                                    {% endif %}
+                                          <div class="form-group">
+                                              <p></p>
+                                                {% if forloop.counter == 1 %}
+                                                  <div class="icheck-material-success">
+                                                    {{ polish_create_form.solo }}
+                                                    <label for="id_solo">{{ field.label_tag }}</label>
                                                   </div>
-                                                {% endfor %}
+                                                    </p>
+                                                {% else %}
+                                                  <div class="icheck-material-success">
+                                                    {{ polish_create_form.course }}
+                                                    <label for="id_course">{{ field.label_tag }}</label>
+                                                  </div>
+                                                {% endif %}
+                                          </div>
+                                        {% endfor %}
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
@@ -2322,21 +2337,15 @@
                                           <div class="form-group">
                                               <p></p>
                                                 {% if forloop.counter == 1 %}
-
                                                   <div class="icheck-material-success">
-
                                                     {{ polish_create_form.solo }}
                                                     <label for="id_solo">{{ field.label_tag }}</label>
-
                                                   </div>
                                                     </p>
                                                 {% else %}
-{#                                                    <p>#}
                                                   <div class="icheck-material-success">
-
                                                     {{ polish_create_form.course }}
                                                     <label for="id_course">{{ field.label_tag }}</label>
-
                                                   </div>
                                                 {% endif %}
                                           </div>
@@ -2564,9 +2573,9 @@
                                                         {% elif forloop.counter == 2 %}
                                                           {% render_field field value=user.adoptions.dismissal_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=user.adoptions.order_number class="form-control" %}
-                                                        {% elif forloop.counter == 4 %}
                                                           {% render_field field value=user.adoptions.order_date class="form-control autoclose-datepicker" %}
+                                                        {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=user.adoptions.order_number class="form-control" %}
                                                         {% else %}
                                                           {% render_field field value=user.adoptions.position class="form-control" %}
                                                         {% endif %}
@@ -2678,6 +2687,9 @@
                                             <p>
                                                 <mark>Дата наказу:</mark> {{ transfer.order_date }}
                                             </p>
+                                            <p>
+                                                <mark>Позиція:</mark> {{ transfer.position }}
+                                            </p>
                                             </div>
                                             <!--Dark Modal -->
                                            <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_17_{{ forloop.counter }}">Редагувати</button>
@@ -2712,9 +2724,11 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=transfer.dismissal_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=transfer.order_date class="form-control autoclose-datepicker" %}
+                                                        {% elif forloop.counter == 3 %}
                                                           {% render_field field value=transfer.order_number class="form-control" %}
                                                         {% else %}
-                                                          {% render_field field value=transfer.order_date class="form-control autoclose-datepicker" %}
+                                                          {% render_field field value=transfer.position class="form-control" %}
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2893,9 +2907,18 @@
                                                           {% render_field field value=assignment.ukrainian_border class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 9 %}
                                                           {% render_field field value=assignment.dismissal_reason class="form-control" %}
-                                                        {% else %}
+                                                        {% elif forloop.counter == 10 %}
+                                                          {% render_field field value=assignment.reason_number class="form-control" %}
+                                                        {% elif forloop.counter == 11 %}
+                                                          {% render_field field value=assignment.reason_date class="form-control autoclose-datepicker" %}
+                                                        {% elif forloop.counter == 12 %}
                                                           {% render_field field value=assignment.dismissal_basis class="form-control" %}
+                                                        {% elif forloop.counter == 13 %}
+                                                          {% render_field field value=assignment.basis_number class="form-control" %}
+                                                        {% elif forloop.counter == 14 %}
+                                                          {% render_field field value=assignment.basis_date class="form-control autoclose-datepicker" %}
                                                         {% endif %}
+
                                                     {% endif %}
                                                     {% if field.help_text %}
                                                       <small class="form-text text-muted">
@@ -3002,7 +3025,7 @@
                                                 <mark>Тип відпустки:</mark> {{ vocation.type }}
                                             </p>
                                             <p>
-                                                <mark>Період роботи для щорічної основної відпустки:</mark> {{ vocation.number }}
+                                                <mark>Період роботи для щорічної основної відпустки:</mark> {{ vocation.period }}
                                             </p>
                                             <p>
                                                 <mark>Дата початку щорічної відпустки:</mark> {{ vocation.start_on }}
@@ -3053,15 +3076,15 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=vocation.type class="form-control" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=vocation.number class="form-control" %}
+                                                          {% render_field field value=vocation.period class="form-control" %}
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=vocation.start_on class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 4 %}
                                                           {% render_field field value=vocation.expire class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 5 %}
-                                                          {% render_field field value=vocation.order_number class="form-control" %}
-                                                        {% elif forloop.counter == 6 %}
                                                           {% render_field field value=vocation.order_date class="form-control autoclose-datepicker" %}
+                                                        {% elif forloop.counter == 6 %}
+                                                          {% render_field field value=vocation.order_number class="form-control" %}
                                                         {% else %}
                                                           {% render_field field value=vocation.comment class="form-control" %}
                                                         {% endif %}
@@ -3365,36 +3388,44 @@
                                                   <div class="modal-body">
                                                   {% csrf_token %}
                                                   {% for field in prognosis_create_form %}
-                                                  <div class="form-group">
-                                                      <p></p>
-                                                    {{ field.label_tag }}
-                                                    {% if form.is_bound %}
-                                                      {% if field.errors %}
-                                                        {% render_field field class="form-control is-invalid" %}
-                                                        {% for error in field.errors %}
-                                                          <div class="invalid-feedback">
-                                                            {{ error }}
+                                                      <div class="form-group">
+                                                        {% if forloop.counter == 1 %}
+                                                          <div class="icheck-material-success">
+                                                            {{ prognosis_create_form.agree }}
+                                                            <label for="id_agree">Погоджено з заводом</label>
                                                           </div>
-                                                        {% endfor %}
-                                                      {% else %}
-                                                        {% render_field field class="form-control is-valid" %}
-                                                      {% endif %}
-                                                    {% else %}
-                                                      {% if forloop.counter == 1 %}
-                                                          {% render_field field value=user.prognoses class="form-control" %}
-                                                        {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=user.prognoses.expire class="form-control autoclose-datepicker" %}
+                                                            </p>
                                                         {% else %}
-                                                          {% render_field field value=user.prognoses.reason class="form-control" %}
+                                                        {{ field.label_tag }}
+
+                                                            {% if form.is_bound %}
+                                                              {% if field.errors %}
+                                                                {% render_field field class="form-control is-invalid" %}
+                                                                {% for error in field.errors %}
+                                                                  <div class="invalid-feedback">
+                                                                    {{ error }}
+                                                                  </div>
+                                                                {% endfor %}
+                                                              {% else %}
+                                                                {% render_field field class="form-control is-valid" %}
+                                                              {% endif %}
+                                                            {% else %}
+                                                                {% if forloop.counter == 2 %}
+                                                                  {% render_field field value=user.prognoses.expire class="form-control autoclose-datepicker" %}
+                                                                {% else %}
+                                                                  {% render_field field value=user.prognoses.reason class="form-control" %}
+                                                                {% endif %}
+                                                            {% endif %}
+
+                                                            {% if field.help_text %}
+                                                              <small class="form-text text-muted">
+                                                                {{ field.help_text }}
+                                                              </small>
+                                                            {% endif %}
                                                         {% endif %}
-                                                    {% endif %}
-                                                    {% if field.help_text %}
-                                                      <small class="form-text text-muted">
-                                                        {{ field.help_text }}
-                                                      </small>
-                                                    {% endif %}
-                                                  </div>
-                                                {% endfor %}
+                                                      </div>
+                                                    {% endfor %}
+
                                                   </div>
                                                   <div class="modal-footer">
                                                     <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
@@ -3437,12 +3468,9 @@
                                             {% for field in prognosis_create_form %}
                                               <div class="form-group">
                                                 {% if forloop.counter == 1 %}
-                                                    <p>
                                                   <div class="icheck-material-success">
-
                                                     {{ prognosis_create_form.agree }}
                                                     <label for="id_agree">Погоджено з заводом</label>
-
                                                   </div>
                                                     </p>
                                                 {% else %}

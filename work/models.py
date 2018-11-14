@@ -76,7 +76,8 @@ class AdoptionInState(models.Model):
     order_number = models.CharField(max_length=20, verbose_name='№ наказу')
     employer = models.CharField(max_length=40, verbose_name='Підприємство-роботодавець')
     # factory = models.CharField(max_length=40, verbose_name='Завод')
-    position = models.CharField(max_length=40, verbose_name='Посада')
+    position = models.ForeignKey('user_profile.Position', on_delete=models.CASCADE, verbose_name=_('Посада'), null=True,
+                                 blank=True)
 
     class Meta:
         verbose_name = _('Прийняття в штат')
@@ -94,6 +95,7 @@ class TransferInState(models.Model):
     dismissal_date = models.DateField(verbose_name=_('Дата переведення'))
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=20, verbose_name='№ наказу')
+    position = models.ForeignKey('user_profile.Position', on_delete=models.CASCADE, verbose_name=_('Посада'), null=True, blank=True)
 
     class Meta:
         verbose_name = _('Переведення в штат')

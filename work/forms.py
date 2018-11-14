@@ -80,6 +80,7 @@ class TransferCreateForm(forms.ModelForm):
             'dismissal_date',
             'order_date',
             'order_number',
+            'position',
         )
 
 
@@ -222,12 +223,12 @@ class AdoptionUpdateForm(forms.ModelForm):
             'position',
         )
 
-    def __init__(self, pk, *args, **kwargs):
-        super(AdoptionUpdateForm, self).__init__(*args, **kwargs)
-        user = User.objects.get(pk=pk)
-        adoption = user.adoptions.get(id=1)
-        self.fields['type'].initial = adoption.type
-        self.fields['contact'].initial = adoption.contact
+    # def __init__(self, pk, *args, **kwargs):
+    #     super(AdoptionUpdateForm, self).__init__(*args, **kwargs)
+    #     user = User.objects.get(pk=pk)
+    #     adoption = user.adoptions.get(id=1)
+    #     self.fields['type'].initial = adoption.type
+    #     self.fields['contact'].initial = adoption.contact
 
 
 class TransferUpdateForm(forms.ModelForm):
@@ -238,14 +239,15 @@ class TransferUpdateForm(forms.ModelForm):
             'dismissal_date',
             'order_date',
             'order_number',
+            'position',
         )
 
-    def __init__(self, pk, *args, **kwargs):
-        super(TransferUpdateForm, self).__init__(*args, **kwargs)
-        user = User.objects.get(pk=pk)
-        transfer = user.transfers.get(id=1)
-        self.fields['type'].initial = transfer.type
-        self.fields['contact'].initial = transfer.contact
+    # def __init__(self, pk, *args, **kwargs):
+    #     super(TransferUpdateForm, self).__init__(*args, **kwargs)
+    #     user = User.objects.get(pk=pk)
+    #     transfer = user.transfers.get(id=1)
+    #     self.fields['type'].initial = transfer.type
+    #     self.fields['contact'].initial = transfer.contact
 
 
 class PermissionUpdateForm(forms.ModelForm):
