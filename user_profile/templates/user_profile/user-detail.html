@@ -348,7 +348,12 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% render_field field class="form-control" %}
+                                                {% if forloop.counter == 1 %}
+                                                  {% render_field field class="form-control col-md-11" %}
+                                                {% else %}
+                                                  {% render_field field class="form-control" %}
+                                                {% endif %}
+
                                             {% endif %}
                                             {% if field.help_text %}
                                               <small class="form-text text-muted">

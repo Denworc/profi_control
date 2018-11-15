@@ -3,6 +3,20 @@ from django.utils.translation import ugettext as _
 # Create your models here.
 
 
+class BasisList(models.Model):
+    """
+    Список підстав
+    """
+    title = models.CharField(max_length=60, verbose_name=_('Підстава звільнення'))
+
+    class Meta:
+        verbose_name = _('Підстава звільнення')
+        verbose_name_plural = _('Підстави звільнення')
+
+    def __str__(self):
+        return self.title
+
+
 class Dismissal(models.Model):
     """
     Звільнення
@@ -12,7 +26,7 @@ class Dismissal(models.Model):
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=40, verbose_name='№ наказу')
     dismissal_reason = models.CharField(max_length=40, verbose_name='Причина звільнення')
-    dismissal_basis = models.CharField(max_length=40, verbose_name='Підстава звільнення')
+    dismissal_basis = models.ForeignKey(BasisList, on_delete=models.CASCADE, related_name='dismissals', verbose_name='Підстава звільнення')
 
     class Meta:
         verbose_name = _('Звільнення')
@@ -105,6 +119,48 @@ class TransferInState(models.Model):
         return self.order_number
 
 
+class Voivodship(models.Model):
+    """
+    Список воєводств
+    """
+    title = models.CharField(max_length=60, verbose_name=_('Воєводство'))
+
+    class Meta:
+        verbose_name = _('Воєводство')
+        verbose_name_plural = _('Воєводства')
+
+    def __str__(self):
+        return self.title
+
+
+class Employer(models.Model):
+    """
+    Список роботодавців
+    """
+    title = models.CharField(max_length=60, verbose_name=_('Підприємство-роботодавець'))
+
+    class Meta:
+        verbose_name = _('Підприємство-роботодавець')
+        verbose_name_plural = _('Підприємства-роботодавці')
+
+    def __str__(self):
+        return self.title
+
+
+class Factory(models.Model):
+    """
+    Список заводів
+    """
+    title = models.CharField(max_length=60, verbose_name=_('Завод'))
+
+    class Meta:
+        verbose_name = _('Завод')
+        verbose_name_plural = _('Заводи')
+
+    def __str__(self):
+        return self.title
+
+
 class Permission(models.Model):
     """
     Дозвіл на роботу
@@ -113,9 +169,9 @@ class Permission(models.Model):
     prediction_date = models.DateField(verbose_name=_('Дата відправлення внеску'), null=True, blank=True)
     input_date = models.DateField(verbose_name=_('Дата подачі внеск'), null=True, blank=True)
     receiving_date = models.DateField(verbose_name=_('Прогнозована дата отримання дозволу'), null=True, blank=True)
-    voivodship = models.CharField(max_length=40, verbose_name='Воєводство')
-    employer = models.CharField(max_length=40, verbose_name='Підприємство-роботодавець')
-    factory = models.CharField(max_length=40, verbose_name='Завод')
+    voivodship = models.ForeignKey(Voivodship, on_delete=models.CASCADE, related_name='permissions', verbose_name='Воєводство')
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='permissions', verbose_name='Підприємство-роботодавець')
+    factory = models.ForeignKey(Factory, on_delete=models.CASCADE, related_name='permissions', verbose_name='Завод')
     start_date = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення'), null=True, blank=True)
     note = models.CharField(max_length=40, verbose_name='Примітки')

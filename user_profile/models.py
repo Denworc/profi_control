@@ -65,13 +65,41 @@ class Position(models.Model):
         return self.title
 
 
-class Language(models.Model):
+class LanguageTitle(models.Model):
     """
     Список мов
     """
+    title = models.CharField(max_length=60, verbose_name=_('Мова'))
+
+    class Meta:
+        verbose_name = _('Список мов')
+        verbose_name_plural = _('Списки мов')
+
+    def __str__(self):
+        return self.title
+
+
+class LanguageLevel(models.Model):
+    """
+    Рівень володіння
+    """
+    title = models.CharField(max_length=60, verbose_name=_('Рівень'))
+
+    class Meta:
+        verbose_name = _('Рівень володіння')
+        verbose_name_plural = _('Рівні володіння')
+
+    def __str__(self):
+        return self.title
+
+
+class Language(models.Model):
+    """
+    Мови якими володіє користувач
+    """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='languages')
-    title = models.CharField(max_length=40, verbose_name=_('Мова'))
-    level = models.CharField(max_length=40, verbose_name=_('Рівень'))
+    title = models.ForeignKey(LanguageTitle, on_delete=models.CASCADE, verbose_name=_('Мова'), related_name='languages')
+    level = models.ForeignKey(LanguageLevel, on_delete=models.CASCADE, verbose_name=_('Рівень'), related_name='languages')
 
     class Meta:
         verbose_name = _('Мова')
