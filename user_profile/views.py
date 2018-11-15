@@ -30,7 +30,7 @@ from work.forms import (
     DisappearanceCreateForm,
 )
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
-    UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm
+    UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm, ContactTypeCreateForm
 from django.utils.translation import ugettext as _
 from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
@@ -115,6 +115,7 @@ def user_detail_view(request, pk):
     polish_create_form = PolishCreateForm
     visa_create_form = VisaCreateForm
     id_create_form = PersonalIDCreateForm
+    contact_type_create_form = ContactTypeCreateForm
     contact_update_form = ContactUpdateForm
     language_update_form = LanguageUpdateForm
 
@@ -148,6 +149,7 @@ def user_detail_view(request, pk):
         'contact_update_form': contact_update_form,
         'language_update_form': language_update_form,
         'note_update_form': note_update_form,
+        'contact_type_create_form': contact_type_create_form,
 
     })
 
@@ -219,6 +221,19 @@ class ContactCreateView(CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class ContactTypeCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = ContactTypeCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
         obj.save()
         return redirect(self.request.META.get('HTTP_REFERER'))
 

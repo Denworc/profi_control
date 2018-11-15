@@ -9,7 +9,7 @@ class ContactType(models.Model):
     """
     Тип контактов пользователя
     """
-    title = models.CharField(max_length=40)
+    title = models.CharField(max_length=40, verbose_name=_('Тип контакта'))
 
     class Meta:
         verbose_name = _('Тип контакта')

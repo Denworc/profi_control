@@ -349,7 +349,14 @@
                                               {% endif %}
                                             {% else %}
                                                 {% if forloop.counter == 1 %}
-                                                  {% render_field field class="form-control col-md-11" %}
+                                                    <div class="input-group">
+                                                      {% render_field field class="form-control custom-select" %}
+                                                      <div class="input-group-append">
+                                                        <!--Dark Modal -->
+                                                       <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_1"> + </button>
+
+                                                      </div>
+                                                    </div>
                                                 {% else %}
                                                   {% render_field field class="form-control" %}
                                                 {% endif %}
@@ -364,6 +371,53 @@
                                         {% endfor %}
                                           <input type="submit" class="btn-outline-success btn" value="Додати">
                                         </form>
+                                        <div class="modal fade" id="list_1">
+                                                          <div class="modal-dialog">
+                                                            <div class="modal-content border-success">
+                                                              <div class="modal-header bg-success">
+                                                                <h5 class="modal-title text-white"><i class="fa fa-star"></i>Типи контактів</h5>
+                                                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                                  <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                              </div>
+                                                             <form method="post" action="{% url 'user:contact-type-create' user.pk %}" enctype="multipart/form-data">
+                                                              <div class="modal-body">
+                                                              {% csrf_token %}
+
+                                                                  {% for field in contact_type_create_form %}
+                                                                      <div class="form-group">
+                                                                          <p></p>
+                                                                        {{ field.label_tag }}
+                                                                        {% if form.is_bound %}
+                                                                          {% if field.errors %}
+                                                                            {% render_field field class="form-control is-invalid" %}
+                                                                            {% for error in field.errors %}
+                                                                              <div class="invalid-feedback">
+                                                                                {{ error }}
+                                                                              </div>
+                                                                            {% endfor %}
+                                                                          {% else %}
+                                                                            {% render_field field class="form-control is-valid" %}
+                                                                          {% endif %}
+                                                                        {% else %}
+                                                                              {% render_field field class="form-control" %}
+                                                                        {% endif %}
+                                                                        {% if field.help_text %}
+                                                                          <small class="form-text text-muted">
+                                                                            {{ field.help_text }}
+                                                                          </small>
+                                                                        {% endif %}
+                                                                      </div>
+                                                                    {% endfor %}
+                                                              </div>
+                                                              <div class="modal-footer">
+                                                                <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                                <input type="submit" class="btn btn-success" value="Додати">
+                                                              </div>
+                                                              </form>
+                                                            </div>
+                                                          </div>
+                                                        </div><!--End Modal -->
                                     </div>
                                     <div class="col-md-6">
                                         <p>
