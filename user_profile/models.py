@@ -41,7 +41,7 @@ class Status(models.Model):
     """
     Статуси пользователя
     """
-    status = models.CharField(max_length=20, verbose_name=_('Статус'))
+    status = models.CharField(max_length=30, verbose_name=_('Статус'))
 
     class Meta:
         verbose_name = _('Статус')

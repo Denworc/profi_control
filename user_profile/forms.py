@@ -2,7 +2,7 @@ from django import forms
 from django.forms import Form
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
-from .models import User, Language, Contact, ContactType
+from .models import User, Language, Contact, ContactType, LanguageLevel, LanguageTitle
 from django.contrib.auth.hashers import check_password
 
 
@@ -97,6 +97,24 @@ class ContactTypeCreateForm(forms.ModelForm):
 
     class Meta:
         model = ContactType
+        fields = (
+            'title',
+        )
+
+
+class LanguageTitleCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = LanguageTitle
+        fields = (
+            'title',
+        )
+
+
+class LanguageLevelCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = LanguageLevel
         fields = (
             'title',
         )

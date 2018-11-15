@@ -30,7 +30,8 @@ from work.forms import (
     DisappearanceCreateForm,
 )
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
-    UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm, ContactTypeCreateForm
+    UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm, ContactTypeCreateForm, LanguageTitleCreateForm, \
+    LanguageLevelCreateForm
 from django.utils.translation import ugettext as _
 from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
@@ -116,6 +117,8 @@ def user_detail_view(request, pk):
     visa_create_form = VisaCreateForm
     id_create_form = PersonalIDCreateForm
     contact_type_create_form = ContactTypeCreateForm
+    language_title_create_form = LanguageTitleCreateForm
+    language_level_create_form = LanguageLevelCreateForm
     contact_update_form = ContactUpdateForm
     language_update_form = LanguageUpdateForm
 
@@ -150,6 +153,8 @@ def user_detail_view(request, pk):
         'language_update_form': language_update_form,
         'note_update_form': note_update_form,
         'contact_type_create_form': contact_type_create_form,
+        'language_title_create_form': language_title_create_form,
+        'language_level_create_form': language_level_create_form,
 
     })
 
@@ -231,6 +236,32 @@ class ContactCreateView(CreateView):
 class ContactTypeCreateView(CreateView):
     # model = UkrainianPassport
     form_class = ContactTypeCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class LanguageTitleCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = LanguageTitleCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class LanguageLevelCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = LanguageLevelCreateForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)
