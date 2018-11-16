@@ -59,7 +59,7 @@ class Assignment(models.Model):
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='assignments')
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=40, verbose_name='№ наказу')
-    factory = models.CharField(max_length=40, verbose_name='Завод')
+    factory = models.ForeignKey('work.Factory', on_delete=models.CASCADE, related_name='assignment', verbose_name='Завод')
     city = models.CharField(max_length=40, verbose_name='Місто відрядження')
     start_on = models.DateField(verbose_name=_('Початок відрядження'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Закінчення відрядження'), null=True, blank=True)
@@ -88,7 +88,7 @@ class AdoptionInState(models.Model):
     dismissal_date = models.DateField(verbose_name=_('Дата прийняття'))
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=20, verbose_name='№ наказу')
-    employer = models.CharField(max_length=40, verbose_name='Підприємство-роботодавець')
+    employer = models.ForeignKey('work.Employer', on_delete=models.CASCADE, related_name='adoptions', verbose_name='Підприємство-роботодавець')
     # factory = models.CharField(max_length=40, verbose_name='Завод')
     position = models.ForeignKey('user_profile.Position', on_delete=models.CASCADE, verbose_name=_('Посада'), null=True,
                                  blank=True)
@@ -246,7 +246,7 @@ class IncomingControl(models.Model):
      Вхідний контроль
     """
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='incoming_controls')
-    factory = models.CharField(max_length=40, verbose_name='Завод')
+    factory = models.ForeignKey('work.Factory', on_delete=models.CASCADE, related_name='incoming_controls', verbose_name='Завод')
     expire = models.DateField(verbose_name=_("Дата від'їзду"), null=True, blank=True)
 
     class Meta:
