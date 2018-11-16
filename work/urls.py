@@ -10,7 +10,7 @@ from .views import (
     ControlDeleteView, VocationDeleteView, PermissionDeleteView,
     TransferDeleteView, AdoptionDeleteView, AssignmentDeleteView,
     DismissalDeleteView,
-)
+    VoivodshipCreateView, EmployerCreateView, FactoryCreateView)
 
 
 app_name = 'work'
@@ -24,6 +24,9 @@ urlpatterns = [
     re_path(r'^create_vocation/(?P<pk>\d+)$', VocationCreateView.as_view(), name='create_vocation'),
     re_path(r'^create_incoming_control/(?P<pk>\d+)$', ControlCreateView.as_view(), name='create_incoming_control'),
     re_path(r'^create_prognosis/(?P<pk>\d+)$', PrognosisCreateView.as_view(), name='create_prognosis'),
+    re_path(r'^create_voivodship/(?P<pk>\d+)$', VoivodshipCreateView.as_view(), name='create_voivodship'),
+    re_path(r'^create_employer/(?P<pk>\d+)$', EmployerCreateView.as_view(), name='create_employer'),
+    re_path(r'^create_factory/(?P<pk>\d+)$', FactoryCreateView.as_view(), name='create_factory'),
     re_path(r'^create_disappearance/(?P<pk>\d+)$', DisappearanceCreateView.as_view(), name='create_disappearance'),
     re_path(r'^update_dismissal/(?P<pk>\d+)-(?P<count>\d+)$', DismissalUpdateView.as_view(), name='update_dismissal'),
     re_path(r'^update_assignment/(?P<pk>\d+)-(?P<count>\d+)$', AssignmentUpdateView.as_view(), name='update_assignment'),

@@ -17,7 +17,7 @@ from .forms import (
     ControlCreateForm,
     PrognosisCreateForm,
     DisappearanceCreateForm,
-)
+    VoivodshipCreateForm, EmployerCreateForm, FactoryCreateForm)
 
 # Create your views here.
 
@@ -55,6 +55,42 @@ class AdoptionCreateView(CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class VoivodshipCreateView(CreateView):
+    form_class = VoivodshipCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class EmployerCreateView(CreateView):
+    form_class = EmployerCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class FactoryCreateView(CreateView):
+    form_class = FactoryCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
         obj.save()
         return redirect(self.request.META.get('HTTP_REFERER'))
 

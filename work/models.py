@@ -174,7 +174,7 @@ class Permission(models.Model):
     factory = models.ForeignKey(Factory, on_delete=models.CASCADE, related_name='permissions', verbose_name='Завод')
     start_date = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення'), null=True, blank=True)
-    note = models.CharField(max_length=40, verbose_name='Примітки')
+    note = models.CharField(max_length=400, verbose_name='Примітки')
     scan_copy = models.ImageField(verbose_name=_("Скан дозволу"), blank=True, null=True, upload_to="user/permission")
 
     class Meta:
@@ -190,9 +190,10 @@ class Vnosok(models.Model):
     Вньоски
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='vnosok_list')
-    employer = models.CharField(max_length=40, verbose_name='Підприємство-роботодавець')
-    factory = models.CharField(max_length=40, verbose_name='Завод')
-    position = models.CharField(max_length=40, verbose_name='Посада')
+    employer = models.ForeignKey(Employer, on_delete=models.CASCADE, related_name='vnosok_list',
+                                 verbose_name='Підприємство-роботодавець')
+    factory = models.ForeignKey(Factory, on_delete=models.CASCADE, related_name='vnosok_list', verbose_name='Завод')
+    position = models.CharField(max_length=60, verbose_name='Посада')
     start_on = models.DateField(verbose_name=_('Дата подачі'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата закриття'), null=True, blank=True)
 
@@ -226,12 +227,12 @@ class Vocation(models.Model):
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='vocations')
     type = models.ForeignKey(VocationType, on_delete=models.CASCADE, verbose_name=_('Тип відпустки'))
     agreement = models.BooleanField(_('Згода заводу'), default=False)
-    period = models.CharField(max_length=40, verbose_name='Період для відпустки')
+    period = models.CharField(max_length=60, verbose_name='Період для відпустки')
     start_on = models.DateField(verbose_name=_('Дата початку відпустки'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата закінчення відпустки'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
     order_number = models.CharField(max_length=20, verbose_name='№ наказу')
-    comment = models.CharField(max_length=20, verbose_name='Примітки')
+    comment = models.CharField(max_length=400, verbose_name='Примітки')
 
     class Meta:
         verbose_name = _('Відпустка')
@@ -262,7 +263,7 @@ class Prognosis(models.Model):
      Прогноз
     """
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='prognoses')
-    reason = models.CharField(max_length=40, verbose_name='Причина повернення')
+    reason = models.CharField(max_length=400, verbose_name='Причина повернення')
     expire = models.DateField(verbose_name=_("Дата прибуття"), null=True, blank=True)
     agree = models.BooleanField(_('Згода заводу'), default=False)
 

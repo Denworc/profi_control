@@ -28,7 +28,7 @@ from work.forms import (
     ControlCreateForm,
     PrognosisCreateForm,
     DisappearanceCreateForm,
-)
+    VoivodshipCreateForm, EmployerCreateForm, FactoryCreateForm)
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
     UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm, ContactTypeCreateForm, LanguageTitleCreateForm, \
     LanguageLevelCreateForm
@@ -36,6 +36,7 @@ from django.utils.translation import ugettext as _
 from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
 from user_profile.models import User, Contact, Language
+from work.views import VoivodshipCreateView, EmployerCreateView, FactoryCreateView
 
 
 class AuthView(FormView):
@@ -119,11 +120,17 @@ def user_detail_view(request, pk):
     contact_type_create_form = ContactTypeCreateForm
     language_title_create_form = LanguageTitleCreateForm
     language_level_create_form = LanguageLevelCreateForm
+    voivodship_create_form = VoivodshipCreateForm
+    employer_create_form = EmployerCreateForm
+    factory_create_form = FactoryCreateForm
     contact_update_form = ContactUpdateForm
     language_update_form = LanguageUpdateForm
 
     return render(request, 'user_profile/user-detail.html', context={
         'user': user,
+        'voivodship_create_form': voivodship_create_form,
+        'employer_create_form': employer_create_form,
+        'factory_create_form': factory_create_form,
         'id_create_form': id_create_form,
         'ua_passport_form': ua_passport_form,
         'foreign_passport_form': foreign_passport_form,

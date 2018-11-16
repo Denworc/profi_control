@@ -1929,6 +1929,7 @@
                 <div class="tab-pane" id="legal">
                     <div class="row">
                         <div class="col-lg-12">
+
                           <div id="accordion3">
                               <div class="card mb-2">
                                 <div class="card-header bg-dark">
@@ -2021,11 +2022,29 @@
                                                         {% elif forloop.counter == 3 %}
                                                           {% render_field field value=permission.receiving_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 4 %}
-                                                          {% render_field field value=permission.voivodship class="form-control" %}
+                                                          <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_4"> + </button>
+                                                              </div>
+                                                            </div>
                                                         {% elif forloop.counter == 5 %}
-                                                          {% render_field field value=permission.factory class="form-control" %}
+                                                          <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
+                                                              </div>
+                                                            </div>
                                                         {% elif forloop.counter == 6 %}
-                                                          {% render_field field value=permission.employer class="form-control" %}
+                                                          <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_6"> + </button>
+                                                              </div>
+                                                            </div>
                                                         {% elif forloop.counter == 7 %}
                                                           {% render_field field value=permission.start_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 8 %}
@@ -2100,6 +2119,30 @@
                                             {% else %}
                                               {% if forloop.counter <= 3 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% elif forloop.counter == 4 %}
+                                                          <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_4"> + </button>
+                                                              </div>
+                                                            </div>
+                                                        {% elif forloop.counter == 5 %}
+                                                          <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
+                                                              </div>
+                                                            </div>
+                                                        {% elif forloop.counter == 6 %}
+                                                          <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_6"> + </button>
+                                                              </div>
+                                                            </div>
                                                   {% elif forloop.counter >= 7 and forloop.counter <= 8 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
                                                   {% else %}
@@ -2606,7 +2649,13 @@
                                                       {% if forloop.counter == 1 %}
                                                           {% render_field field value=user.incoming_controls.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
-                                                          {% render_field field value=user.incoming_controls.factory class="form-control" %}
+                                                            <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
+                                                              </div>
+                                                            </div>
                                                         {% endif %}
                                                     {% endif %}
                                                     {% if field.help_text %}
@@ -2682,7 +2731,13 @@
                                               {% if forloop.counter == 1 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
                                                   {% else %}
-                                                      {% render_field field class="form-control" %}
+                                                      <div class="input-group">
+                                                          {% render_field field class="form-control custom-select" %}
+                                                          <div class="input-group-append">
+                                                            <!--Dark Modal -->
+                                                           <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
+                                                          </div>
+                                                        </div>
                                                 {% endif %}
                                             {% endif %}
 
@@ -2758,7 +2813,13 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=user.adoptions.employer class="form-control" %}
+                                                            <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_6"> + </button>
+                                                              </div>
+                                                            </div>
                                                         {% elif forloop.counter == 2 %}
                                                           {% render_field field value=user.adoptions.dismissal_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
@@ -2833,7 +2894,15 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% if forloop.counter >= 2 and forloop.counter <= 3 %}
+                                                {% if forloop.counter == 1 %}
+                                                    <div class="input-group">
+                                                      {% render_field field class="form-control custom-select" %}
+                                                      <div class="input-group-append">
+                                                        <!--Dark Modal -->
+                                                       <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_6"> + </button>
+                                                      </div>
+                                                    </div>
+                                                {% elif forloop.counter >= 2 and forloop.counter <= 3 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
                                                   {% else %}
                                                       {% render_field field class="form-control" %}
@@ -3087,7 +3156,13 @@
                                                         {% elif forloop.counter == 4 %}
                                                           {% render_field field value=assignment.expire class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 5 %}
-                                                          {% render_field field value=assignment.factory class="form-control" %}
+                                                            <div class="input-group">
+                                                              {% render_field field class="form-control custom-select" %}
+                                                              <div class="input-group-append">
+                                                                <!--Dark Modal -->
+                                                               <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
+                                                              </div>
+                                                            </div>
                                                         {% elif forloop.counter == 6 %}
                                                           {% render_field field value=assignment.city class="form-control" %}
                                                         {% elif forloop.counter == 7 %}
@@ -3175,6 +3250,14 @@
                                             {% else %}
                                               {% if forloop.counter >= 2 and forloop.counter <= 4 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
+                                                  {% elif forloop.counter == 5 %}
+                                                        <div class="input-group">
+                                                          {% render_field field class="form-control custom-select" %}
+                                                          <div class="input-group-append">
+                                                            <!--Dark Modal -->
+                                                           <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
+                                                          </div>
+                                                        </div>
                                                   {% elif forloop.counter >= 7 and forloop.counter <= 8 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
                                                   {% elif forloop.counter == 11 or forloop.counter == 14 %}
@@ -4004,7 +4087,147 @@
                         </div>
                       </div><!--End Row-->
                 </div>
+                <div class="modal fade" id="list_4">
+                          <div class="modal-dialog">
+                            <div class="modal-content border-success">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title text-white"><i class="fa fa-star"></i>Воєводства</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                             <form method="post" action="{% url 'work:create_voivodship' user.pk %}" enctype="multipart/form-data">
+                              <div class="modal-body">
+                              {% csrf_token %}
 
+                                  {% for field in voivodship_create_form %}
+                                      <div class="form-group">
+                                          <p></p>
+                                        {{ field.label_tag }}
+                                        {% if form.is_bound %}
+                                          {% if field.errors %}
+                                            {% render_field field class="form-control is-invalid" %}
+                                            {% for error in field.errors %}
+                                              <div class="invalid-feedback">
+                                                {{ error }}
+                                              </div>
+                                            {% endfor %}
+                                          {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                          {% endif %}
+                                        {% else %}
+                                              {% render_field field class="form-control" %}
+                                        {% endif %}
+                                        {% if field.help_text %}
+                                          <small class="form-text text-muted">
+                                            {{ field.help_text }}
+                                          </small>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                <input type="submit" class="btn btn-success" value="Додати">
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!--End Modal -->
+                        <div class="modal fade" id="list_5">
+                          <div class="modal-dialog">
+                            <div class="modal-content border-success">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title text-white"><i class="fa fa-star"></i>Заводи</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                             <form method="post" action="{% url 'work:create_factory' user.pk %}" enctype="multipart/form-data">
+                              <div class="modal-body">
+                              {% csrf_token %}
+
+                                  {% for field in factory_create_form %}
+                                      <div class="form-group">
+                                          <p></p>
+                                        {{ field.label_tag }}
+                                        {% if form.is_bound %}
+                                          {% if field.errors %}
+                                            {% render_field field class="form-control is-invalid" %}
+                                            {% for error in field.errors %}
+                                              <div class="invalid-feedback">
+                                                {{ error }}
+                                              </div>
+                                            {% endfor %}
+                                          {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                          {% endif %}
+                                        {% else %}
+                                              {% render_field field class="form-control" %}
+                                        {% endif %}
+                                        {% if field.help_text %}
+                                          <small class="form-text text-muted">
+                                            {{ field.help_text }}
+                                          </small>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                <input type="submit" class="btn btn-success" value="Додати">
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!--End Modal -->
+                        <div class="modal fade" id="list_6">
+                          <div class="modal-dialog">
+                            <div class="modal-content border-success">
+                              <div class="modal-header bg-success">
+                                <h5 class="modal-title text-white"><i class="fa fa-star"></i>Підприємства-роботодавці</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                             <form method="post" action="{% url 'work:create_employer' user.pk %}" enctype="multipart/form-data">
+                              <div class="modal-body">
+                              {% csrf_token %}
+
+                                  {% for field in employer_create_form %}
+                                      <div class="form-group">
+                                          <p></p>
+                                        {{ field.label_tag }}
+                                        {% if form.is_bound %}
+                                          {% if field.errors %}
+                                            {% render_field field class="form-control is-invalid" %}
+                                            {% for error in field.errors %}
+                                              <div class="invalid-feedback">
+                                                {{ error }}
+                                              </div>
+                                            {% endfor %}
+                                          {% else %}
+                                            {% render_field field class="form-control is-valid" %}
+                                          {% endif %}
+                                        {% else %}
+                                              {% render_field field class="form-control" %}
+                                        {% endif %}
+                                        {% if field.help_text %}
+                                          <small class="form-text text-muted">
+                                            {{ field.help_text }}
+                                          </small>
+                                        {% endif %}
+                                      </div>
+                                    {% endfor %}
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                <input type="submit" class="btn btn-success" value="Додати">
+                              </div>
+                              </form>
+                            </div>
+                          </div>
+                        </div><!--End Modal -->
             </div>
         </div>
       </div>

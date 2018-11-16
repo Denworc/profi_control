@@ -13,7 +13,7 @@ from .models import (
     Permission,
     AdoptionInState,
     Assignment,
-)
+    Voivodship, Employer, Factory)
 
 
 class DismissalCreateForm(forms.ModelForm):
@@ -137,6 +137,33 @@ class ControlCreateForm(forms.ModelForm):
         fields = (
             'expire',
             'factory',
+        )
+
+
+class VoivodshipCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Voivodship
+        fields = (
+            'title',
+        )
+
+
+class EmployerCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Employer
+        fields = (
+            'title',
+        )
+
+
+class FactoryCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = Factory
+        fields = (
+            'title',
         )
 
 
