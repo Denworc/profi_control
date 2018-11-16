@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import AdoptionInState, TransferInState, Permission, Assignment, Vnosok, Dismissal, Vocation, VocationType, \
-    Voivodship, Employer, Factory, BasisList
+    Voivodship, Employer, Factory, BasisList, IncomingControl
 
 
 # Register your models here.
@@ -63,4 +63,9 @@ class FactoryAdmin(admin.ModelAdmin):
 
 @admin.register(BasisList)
 class BasisListAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(IncomingControl)
+class IncomingControlAdmin(admin.ModelAdmin):
     pass
