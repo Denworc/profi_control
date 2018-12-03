@@ -32,11 +32,11 @@ from work.forms import (
     VoivodshipCreateForm, EmployerCreateForm, FactoryCreateForm)
 from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCreateForm, LanguageCreateForm, \
     UserEditForm, NoteUpdateForm, ContactUpdateForm, LanguageUpdateForm, ContactTypeCreateForm, LanguageTitleCreateForm, \
-    LanguageLevelCreateForm
+    LanguageLevelCreateForm, PortraitCreateForm
 from django.utils.translation import ugettext as _
 from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
-from user_profile.models import User, Contact, Language, Status
+from user_profile.models import User, Contact, Language, Status, PsychologicalPortrait
 from work.views import VoivodshipCreateView, EmployerCreateView, FactoryCreateView
 
 
@@ -124,6 +124,7 @@ def user_detail_view(request, pk):
     voivodship_create_form = VoivodshipCreateForm
     employer_create_form = EmployerCreateForm
     factory_create_form = FactoryCreateForm
+    portrait_create_form = PortraitCreateForm
     contact_update_form = ContactUpdateForm
     language_update_form = LanguageUpdateForm
 
@@ -163,7 +164,7 @@ def user_detail_view(request, pk):
         'contact_type_create_form': contact_type_create_form,
         'language_title_create_form': language_title_create_form,
         'language_level_create_form': language_level_create_form,
-
+        'portrait_create_form': portrait_create_form,
     })
 
     # def get_context_data(self, *args, **kwargs):
@@ -236,6 +237,20 @@ class NoteCreateView(UpdateView):
 class ContactCreateView(CreateView):
     # model = UkrainianPassport
     form_class = ContactCreateForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.user = User.objects.get(pk=self.kwargs['pk'])
+        obj.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PortraitCreateView(CreateView):
+    # model = UkrainianPassport
+    form_class = PortraitCreateForm
 
     def form_valid(self, form):
         obj = form.save(commit=False)
@@ -360,6 +375,29 @@ class ContactUpdateView(UpdateView):
         return redirect(self.request.META.get('HTTP_REFERER'))
 
 
+class PortraitUpdateView(UpdateView):
+    model = PsychologicalPortrait
+    pk_url_kwarg = 'count'
+    context_object_name = 'contact'
+    fields = (
+        'intelligence',
+        'professionalism',
+        'self_discipline',
+        'sociability',
+        'temperament',
+        'personality_type',
+    )
+
+    def form_valid(self, form):
+        contact = form.save(commit=False)
+        contact.user = User.objects.get(pk=self.kwargs['pk'])
+        contact.save()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+    def form_invalid(self, form):
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
 class LanguageUpdateView(UpdateView):
     model = Language
     pk_url_kwarg = 'count'
@@ -410,6 +448,16 @@ class ContactDeleteView(DeleteView):
 
 class LanguageDeleteView(DeleteView):
     model = Language
+    pk_url_kwarg = 'count'
+
+    def delete(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        self.object.delete()
+        return redirect(self.request.META.get('HTTP_REFERER'))
+
+
+class PortraitDeleteView(DeleteView):
+    model = PsychologicalPortrait
     pk_url_kwarg = 'count'
 
     def delete(self, request, *args, **kwargs):

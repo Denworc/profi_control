@@ -37,6 +37,116 @@ class Contact(models.Model):
         return self.contact
 
 
+class IntelligenceType(models.Model):
+    """
+    Інтелект працівника
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Інтелект'))
+
+    class Meta:
+        verbose_name = _('Інтелект')
+        verbose_name_plural = _('Інтелект')
+
+    def __str__(self):
+        return self.title
+
+
+class ProfessionalismType(models.Model):
+    """
+    Професіоналізм працівника
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Професіоналізм'))
+
+    class Meta:
+        verbose_name = _('Професіоналізм')
+        verbose_name_plural = _('Професіоналізм')
+
+    def __str__(self):
+        return self.title
+
+
+class SelfDiscipline(models.Model):
+    """
+    Самодисциплінованість працівника
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Самодисциплінованість'))
+
+    class Meta:
+        verbose_name = _('Самодисциплінованість')
+        verbose_name_plural = _('Самодисциплінованість')
+
+    def __str__(self):
+        return self.title
+
+
+class SociabilityType(models.Model):
+    """
+    Комунікабельність працівника
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Комунікабельність'))
+
+    class Meta:
+        verbose_name = _('Комунікабельність')
+        verbose_name_plural = _('Комунікабельність')
+
+    def __str__(self):
+        return self.title
+
+
+class TemperamentType(models.Model):
+    """
+    Темперамент працівника
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Темперамент'))
+
+    class Meta:
+        verbose_name = _('Темперамент')
+        verbose_name_plural = _('Темперамент')
+
+    def __str__(self):
+        return self.title
+
+
+class PersonalityType(models.Model):
+    """
+    Тип особистості працівника
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Тип особистості'))
+
+    class Meta:
+        verbose_name = _('Тип особистості')
+        verbose_name_plural = _('Типи особистості')
+
+    def __str__(self):
+        return self.title
+
+
+class PsychologicalPortrait(models.Model):
+    """
+    Психологічний портрет користувача
+    """
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='portraits')
+    intelligence = models.ForeignKey(IntelligenceType, on_delete=models.CASCADE,
+                                     null=True, blank=True, verbose_name=_('Інтелект'))
+    professionalism = models.ForeignKey(ProfessionalismType, on_delete=models.CASCADE,
+                                        null=True, blank=True, verbose_name=_('Професіоналізм'))
+    self_discipline = models.ForeignKey(SelfDiscipline, on_delete=models.CASCADE,
+                                        null=True, blank=True, verbose_name=_('Самодисципліна'))
+    sociability = models.ForeignKey(SociabilityType, on_delete=models.CASCADE,
+                                    null=True, blank=True, verbose_name=_('Комунікабельність'))
+    temperament = models.ForeignKey(TemperamentType, on_delete=models.CASCADE,
+                                    null=True, blank=True, verbose_name=_('Темперамент'))
+    personality_type = models.ForeignKey(PersonalityType, on_delete=models.CASCADE,
+                                         null=True, blank=True, verbose_name=_('Тип особистості'))
+
+    class Meta:
+        verbose_name = _('Психологічний портрет')
+        verbose_name_plural = _('Психологічні портрети')
+
+    # def __str__(self):
+    #     return self.contact
+
+
 class Status(models.Model):
     """
     Статуси пользователя

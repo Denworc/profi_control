@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import User, Contact, ContactType, Position, Status, Language, LanguageTitle, LanguageLevel
+from .models import User, Contact, ContactType, Position, Status, Language, LanguageTitle, LanguageLevel, \
+    PsychologicalPortrait, IntelligenceType, ProfessionalismType, SelfDiscipline, SociabilityType, TemperamentType, \
+    PersonalityType
 from documents.models import UkrainianPassport, ForeignPassport
 
 
@@ -72,4 +74,39 @@ class LanguageTitleAdmin(admin.ModelAdmin):
 
 @admin.register(LanguageLevel)
 class LanguageLevelAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PsychologicalPortrait)
+class PsychologicalPortraitAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(IntelligenceType)
+class IntelligenceTypeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(ProfessionalismType)
+class ProfessionalismTypeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(SelfDiscipline)
+class SelfDisciplineAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(SociabilityType)
+class SociabilityTypeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(TemperamentType)
+class TemperamentTypeAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(PersonalityType)
+class PersonalityTypeAdmin(admin.ModelAdmin):
     pass

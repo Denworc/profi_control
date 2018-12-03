@@ -2,7 +2,7 @@ from django import forms
 from django.forms import Form
 from django.utils.translation import ugettext_lazy as _
 from django.core import validators
-from .models import User, Language, Contact, ContactType, LanguageLevel, LanguageTitle
+from .models import User, Language, Contact, ContactType, LanguageLevel, LanguageTitle, PsychologicalPortrait
 from django.contrib.auth.hashers import check_password
 
 
@@ -80,6 +80,20 @@ class ContactCreateForm(forms.ModelForm):
         fields = (
             'type',
             'contact',
+        )
+
+
+class PortraitCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = PsychologicalPortrait
+        fields = (
+            'intelligence',
+            'professionalism',
+            'self_discipline',
+            'sociability',
+            'temperament',
+            'personality_type',
         )
 
 
@@ -199,3 +213,17 @@ class LanguageUpdateForm(forms.ModelForm):
     #     if language:
     #         self.fields['title'].initial = language.title
     #         self.fields['level'].initial = language.level
+
+
+class PortraitUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = PsychologicalPortrait
+        fields = (
+            'intelligence',
+            'professionalism',
+            'self_discipline',
+            'sociability',
+            'temperament',
+            'personality_type',
+        )
