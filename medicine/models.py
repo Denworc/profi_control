@@ -43,6 +43,7 @@ class Insurance(models.Model):
     type = models.ForeignKey(InsuranceType, on_delete=models.CASCADE, verbose_name=_('Тип страхування'))
     start_on = models.DateField(verbose_name='Дата початку', null=True, blank=True)
     expire = models.DateField(verbose_name='Дата завершення', null=True, blank=True)
+    pay_date = models.DateField(verbose_name='Дата оплати', null=True, blank=True)
     scan_copy = models.ImageField(verbose_name=_('Скан страхування'), blank=True, null=True, upload_to="user/insurance")
 
     class Meta:

@@ -150,7 +150,7 @@
                 <div class="tab-pane active" id="profile">
                     <h5 class="mb-3" style="display: inline-block">Профіль користувача</h5>
                      <!--Dark Modal -->
-                       <button class="btn btn-outline-dark m-1" data-toggle="modal" data-target="#darkmodal">Редагувати</button>
+                       <button class="btn btn-outline-dark m-1" data-toggle="modal" data-target="#darkmodal">Додати дані</button>
                         <div class="modal fade" id="darkmodal">
                           <div class="modal-dialog">
                             <div class="modal-content border-dark">
@@ -190,7 +190,7 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
-                                <input type="submit" class="btn btn-dark" value="Редагувати">
+                                <input type="submit" class="btn btn-dark" value="Зберегти">
                               </div>
                               </form>
                             </div>
@@ -1946,6 +1946,9 @@
                                             <h6>Дозвіл №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
+                                                <mark>Дата оплати:</mark> {{ permission.pay_date }}
+                                            </p>
+                                            <p>
                                                 <mark>Дата відправлення внеску представнику:</mark> {{ permission.prediction_date }}
                                             </p>
                                             <p>
@@ -2016,12 +2019,14 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=permission.prediction_date class="form-control autoclose-datepicker" %}
+                                                          {% render_field field value=permission.pay_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
-                                                          {% render_field field value=permission.input_date class="form-control autoclose-datepicker" %}
+                                                          {% render_field field value=permission.prediction_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 3 %}
-                                                          {% render_field field value=permission.receiving_date class="form-control autoclose-datepicker" %}
+                                                          {% render_field field value=permission.input_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 4 %}
+                                                          {% render_field field value=permission.receiving_date class="form-control autoclose-datepicker" %}
+                                                        {% elif forloop.counter == 5 %}
                                                           <div class="input-group">
                                                               {% render_field field class="form-control custom-select" %}
                                                               <div class="input-group-append">
@@ -2029,7 +2034,7 @@
                                                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_4"> + </button>
                                                               </div>
                                                             </div>
-                                                        {% elif forloop.counter == 5 %}
+                                                        {% elif forloop.counter == 6 %}
                                                           <div class="input-group">
                                                               {% render_field field class="form-control custom-select" %}
                                                               <div class="input-group-append">
@@ -2037,7 +2042,7 @@
                                                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
                                                               </div>
                                                             </div>
-                                                        {% elif forloop.counter == 6 %}
+                                                        {% elif forloop.counter == 7 %}
                                                           <div class="input-group">
                                                               {% render_field field class="form-control custom-select" %}
                                                               <div class="input-group-append">
@@ -2045,9 +2050,9 @@
                                                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_6"> + </button>
                                                               </div>
                                                             </div>
-                                                        {% elif forloop.counter == 7 %}
-                                                          {% render_field field value=permission.start_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 8 %}
+                                                          {% render_field field value=permission.start_date class="form-control autoclose-datepicker" %}
+                                                        {% elif forloop.counter == 9 %}
                                                           {% render_field field value=permission.expire class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field value=permission.note class="form-control" %}
@@ -2339,6 +2344,9 @@
                                             <h6>Страхування №{{ forloop.counter }}</h6>
                                           <div class="list-group-item">
                                             <p>
+                                                <mark>Дата оплати:</mark> {{ insurance.pay_date }}
+                                            </p>
+                                            <p>
                                                 <mark>Вид страхування:</mark> {{ insurance.type }}
                                             </p>
                                             <p>
@@ -2389,8 +2397,10 @@
                                                       {% endif %}
                                                     {% else %}
                                                       {% if forloop.counter == 1 %}
-                                                          {% render_field field value=insurance.type class="form-control" %}
+                                                          {% render_field field value=insurance.pay_date class="form-control autoclose-datepicker" %}
                                                         {% elif forloop.counter == 2 %}
+                                                          {% render_field field value=insurance.type class="form-control" %}
+                                                        {% elif forloop.counter == 3 %}
                                                           {% render_field field value=insurance.start_on class="form-control autoclose-datepicker" %}
                                                         {% else %}
                                                           {% render_field field value=insurance.expire class="form-control autoclose-datepicker" %}

@@ -9,6 +9,7 @@ class InsuranceCreateForm(forms.ModelForm):
     class Meta:
         model = Insurance
         fields = (
+            'pay_date',
             'type',
             'start_on',
             'expire',
@@ -21,6 +22,7 @@ class InsuranceUpdateForm(forms.ModelForm):
     class Meta:
         model = Insurance
         fields = (
+            'pay_date',
             'type',
             'start_on',
             'expire',

@@ -89,6 +89,7 @@ class PermissionCreateForm(forms.ModelForm):
     class Meta:
         model = Permission
         fields = (
+            'pay_date',
             'prediction_date',
             'input_date',
             'receiving_date',
@@ -282,6 +283,7 @@ class PermissionUpdateForm(forms.ModelForm):
     class Meta:
         model = Permission
         fields = (
+            'pay_date',
             'prediction_date',
             'input_date',
             'receiving_date',

@@ -3,7 +3,7 @@ import re
 from django.shortcuts import redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from user_profile.models import User
+from user_profile.models import User, Status
 from work.models import Dismissal, Assignment, AdoptionInState, Permission, TransferInState, Vnosok, Vocation, \
     IncomingControl, Prognosis, Disappearance
 from .forms import (
@@ -56,6 +56,9 @@ class AdoptionCreateView(CreateView):
         obj = form.save(commit=False)
         obj.user = User.objects.get(pk=self.kwargs['pk'])
         obj.save()
+        user = User.objects.get(pk=self.kwargs['pk'])
+        user.status = Status.objects.get(pk=4)
+        user.save()
         return redirect(self.request.META.get('HTTP_REFERER'))
 
     def form_invalid(self, form):
@@ -228,6 +231,9 @@ class AdoptionUpdateView(UpdateView):
         obj = form.save(commit=False)
         obj.user = User.objects.get(pk=self.kwargs['pk'])
         obj.save()
+        user = User.objects.get(pk=self.kwargs['pk'])
+        user.status = Status.objects.get(pk=4)
+        user.save()
         return redirect(self.request.META.get('HTTP_REFERER'))
 
     def form_invalid(self, form):

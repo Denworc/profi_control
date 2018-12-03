@@ -2,6 +2,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ImproperlyConfigured
+from django.http import HttpResponseRedirect
 from django.shortcuts import redirect, reverse, render, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView, DeleteView, View, DetailView, CreateView, UpdateView
@@ -35,7 +36,7 @@ from user_profile.forms import AuthForm, NewUserForm, NoteCreateForm, ContactCre
 from django.utils.translation import ugettext as _
 from documents.forms import UAPassportCreateForm, ForeignPassportCreateForm, VisaCreateForm, PersonalIDCreateForm
 
-from user_profile.models import User, Contact, Language
+from user_profile.models import User, Contact, Language, Status
 from work.views import VoivodshipCreateView, EmployerCreateView, FactoryCreateView
 
 
@@ -180,6 +181,12 @@ class NewUserView(LoginRequiredMixin, CreateView):
     login_url = reverse_lazy('user:login')
     template_name = 'user_profile/add_user.html'
     form_class = NewUserForm
+
+    def form_valid(self, form):
+        obj = form.save(commit=False)
+        obj.status = Status.objects.get(pk=1)
+        obj.save()
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse('user:user-detail', kwargs={'pk': self.object.pk})
