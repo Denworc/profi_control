@@ -14,7 +14,7 @@ from certificate.forms import (
     TrainingCreateForm,
     PolishCreateForm,
     InterviewUpdateForm,
-)
+    LocksmithCreateForm, WelderCreateForm, OtherCreateForm)
 from dwelling.forms import DwellingCreateForm
 from medicine.forms import InsuranceCreateForm
 from privileges.forms import QuotaCreateForm
@@ -127,9 +127,15 @@ def user_detail_view(request, pk):
     portrait_create_form = PortraitCreateForm
     contact_update_form = ContactUpdateForm
     language_update_form = LanguageUpdateForm
+    locksmith_create_form = LocksmithCreateForm
+    welder_create_form = WelderCreateForm
+    other_create_form = OtherCreateForm
 
     return render(request, 'user_profile/user-detail.html', context={
         'user': user,
+        'locksmith_create_form': locksmith_create_form,
+        'welder_create_form': welder_create_form,
+        'other_create_form': other_create_form,
         'voivodship_create_form': voivodship_create_form,
         'employer_create_form': employer_create_form,
         'factory_create_form': factory_create_form,

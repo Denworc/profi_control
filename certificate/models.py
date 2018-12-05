@@ -138,3 +138,195 @@ class Polish(models.Model):
             return "Прослухав курс"
         else:
             return "Не вивчав"
+
+
+class DrawReading(models.Model):
+    """
+    Читання креслень
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Читання креслень'))
+
+    class Meta:
+        verbose_name = _('Читання креслень')
+        verbose_name_plural = _('Читання креслень')
+
+    def __str__(self):
+        return self.title
+
+
+class Candle(models.Model):
+    """
+    Вміння працювати з газовим паяльником
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Вміння працювати з газовим паяльником'))
+
+    class Meta:
+        verbose_name = _('Вміння працювати з газовим паяльником')
+        verbose_name_plural = _('Вміння працювати з газовим паяльником')
+
+    def __str__(self):
+        return self.title
+
+
+class Bulgarian(models.Model):
+    """
+    Вміння працювати болгаркою
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Вміння працювати болгаркою'))
+
+    class Meta:
+        verbose_name = _('Вміння працювати болгаркою')
+        verbose_name_plural = _('Вміння працювати болгаркою')
+
+    def __str__(self):
+        return self.title
+
+
+class SemiAutomatic(models.Model):
+    """
+    Досвід зварювання напівавтоматом
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Досвід зварювання напівавтоматом'))
+
+    class Meta:
+        verbose_name = _('Досвід зварювання напівавтоматом')
+        verbose_name_plural = _('Досвід зварювання напівавтоматом')
+
+    def __str__(self):
+        return self.title
+
+
+class WeldMethod(models.Model):
+    """
+    Спосіб зварювання
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Спосіб зварювання'))
+
+    class Meta:
+        verbose_name = _('Спосіб зварювання')
+        verbose_name_plural = _('Способи зварювання')
+
+    def __str__(self):
+        return self.title
+
+
+class MetalBrand(models.Model):
+    """
+    Марка металу
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Марка металу'))
+
+    class Meta:
+        verbose_name = _('Марка металу')
+        verbose_name_plural = _('Марки металу')
+
+    def __str__(self):
+        return self.title
+
+
+class ConnectionType(models.Model):
+    """
+    Тип з'єднання
+    """
+    title = models.CharField(max_length=40, verbose_name=_("Тип з'єднання"))
+
+    class Meta:
+        verbose_name = _("Тип з'єднання")
+        verbose_name_plural = _("Типи з'єднання")
+
+    def __str__(self):
+        return self.title
+
+
+class SpatialPosture(models.Model):
+    """
+    Просторове положення
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Просторове положення'))
+
+    class Meta:
+        verbose_name = _('Просторове положення')
+        verbose_name_plural = _('Просторові положення')
+
+    def __str__(self):
+        return self.title
+
+
+class Other(models.Model):
+    """
+    Для кандидатів інших спеціальностей
+    """
+    title = models.CharField(max_length=40, verbose_name=_('Рівень кваліфікації'))
+
+    class Meta:
+        verbose_name = _('Рівень кваліфікації')
+        verbose_name_plural = _('Рівні кваліфікації')
+
+    def __str__(self):
+        return self.title
+
+
+class QualificationLevel(models.Model):
+    """
+    Оцінка кваліфікації користувача
+    """
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='qualifications')
+    draw_reading = models.ForeignKey(DrawReading, on_delete=models.CASCADE,
+                                     null=True, blank=True, verbose_name=_('Читання креслень'))
+    candle = models.ForeignKey(Candle, on_delete=models.CASCADE,
+                               null=True, blank=True, verbose_name=_('Вміння працювати з газовим паяльником'))
+    bulgarian = models.ForeignKey(Bulgarian, on_delete=models.CASCADE,
+                                  null=True, blank=True, verbose_name=_('Вміння працювати болгаркою'))
+    semiautomatic = models.ForeignKey(SemiAutomatic, on_delete=models.CASCADE,
+                                      null=True, blank=True, verbose_name=_('Досвід зварювання напівавтоматом'))
+    welding_method = models.ForeignKey(WeldMethod, on_delete=models.CASCADE,
+                                       null=True, blank=True, verbose_name=_('Спосіб зварювання'))
+    metal_brand = models.ForeignKey(MetalBrand, on_delete=models.CASCADE,
+                                    null=True, blank=True, verbose_name=_('Марка металу'))
+    connection_type = models.ForeignKey(ConnectionType, on_delete=models.CASCADE,
+                                        null=True, blank=True, verbose_name=_("Тип з'єднання"))
+    spatial_posture = models.ForeignKey(SpatialPosture, on_delete=models.CASCADE,
+                                        null=True, blank=True, verbose_name=_('Просторове положення'))
+    other = models.ForeignKey(Other, on_delete=models.CASCADE,
+                              null=True, blank=True, verbose_name=_('Рівень кваліфікації'))
+    thickness = models.CharField(max_length=300, verbose_name=_('Товщина'))
+
+    class Meta:
+        verbose_name = _('Оцінка кваліфікації')
+        verbose_name_plural = _('Оцінки кваліфікації')
+
+    # def __str__(self):
+    #     return self.contact
+
+
+class PostQualificationLevel(models.Model):
+    """
+    Попередня оцінка кваліфікації користувача
+    """
+    user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='post_qualifications')
+    draw_reading = models.ForeignKey(DrawReading, on_delete=models.CASCADE,
+                                     null=True, blank=True, verbose_name=_('Читання креслень'))
+    candle = models.ForeignKey(Candle, on_delete=models.CASCADE,
+                               null=True, blank=True, verbose_name=_('Вміння працювати з газовим паяльником'))
+    bulgarian = models.ForeignKey(Bulgarian, on_delete=models.CASCADE,
+                                  null=True, blank=True, verbose_name=_('Вміння працювати болгаркою'))
+    semiautomatic = models.ForeignKey(SemiAutomatic, on_delete=models.CASCADE,
+                                      null=True, blank=True, verbose_name=_('Досвід зварювання напівавтоматом'))
+    welding_method = models.ForeignKey(WeldMethod, on_delete=models.CASCADE,
+                                       null=True, blank=True, verbose_name=_('Спосіб зварювання'))
+    metal_brand = models.ForeignKey(MetalBrand, on_delete=models.CASCADE,
+                                    null=True, blank=True, verbose_name=_('Марка металу'))
+    connection_type = models.ForeignKey(ConnectionType, on_delete=models.CASCADE,
+                                        null=True, blank=True, verbose_name=_("Тип з'єднання"))
+    spatial_posture = models.ForeignKey(SpatialPosture, on_delete=models.CASCADE,
+                                        null=True, blank=True, verbose_name=_('Просторове положення'))
+    other = models.ForeignKey(Other, on_delete=models.CASCADE,
+                              null=True, blank=True, verbose_name=_('Оцінка кваліфікації'))
+    thickness = models.CharField(max_length=300, verbose_name=_('Товщина'))
+
+    class Meta:
+        verbose_name = _('Попередня оцінка кваліфікації')
+        verbose_name_plural = _('Попередня оцінки кваліфікації')
+
+    # def __str__(self):
+    #     return self.contact

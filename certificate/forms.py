@@ -7,7 +7,7 @@ from .models import (
     Test,
     Training,
     Polish,
-)
+    QualificationLevel, PostQualificationLevel)
 
 
 class InterviewCreateForm(forms.ModelForm):
@@ -64,6 +64,74 @@ class PolishCreateForm(forms.ModelForm):
         fields = (
             'solo',
             'course',
+        )
+
+
+class LocksmithCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = QualificationLevel
+        fields = (
+            'draw_reading',
+            'candle',
+            'bulgarian',
+            'semiautomatic',
+        )
+
+
+class WelderCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = QualificationLevel
+        fields = (
+            'welding_method',
+            'metal_brand',
+            'connection_type',
+            'spatial_posture',
+            'thickness',
+        )
+
+
+class OtherCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = QualificationLevel
+        fields = (
+            'other',
+        )
+
+
+class PostLocksmithCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = PostQualificationLevel
+        fields = (
+            'draw_reading',
+            'candle',
+            'bulgarian',
+            'semiautomatic',
+        )
+
+
+class PostWelderCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = PostQualificationLevel
+        fields = (
+            'welding_method',
+            'metal_brand',
+            'connection_type',
+            'spatial_posture',
+            'thickness',
+        )
+
+
+class PostOtherCreateForm(forms.ModelForm):
+
+    class Meta:
+        model = PostQualificationLevel
+        fields = (
+            'other',
         )
 
 
@@ -164,3 +232,71 @@ class PolishUpdateForm(forms.ModelForm):
     #     polish = user.polish.get(id=1)
     #     self.fields['start_on'].initial = polish.solo
     #     self.fields['type'].initial = polish.course
+
+
+class LocksmithUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = QualificationLevel
+        fields = (
+            'draw_reading',
+            'candle',
+            'bulgarian',
+            'semiautomatic',
+        )
+
+
+class WelderUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = QualificationLevel
+        fields = (
+            'welding_method',
+            'metal_brand',
+            'connection_type',
+            'spatial_posture',
+            'thickness',
+        )
+
+
+class OtherUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = QualificationLevel
+        fields = (
+            'other',
+        )
+
+
+class PostLocksmithUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = PostQualificationLevel
+        fields = (
+            'draw_reading',
+            'candle',
+            'bulgarian',
+            'semiautomatic',
+        )
+
+
+class PostWelderUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = PostQualificationLevel
+        fields = (
+            'welding_method',
+            'metal_brand',
+            'connection_type',
+            'spatial_posture',
+            'thickness',
+        )
+
+
+class PostOtherUpdateForm(forms.ModelForm):
+
+    class Meta:
+        model = PostQualificationLevel
+        fields = (
+            'other',
+        )
