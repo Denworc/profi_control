@@ -321,7 +321,7 @@ class PostQualificationLevel(models.Model):
     spatial_posture = models.ForeignKey(SpatialPosture, on_delete=models.CASCADE,
                                         null=True, blank=True, verbose_name=_('Просторове положення'))
     other = models.ForeignKey(Other, on_delete=models.CASCADE,
-                              null=True, blank=True, verbose_name=_('Оцінка кваліфікації'))
+                              null=True, blank=True, verbose_name=_('Рівень кваліфікації'))
     thickness = models.CharField(max_length=300, verbose_name=_('Товщина'))
 
     class Meta:

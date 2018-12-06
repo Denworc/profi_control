@@ -2269,6 +2269,389 @@
                                 </div>
                                 </div>
                               </div>
+
+                              <div class="card">
+                                    <div class="card-header bg-dark">
+                                        <button class="btn btn-link text-white shadow-none" data-toggle="collapse" data-target="#collapse-5__2" aria-expanded="true" aria-controls="collapse-5__2">
+                                          Друга оцінка кваліфікації
+                                        </button>
+                                    </div>
+
+                                    <div id="collapse-5__2" class="collapse" data-parent="#accordion2">
+                                    <div class="card-body row">
+                                      <div class="col-md-6">
+                                          {% if user.position.pk == 8 or user.position.pk == 13 %}
+                                              {% if user.post_qualifications %}
+                                                <div class="list-group-item">
+                                                    <p>
+                                                        <mark>Читання креслень:</mark> {{ user.post_qualifications.draw_reading|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Вміння працювати з газовим паяльником:</mark> {{ user.post_qualifications.candle|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Вміння працювати болгаркою:</mark> {{ user.post_qualifications.bulgarian|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Досвід зварювання напівавтоматом:</mark> {{ user.post_qualifications.semiautomatic|default:"Не вказано" }}
+                                                    </p>
+                                                </div>
+                                                <!--Dark Modal -->
+                                               <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_23__2">Редагувати</button>
+                                                <div class="modal fade" id="darkmodal_23__2">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content border-warning">
+                                                      <div class="modal-header bg-warning">
+                                                        <h5 class="modal-title text-white"><i class="fa fa-star"></i>Оцінка кваліфікації</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                     <form method="post" action="{% url 'certificate:update_locksmith_post' user.pk user.post_qualifications.pk %}" enctype="multipart/form-data">
+                                                      <div class="modal-body">
+                                                      {% csrf_token %}
+                                                      {% for field in post_locksmith_create_form %}
+                                                      <div class="form-group">
+                                                          <p></p>
+                                                        {{ field.label_tag }}
+                                                        {% if form.is_bound %}
+                                                          {% if field.errors %}
+                                                            {% render_field field class="form-control is-invalid" %}
+                                                            {% for error in field.errors %}
+                                                              <div class="invalid-feedback">
+                                                                {{ error }}
+                                                              </div>
+                                                            {% endfor %}
+                                                          {% else %}
+                                                            {% render_field field class="form-control is-valid" %}
+                                                          {% endif %}
+                                                        {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                        {% endif %}
+                                                        {% if field.help_text %}
+                                                          <small class="form-text text-muted">
+                                                            {{ field.help_text }}
+                                                          </small>
+                                                        {% endif %}
+                                                      </div>
+                                                    {% endfor %}
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
+                                                        <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                      </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div><!--End Modal -->
+                                                <!--Dark Modal -->
+                                               <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_4_23__2">Видалити</button>
+                                                <div class="modal fade" id="darkmodal_4_23__2">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content border-danger">
+                                                      <div class="modal-header bg-danger">
+                                                        <h5 class="modal-title text-white"><i class="fa fa-star"></i>Оцінка кваліфікації</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                     <form method="post" action="{% url 'certificate:delete_locksmith_post' user.pk user.post_qualifications.pk %}" enctype="multipart/form-data">
+                                                      <div class="modal-body">
+                                                      {% csrf_token %}
+                                                          <h6>Видалити запис про оцінку кваліфікації?</h6>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                        <input type="submit" class="btn btn-danger" value="Видалити">
+                                                      </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div><!--End Modal -->
+                                              {% else %}
+                                                <div class="list-group-item">
+                                                    <p>Інформація про оцінку кваліфікації</p>
+                                                </div>
+                                                <form method="post" action="{% url 'certificate:create_locksmith_post' user.pk %}">
+                                                {% csrf_token %}
+                                                {% for field in post_locksmith_create_form %}
+                                                  <div class="form-group">
+                                                      <p></p>
+
+                                                    {{ field.label_tag }}
+
+                                                    {% if form.is_bound %}
+                                                      {% if field.errors %}
+                                                        {% render_field field class="form-control is-invalid" %}
+                                                        {% for error in field.errors %}
+                                                          <div class="invalid-feedback">
+                                                            {{ error }}
+                                                          </div>
+                                                        {% endfor %}
+                                                      {% else %}
+                                                        {% render_field field class="form-control is-valid" %}
+                                                      {% endif %}
+                                                    {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                    {% if field.help_text %}
+                                                      <small class="form-text text-muted">
+                                                        {{ field.help_text }}
+                                                      </small>
+                                                    {% endif %}
+                                                  {% endif %}
+                                                  </div>
+                                                {% endfor %}
+                                                <input type="submit" class="btn-outline-success btn" value="Додати">
+                                                </form>
+                                              {% endif %}
+                                          {% elif user.position.pk == 3 %}
+                                              {% if user.post_qualifications %}
+                                                <div class="list-group-item">
+                                                    <p>
+                                                        <mark>Спосіб зварювання:</mark> {{ user.post_qualifications.welding_method|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Марка металу:</mark> {{ user.post_qualifications.metal_brand|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Тип з'єднання:</mark> {{ user.post_qualifications.connection_type|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Просторові положення:</mark> {{ user.post_qualifications.spatial_posture|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
+                                                        <mark>Товщина:</mark> {{ user.post_qualifications.thickness|default:"Не вказано" }}
+                                                    </p>
+                                                </div>
+                                                <!--Dark Modal -->
+                                               <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_5_23__2">Редагувати</button>
+                                                <div class="modal fade" id="darkmodal_5_23__2">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content border-warning">
+                                                      <div class="modal-header bg-warning">
+                                                        <h5 class="modal-title text-white"><i class="fa fa-star"></i>Оцінка кваліфікації</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                     <form method="post" action="{% url 'certificate:update_welder_post' user.pk user.post_qualifications.pk %}" enctype="multipart/form-data">
+                                                      <div class="modal-body">
+                                                      {% csrf_token %}
+                                                      {% for field in post_welder_create_form %}
+                                                      <div class="form-group">
+                                                          <p></p>
+                                                        {{ field.label_tag }}
+                                                        {% if form.is_bound %}
+                                                          {% if field.errors %}
+                                                            {% render_field field class="form-control is-invalid" %}
+                                                            {% for error in field.errors %}
+                                                              <div class="invalid-feedback">
+                                                                {{ error }}
+                                                              </div>
+                                                            {% endfor %}
+                                                          {% else %}
+                                                            {% render_field field class="form-control is-valid" %}
+                                                          {% endif %}
+                                                        {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                        {% endif %}
+                                                        {% if field.help_text %}
+                                                          <small class="form-text text-muted">
+                                                            {{ field.help_text }}
+                                                          </small>
+                                                        {% endif %}
+                                                      </div>
+                                                    {% endfor %}
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
+                                                        <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                      </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div><!--End Modal -->
+                                                <!--Dark Modal -->
+                                               <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_6_23__2">Видалити</button>
+                                                <div class="modal fade" id="darkmodal_6_23__2">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content border-danger">
+                                                      <div class="modal-header bg-danger">
+                                                        <h5 class="modal-title text-white"><i class="fa fa-star"></i>Оцінка кваліфікації</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                     <form method="post" action="{% url 'certificate:delete_welder_post' user.pk user.post_qualifications.pk %}" enctype="multipart/form-data">
+                                                      <div class="modal-body">
+                                                      {% csrf_token %}
+                                                          <h6>Видалити запис про оцінку кваліфікації?</h6>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                        <input type="submit" class="btn btn-danger" value="Видалити">
+                                                      </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div><!--End Modal -->
+                                              {% else %}
+                                                <div class="list-group-item">
+                                                    <p>Інформація про оцінку кваліфікації</p>
+                                                </div>
+                                                <form method="post" action="{% url 'certificate:create_welder_post' user.pk %}">
+                                                {% csrf_token %}
+                                                {% for field in post_welder_create_form %}
+                                                  <div class="form-group">
+                                                      <p></p>
+
+                                                    {{ field.label_tag }}
+
+                                                    {% if form.is_bound %}
+                                                      {% if field.errors %}
+                                                        {% render_field field class="form-control is-invalid" %}
+                                                        {% for error in field.errors %}
+                                                          <div class="invalid-feedback">
+                                                            {{ error }}
+                                                          </div>
+                                                        {% endfor %}
+                                                      {% else %}
+                                                        {% render_field field class="form-control is-valid" %}
+                                                      {% endif %}
+                                                    {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                    {% if field.help_text %}
+                                                      <small class="form-text text-muted">
+                                                        {{ field.help_text }}
+                                                      </small>
+                                                    {% endif %}
+                                                  {% endif %}
+                                                  </div>
+                                                {% endfor %}
+                                                <input type="submit" class="btn-outline-success btn" value="Додати">
+                                                </form>
+                                              {% endif %}
+                                          {% else %}
+                                              {% if user.post_qualifications %}
+                                                <div class="list-group-item">
+                                                    <p>
+                                                        <mark>Рівень кваліфікації:</mark> {{ user.post_qualifications.other|default:"Не вказано" }}
+                                                    </p>
+                                                </div>
+                                                <!--Dark Modal -->
+                                               <button class="btn btn-outline-warning m-1" data-toggle="modal" data-target="#darkmodal_7_23__3">Редагувати</button>
+                                                <div class="modal fade" id="darkmodal_7_23__3">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content border-warning">
+                                                      <div class="modal-header bg-warning">
+                                                        <h5 class="modal-title text-white"><i class="fa fa-star"></i>Оцінка кваліфікації</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                     <form method="post" action="{% url 'certificate:update_other_post' user.pk user.post_qualifications.pk %}" enctype="multipart/form-data">
+                                                      <div class="modal-body">
+                                                      {% csrf_token %}
+                                                      {% for field in post_other_create_form %}
+                                                      <div class="form-group">
+                                                          <p></p>
+                                                        {{ field.label_tag }}
+                                                        {% if form.is_bound %}
+                                                          {% if field.errors %}
+                                                            {% render_field field class="form-control is-invalid" %}
+                                                            {% for error in field.errors %}
+                                                              <div class="invalid-feedback">
+                                                                {{ error }}
+                                                              </div>
+                                                            {% endfor %}
+                                                          {% else %}
+                                                            {% render_field field class="form-control is-valid" %}
+                                                          {% endif %}
+                                                        {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                        {% endif %}
+                                                        {% if field.help_text %}
+                                                          <small class="form-text text-muted">
+                                                            {{ field.help_text }}
+                                                          </small>
+                                                        {% endif %}
+                                                      </div>
+                                                    {% endfor %}
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Закрити</button>
+                                                        <input type="submit" class="btn btn-warning" value="Редагувати">
+                                                      </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div><!--End Modal -->
+                                                <!--Dark Modal -->
+                                               <button class="btn btn-outline-danger m-1" data-toggle="modal" data-target="#darkmodal_8_23__3">Видалити</button>
+                                                <div class="modal fade" id="darkmodal_8_23__3">
+                                                  <div class="modal-dialog">
+                                                    <div class="modal-content border-danger">
+                                                      <div class="modal-header bg-danger">
+                                                        <h5 class="modal-title text-white"><i class="fa fa-star"></i>Оцінка кваліфікації</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                          <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                      </div>
+                                                     <form method="post" action="{% url 'certificate:delete_other_post' user.pk user.post_qualifications.pk %}" enctype="multipart/form-data">
+                                                      <div class="modal-body">
+                                                      {% csrf_token %}
+                                                          <h6>Видалити запис про оцінку кваліфікації?</h6>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                        <button type="button" class="btn btn-inverse-dark" data-dismiss="modal"><i class="fa fa-times"></i> Відмінити</button>
+                                                        <input type="submit" class="btn btn-danger" value="Видалити">
+                                                      </div>
+                                                      </form>
+                                                    </div>
+                                                  </div>
+                                                </div><!--End Modal -->
+                                              {% else %}
+                                                <div class="list-group-item">
+                                                    <p>Інформація про оцінку кваліфікації</p>
+                                                </div>
+                                                <form method="post" action="{% url 'certificate:create_other_post' user.pk %}">
+                                                {% csrf_token %}
+                                                {% for field in post_other_create_form %}
+                                                  <div class="form-group">
+                                                      <p></p>
+
+                                                    {{ field.label_tag }}
+
+                                                    {% if form.is_bound %}
+                                                      {% if field.errors %}
+                                                        {% render_field field class="form-control is-invalid" %}
+                                                        {% for error in field.errors %}
+                                                          <div class="invalid-feedback">
+                                                            {{ error }}
+                                                          </div>
+                                                        {% endfor %}
+                                                      {% else %}
+                                                        {% render_field field class="form-control is-valid" %}
+                                                      {% endif %}
+                                                    {% else %}
+                                                          {% render_field field class="form-control" %}
+                                                    {% if field.help_text %}
+                                                      <small class="form-text text-muted">
+                                                        {{ field.help_text }}
+                                                      </small>
+                                                    {% endif %}
+                                                  {% endif %}
+                                                  </div>
+                                                {% endfor %}
+                                                <input type="submit" class="btn-outline-success btn" value="Додати">
+                                                </form>
+                                              {% endif %}
+                                          {% endif %}
+                                        </div>
+                                    </div>
+                                    </div>
+                                  </div>
+
                               <div class="card">
                                 <div class="card-header bg-dark">
                                     <button class="btn btn-link text-white shadow-none collapsed" data-toggle="collapse" data-target="#collapse-8" aria-expanded="false" aria-controls="collapse-8">
