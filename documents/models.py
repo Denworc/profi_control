@@ -6,8 +6,8 @@ from user_profile.models import User
 
 
 class UkrainianPassport(models.Model):
-    series = models.CharField(max_length=2, verbose_name=_('Серія'))
-    number = models.CharField(max_length=6, verbose_name=_('Номер паспорта'))
+    series = models.CharField(max_length=2, verbose_name=_('Серія'), blank=True, null=True)
+    number = models.CharField(max_length=40, verbose_name=_('Номер паспорта'))
     date_of_issue = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='pasports')
     surname = models.CharField(verbose_name=_('Прізвище'), max_length=40)

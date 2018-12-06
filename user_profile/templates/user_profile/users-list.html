@@ -44,7 +44,10 @@
                     <tr>
                         <th>ПІБ</th>
                         <th>Телефон</th>
+                        <th>Завод</th>
                         <th>Спеціальність</th>
+                        <th>Дата закінчення візи</th>
+                        <th>Дата закінчення <br>дозволу на роботу</th>
                         <th>Статус</th>
                     </tr>
                 </thead>
@@ -53,8 +56,11 @@
                        <tr>
                            <td><a href="{% url 'user:user-detail' user.id %}">{{ user.first_name }} {{ user.last_name }} {{ user.patronymic }}</a></td>
                            <td>{{ user.contacts.all|first|default:"не введено" }}</td>
-                           <td>{{ user.position }}</td>
-                           <td>{{ user.status }}</td>
+                           <td>{{ user.permissions.last.factory|default:"не введено" }}</td>
+                           <td>{{ user.position|default:"не введено" }}</td>
+                           <td>{{ user.visas.last.expire|default:"не введено" }}</td>
+                           <td>{{ user.permissions.last.expire|default:"не введено" }}</td>
+                           <td>{{ user.status|default:"не введено" }}</td>
                        </tr>
                     {% endfor %}
                 </tbody>

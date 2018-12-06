@@ -3033,9 +3033,9 @@
                                                 {% render_field field class="form-control is-valid" %}
                                               {% endif %}
                                             {% else %}
-                                              {% if forloop.counter <= 3 %}
+                                              {% if forloop.counter <= 4 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
-                                                  {% elif forloop.counter == 4 %}
+                                                  {% elif forloop.counter == 5 %}
                                                           <div class="input-group">
                                                               {% render_field field class="form-control custom-select" %}
                                                               <div class="input-group-append">
@@ -3043,7 +3043,7 @@
                                                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_4"> + </button>
                                                               </div>
                                                             </div>
-                                                        {% elif forloop.counter == 5 %}
+                                                        {% elif forloop.counter == 6 %}
                                                           <div class="input-group">
                                                               {% render_field field class="form-control custom-select" %}
                                                               <div class="input-group-append">
@@ -3051,7 +3051,7 @@
                                                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_5"> + </button>
                                                               </div>
                                                             </div>
-                                                        {% elif forloop.counter == 6 %}
+                                                        {% elif forloop.counter == 7 %}
                                                           <div class="input-group">
                                                               {% render_field field class="form-control custom-select" %}
                                                               <div class="input-group-append">
@@ -3059,7 +3059,7 @@
                                                                <button class="btn btn-outline-success" data-toggle="modal" data-target="#list_6"> + </button>
                                                               </div>
                                                             </div>
-                                                  {% elif forloop.counter >= 7 and forloop.counter <= 8 %}
+                                                  {% elif forloop.counter >= 8 and forloop.counter <= 9 %}
                                                         {% render_field field class="form-control autoclose-datepicker" %}
                                                   {% else %}
                                                       {% render_field field class="form-control" %}
