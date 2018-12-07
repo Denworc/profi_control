@@ -7,13 +7,13 @@ from user_profile.models import User
 
 class UkrainianPassport(models.Model):
     series = models.CharField(max_length=2, verbose_name=_('Серія'), blank=True, null=True)
-    number = models.CharField(max_length=40, verbose_name=_('Номер паспорта'))
+    number = models.CharField(max_length=40, verbose_name=_('Номер паспорта'), null=True, blank=True)
     date_of_issue = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='pasports')
     surname = models.CharField(verbose_name=_('Прізвище'), max_length=40)
     last_name = models.CharField(verbose_name=_("Ім'я"), max_length=40)
     patronymic = models.CharField(verbose_name=_('По батькові'), max_length=40)
-    place_of_issue = models.CharField(max_length=200, verbose_name=_('Ким був виданий'))
+    place_of_issue = models.CharField(max_length=200, verbose_name=_('Ким був виданий'), null=True, blank=True)
     first_page = models.ImageField(verbose_name=_('2 сторінка'), blank=True, null=True, upload_to="user/ua_first")
     second_page = models.ImageField(verbose_name=_('3 сторінка'), blank=True, null=True, upload_to="user/ua_second")
     registration = models.ImageField(verbose_name=_('Прописка'), blank=True, null=True, upload_to="user/ua_registration")
@@ -27,14 +27,14 @@ class UkrainianPassport(models.Model):
 
 
 class ForeignPassport(models.Model):
-    number = models.CharField(max_length=6, verbose_name=_('Номер паспорта'))
+    number = models.CharField(max_length=6, verbose_name=_('Номер паспорта'), null=True, blank=True)
     date_of_issue = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='foreign_pasport')
     surname = models.CharField(verbose_name=_('Прізвище'), max_length=40)
     last_name = models.CharField(verbose_name=_("Ім'я"), max_length=40)
-    type = models.CharField(max_length=1, verbose_name=_('Тип'))
-    country_code = models.CharField(max_length=10, verbose_name=_('Код держави'))
-    authority = models.CharField(max_length=100, verbose_name=_('Орган, що видав'))
+    type = models.CharField(max_length=1, verbose_name=_('Тип'), null=True, blank=True)
+    country_code = models.CharField(max_length=10, verbose_name=_('Код держави'), null=True, blank=True)
+    authority = models.CharField(max_length=100, verbose_name=_('Орган, що видав'), null=True, blank=True)
     date_of_expiry = models.DateField(verbose_name=_('Дата закінчення строку дії'), null=True, blank=True)
     first_page = models.ImageField(verbose_name=_('1 сторінка'), blank=True, null=True, upload_to="user/foreign")
 

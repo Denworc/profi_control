@@ -22,10 +22,10 @@ class Certificate(models.Model):
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='certificates')
     welding_type = models.ForeignKey(WeldingType, on_delete=models.CASCADE,
-                                     verbose_name=_('Метод зварювання'), related_name='certificates')
-    organization = models.CharField(max_length=60, verbose_name=_('Сертифікуюча організація'))
-    welding_position = models.CharField(max_length=60, verbose_name=_('Просторове положення'))
-    thickness = models.CharField(max_length=60, verbose_name=_('Товщина'))
+                                     verbose_name=_('Метод зварювання'), related_name='certificates', null=True, blank=True)
+    organization = models.CharField(max_length=60, verbose_name=_('Сертифікуюча організація'), null=True, blank=True)
+    welding_position = models.CharField(max_length=60, verbose_name=_('Просторове положення'), null=True, blank=True)
+    thickness = models.CharField(max_length=60, verbose_name=_('Товщина'), null=True, blank=True)
     certification_date = models.DateField(verbose_name=_('Дата сертифікації'), null=True, blank=True)
     paying_date = models.DateField(verbose_name=_('Дата оплати'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
@@ -59,8 +59,10 @@ class Interview(models.Model):
     Співбесіда
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='interviews')
-    type = models.ForeignKey('certificate.InterviewType', on_delete=models.CASCADE, verbose_name=_('Тип співбесіди'), related_name='interviews')
-    result = models.CharField(max_length=40, verbose_name=_('Результат співбесіди'))
+    type = models.ForeignKey('certificate.InterviewType', on_delete=models.CASCADE,
+                             verbose_name=_('Тип співбесіди'), related_name='interviews'
+                             , null=True, blank=True)
+    result = models.CharField(max_length=40, verbose_name=_('Результат співбесіди'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата співбесіди'), null=True, blank=True)
 
     class Meta:
@@ -90,8 +92,10 @@ class Test(models.Model):
     Тестування
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='tests')
-    type = models.ForeignKey('certificate.TestType', on_delete=models.CASCADE, related_name='tests', verbose_name=_('Тип тестування'))
-    result = models.CharField(max_length=40, verbose_name=_('Результат тестування'))
+    type = models.ForeignKey('certificate.TestType', on_delete=models.CASCADE,
+                             related_name='tests', verbose_name=_('Тип тестування'),
+                             null=True, blank=True)
+    result = models.CharField(max_length=40, verbose_name=_('Результат тестування'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата тестування'), null=True, blank=True)
 
     class Meta:
@@ -107,7 +111,7 @@ class Training(models.Model):
     Тренування
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='trainings')
-    result = models.CharField(max_length=40, verbose_name=_('Результат тренування'))
+    result = models.CharField(max_length=40, verbose_name=_('Результат тренування'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата початку тренування'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення тренування'), null=True, blank=True)
 
