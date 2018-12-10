@@ -113,7 +113,13 @@
 
        var table = $('#example').DataTable( {
         lengthChange: false,
-        buttons: [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
+        buttons: [
+            { extend: 'copy', text: 'Копіювати' },
+            { extend: 'excel', text: 'Конвертувати в Excel' },
+            { extend: 'pdf', text: 'Конвертувати в PDF' },
+            { extend: 'print', text: 'Роздрукувати' },
+            { extend: 'colvis', text: 'Вибрати колонки' },
+        ],
       } );
 
      table.buttons().container()
