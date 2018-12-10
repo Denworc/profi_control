@@ -24,8 +24,8 @@ class Dismissal(models.Model):
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='dismissals')
     dismissal_date = models.DateField(verbose_name=_('Дата звільнення'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    order_number = models.CharField(max_length=40, verbose_name='№ наказу')
-    dismissal_reason = models.CharField(max_length=40, verbose_name='Причина звільнення')
+    order_number = models.CharField(max_length=40, verbose_name='№ наказу', null=True, blank=True)
+    dismissal_reason = models.CharField(max_length=40, verbose_name='Причина звільнення', null=True, blank=True)
     dismissal_basis = models.ForeignKey(BasisList, on_delete=models.CASCADE, related_name='dismissals', verbose_name='Підстава звільнення')
 
     class Meta:
@@ -58,9 +58,9 @@ class Assignment(models.Model):
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='assignments')
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    order_number = models.CharField(max_length=40, verbose_name='№ наказу')
+    order_number = models.CharField(max_length=40, verbose_name='№ наказу', null=True, blank=True)
     factory = models.ForeignKey('work.Factory', on_delete=models.CASCADE, related_name='assignment', verbose_name='Завод')
-    city = models.CharField(max_length=40, verbose_name='Місто відрядження')
+    city = models.CharField(max_length=40, verbose_name='Місто відрядження', null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Початок відрядження'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Закінчення відрядження'), null=True, blank=True)
     polish_border = models.DateField(verbose_name=_('Перетин кордону в Польщу'), null=True, blank=True)
@@ -85,9 +85,9 @@ class AdoptionInState(models.Model):
     Прийняття в штат
     """
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='adoptions')
-    dismissal_date = models.DateField(verbose_name=_('Дата прийняття'))
+    dismissal_date = models.DateField(verbose_name=_('Дата прийняття'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    order_number = models.CharField(max_length=20, verbose_name='№ наказу')
+    order_number = models.CharField(max_length=20, verbose_name='№ наказу', null=True, blank=True)
     employer = models.ForeignKey('work.Employer', on_delete=models.CASCADE, related_name='adoptions', verbose_name='Підприємство-роботодавець')
     # factory = models.CharField(max_length=40, verbose_name='Завод')
     position = models.ForeignKey('user_profile.Position', on_delete=models.CASCADE, verbose_name=_('Посада'), null=True,
@@ -106,9 +106,9 @@ class TransferInState(models.Model):
     Переведення в штат
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='transfers')
-    dismissal_date = models.DateField(verbose_name=_('Дата переведення'))
+    dismissal_date = models.DateField(verbose_name=_('Дата переведення'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    order_number = models.CharField(max_length=20, verbose_name='№ наказу')
+    order_number = models.CharField(max_length=20, verbose_name='№ наказу', null=True, blank=True)
     position = models.ForeignKey('user_profile.Position', on_delete=models.CASCADE, verbose_name=_('Посада'), null=True, blank=True)
 
     class Meta:
@@ -175,7 +175,7 @@ class Permission(models.Model):
     factory = models.ForeignKey(Factory, on_delete=models.CASCADE, related_name='permissions', verbose_name='Завод')
     start_date = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення'), null=True, blank=True)
-    note = models.CharField(max_length=400, verbose_name='Примітки')
+    note = models.CharField(max_length=400, verbose_name='Примітки', null=True, blank=True)
     scan_copy = models.ImageField(verbose_name=_("Скан дозволу"), blank=True, null=True, upload_to="user/permission")
 
     class Meta:
@@ -228,12 +228,12 @@ class Vocation(models.Model):
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='vocations')
     type = models.ForeignKey(VocationType, on_delete=models.CASCADE, verbose_name=_('Тип відпустки'))
     agreement = models.BooleanField(_('Згода заводу'), default=False)
-    period = models.CharField(max_length=60, verbose_name='Період для відпустки')
+    period = models.CharField(max_length=60, verbose_name='Період для відпустки', null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата початку відпустки'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата закінчення відпустки'), null=True, blank=True)
     order_date = models.DateField(verbose_name=_('Дата наказу'), null=True, blank=True)
-    order_number = models.CharField(max_length=20, verbose_name='№ наказу')
-    comment = models.CharField(max_length=400, verbose_name='Примітки')
+    order_number = models.CharField(max_length=20, verbose_name='№ наказу', null=True, blank=True)
+    comment = models.CharField(max_length=400, verbose_name='Примітки', null=True, blank=True)
 
     class Meta:
         verbose_name = _('Відпустка')
@@ -264,7 +264,7 @@ class Prognosis(models.Model):
      Прогноз
     """
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='prognoses')
-    reason = models.CharField(max_length=400, verbose_name='Причина повернення')
+    reason = models.CharField(max_length=400, verbose_name='Причина повернення', null=True, blank=True)
     expire = models.DateField(verbose_name=_("Дата прибуття"), null=True, blank=True)
     agree = models.BooleanField(_('Згода заводу'), default=False)
 

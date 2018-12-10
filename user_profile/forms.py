@@ -51,7 +51,6 @@ class NewUserForm(forms.ModelForm):
             'first_name',
             'last_name',
             'patronymic',
-            'position',
         )
 
 
@@ -136,6 +135,9 @@ class LanguageLevelCreateForm(forms.ModelForm):
 
 class UserEditForm(forms.ModelForm):
     # polygon = forms.CharField(widget=forms.TextInput)
+    date_of_birth = forms.DateField(widget=forms.DateInput(format='%Y-%m-%d'),
+                                    input_formats=('%Y-%m-%d',),
+                                    required=False)
 
     class Meta:
         model = User

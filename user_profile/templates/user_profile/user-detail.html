@@ -166,7 +166,7 @@
                               {% for field in user_edit_form %}
                                   <div class="form-group">
                                     {{ field.label_tag }}
-                                    {% if form.is_bound %}
+                                    {% if user_edit_form.is_bound %}
                                       {% if field.errors %}
                                         {% render_field field class="form-control is-invalid" %}
                                         {% for error in field.errors %}
@@ -178,7 +178,11 @@
                                         {% render_field field class="form-control is-valid" %}
                                       {% endif %}
                                     {% else %}
-                                      {% render_field field class="form-control" %}
+                                      {% if forloop.counter == 9 %}
+                                          {% render_field field value=user.registration class="form-control autoclose-datepicker" %}
+                                        {% else %}
+                                          {% render_field field class="form-control" %}
+                                        {% endif %}
                                     {% endif %}
                                     {% if field.help_text %}
                                       <small class="form-text text-muted">
