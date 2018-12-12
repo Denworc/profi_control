@@ -166,7 +166,7 @@ class Permission(models.Model):
     Дозвіл на роботу
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='permissions')
-    pay_date = models.DateField(verbose_name='Дата оплати')
+    pay_date = models.DateField(verbose_name='Дата оплати', null=True, blank=True)
     prediction_date = models.DateField(verbose_name=_('Дата відправлення внеску'), null=True, blank=True)
     input_date = models.DateField(verbose_name=_('Дата подачі внеск'), null=True, blank=True)
     receiving_date = models.DateField(verbose_name=_('Прогнозована дата отримання дозволу'), null=True, blank=True)
@@ -175,7 +175,7 @@ class Permission(models.Model):
     factory = models.ForeignKey(Factory, on_delete=models.CASCADE, related_name='permissions', verbose_name='Завод')
     start_date = models.DateField(verbose_name=_('Дата початку'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення'), null=True, blank=True)
-    note = models.CharField(max_length=400, verbose_name='Примітки', null=True, blank=True)
+    note = models.CharField(max_length=400, verbose_name='Примітки', blank=True)
     scan_copy = models.ImageField(verbose_name=_("Скан дозволу"), blank=True, null=True, upload_to="user/permission")
 
     class Meta:
