@@ -166,7 +166,7 @@ class Permission(models.Model):
     Дозвіл на роботу
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='permissions')
-    pay_date = models.DateField(verbose_name='Дата оплати', null=True, blank=True)
+    pay_date = models.DateField(verbose_name='Дата оплати')
     prediction_date = models.DateField(verbose_name=_('Дата відправлення внеску'), null=True, blank=True)
     input_date = models.DateField(verbose_name=_('Дата подачі внеск'), null=True, blank=True)
     receiving_date = models.DateField(verbose_name=_('Прогнозована дата отримання дозволу'), null=True, blank=True)
