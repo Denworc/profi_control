@@ -23,9 +23,9 @@ class Certificate(models.Model):
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='certificates')
     welding_type = models.ForeignKey(WeldingType, on_delete=models.CASCADE,
                                      verbose_name=_('Метод зварювання'), related_name='certificates', null=True, blank=True)
-    organization = models.CharField(max_length=60, verbose_name=_('Сертифікуюча організація'), null=True, blank=True)
-    welding_position = models.CharField(max_length=60, verbose_name=_('Просторове положення'), null=True, blank=True)
-    thickness = models.CharField(max_length=60, verbose_name=_('Товщина'), null=True, blank=True)
+    organization = models.CharField(max_length=60, verbose_name=_('Сертифікуюча організація'), blank=True)
+    welding_position = models.CharField(max_length=60, verbose_name=_('Просторове положення'), blank=True)
+    thickness = models.CharField(max_length=60, verbose_name=_('Товщина'), blank=True)
     certification_date = models.DateField(verbose_name=_('Дата сертифікації'), null=True, blank=True)
     paying_date = models.DateField(verbose_name=_('Дата оплати'), null=True, blank=True)
     start_on = models.DateField(verbose_name=_('Дата видачі'), null=True, blank=True)
@@ -62,7 +62,7 @@ class Interview(models.Model):
     type = models.ForeignKey('certificate.InterviewType', on_delete=models.CASCADE,
                              verbose_name=_('Тип співбесіди'), related_name='interviews'
                              , null=True, blank=True)
-    result = models.CharField(max_length=40, verbose_name=_('Результат співбесіди'), null=True, blank=True)
+    result = models.CharField(max_length=40, verbose_name=_('Результат співбесіди'), blank=True)
     start_on = models.DateField(verbose_name=_('Дата співбесіди'), null=True, blank=True)
 
     class Meta:
@@ -95,7 +95,7 @@ class Test(models.Model):
     type = models.ForeignKey('certificate.TestType', on_delete=models.CASCADE,
                              related_name='tests', verbose_name=_('Тип тестування'),
                              null=True, blank=True)
-    result = models.CharField(max_length=40, verbose_name=_('Результат тестування'), null=True, blank=True)
+    result = models.CharField(max_length=40, verbose_name=_('Результат тестування'), blank=True)
     start_on = models.DateField(verbose_name=_('Дата тестування'), null=True, blank=True)
 
     class Meta:
@@ -111,7 +111,7 @@ class Training(models.Model):
     Тренування
     """
     user = models.ForeignKey('user_profile.User', on_delete=models.CASCADE, related_name='trainings')
-    result = models.CharField(max_length=40, verbose_name=_('Результат тренування'), null=True, blank=True)
+    result = models.CharField(max_length=40, verbose_name=_('Результат тренування'), blank=True)
     start_on = models.DateField(verbose_name=_('Дата початку тренування'), null=True, blank=True)
     expire = models.DateField(verbose_name=_('Дата завершення тренування'), null=True, blank=True)
 
@@ -275,6 +275,7 @@ class QualificationLevel(models.Model):
     Оцінка кваліфікації користувача
     """
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='qualifications')
+    specialization = models.CharField(max_length=300, verbose_name=_('Спеціалізація'), blank=True)
     draw_reading = models.ForeignKey(DrawReading, on_delete=models.CASCADE,
                                      null=True, blank=True, verbose_name=_('Читання креслень'))
     candle = models.ForeignKey(Candle, on_delete=models.CASCADE,
@@ -293,7 +294,7 @@ class QualificationLevel(models.Model):
                                         null=True, blank=True, verbose_name=_('Просторове положення'))
     other = models.ForeignKey(Other, on_delete=models.CASCADE,
                               null=True, blank=True, verbose_name=_('Рівень кваліфікації'))
-    thickness = models.CharField(max_length=300, verbose_name=_('Товщина'))
+    thickness = models.CharField(max_length=300, verbose_name=_('Товщина'), blank=True)
 
     class Meta:
         verbose_name = _('Оцінка кваліфікації')
@@ -308,6 +309,7 @@ class PostQualificationLevel(models.Model):
     Попередня оцінка кваліфікації користувача
     """
     user = models.OneToOneField('user_profile.User', on_delete=models.CASCADE, related_name='post_qualifications')
+    specialization = models.CharField(max_length=300, verbose_name=_('Спеціалізація'), blank=True)
     draw_reading = models.ForeignKey(DrawReading, on_delete=models.CASCADE,
                                      null=True, blank=True, verbose_name=_('Читання креслень'))
     candle = models.ForeignKey(Candle, on_delete=models.CASCADE,
@@ -326,7 +328,7 @@ class PostQualificationLevel(models.Model):
                                         null=True, blank=True, verbose_name=_('Просторове положення'))
     other = models.ForeignKey(Other, on_delete=models.CASCADE,
                               null=True, blank=True, verbose_name=_('Рівень кваліфікації'))
-    thickness = models.CharField(max_length=300, verbose_name=_('Товщина'))
+    thickness = models.CharField(max_length=300, verbose_name=_('Товщина'), blank=True)
 
     class Meta:
         verbose_name = _('Попередня оцінка кваліфікації')

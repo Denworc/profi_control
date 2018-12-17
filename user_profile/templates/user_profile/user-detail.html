@@ -1470,6 +1470,9 @@
                                               {% if user.qualifications %}
                                                 <div class="list-group-item">
                                                     <p>
+                                                        <mark>Спеціалізація:</mark> {{ user.qualifications.specialization|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
                                                         <mark>Читання креслень:</mark> {{ user.qualifications.draw_reading|default:"Не вказано" }}
                                                     </p>
                                                     <p>
@@ -1512,7 +1515,11 @@
                                                             {% render_field field class="form-control is-valid" %}
                                                           {% endif %}
                                                         {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                          {% if forloop.counter == 1 %}
+                                                              {% render_field field value=user.post_qualifications.specialization class="form-control" %}
+                                                            {% else %}
+                                                              {% render_field field class="form-control" %}
+                                                            {% endif %}
                                                         {% endif %}
                                                         {% if field.help_text %}
                                                           <small class="form-text text-muted">
@@ -1578,7 +1585,7 @@
                                                         {% render_field field class="form-control is-valid" %}
                                                       {% endif %}
                                                     {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                        {% render_field field class="form-control" %}
                                                     {% if field.help_text %}
                                                       <small class="form-text text-muted">
                                                         {{ field.help_text }}
@@ -1593,6 +1600,9 @@
                                           {% elif user.position.pk == 3 %}
                                               {% if user.qualifications %}
                                                 <div class="list-group-item">
+                                                    <p>
+                                                        <mark>Спеціалізація:</mark> {{ user.qualifications.specialization|default:"Не вказано" }}
+                                                    </p>
                                                     <p>
                                                         <mark>Спосіб зварювання:</mark> {{ user.qualifications.welding_method|default:"Не вказано" }}
                                                     </p>
@@ -1639,7 +1649,11 @@
                                                             {% render_field field class="form-control is-valid" %}
                                                           {% endif %}
                                                         {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                            {% if forloop.counter == 1 %}
+                                                              {% render_field field value=user.post_qualifications.specialization class="form-control" %}
+                                                            {% else %}
+                                                              {% render_field field class="form-control" %}
+                                                            {% endif %}
                                                         {% endif %}
                                                         {% if field.help_text %}
                                                           <small class="form-text text-muted">
@@ -1721,6 +1735,9 @@
                                               {% if user.qualifications %}
                                                 <div class="list-group-item">
                                                     <p>
+                                                        <mark>Спеціалізація:</mark> {{ user.qualifications.specialization|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
                                                         <mark>Рівень кваліфікації:</mark> {{ user.qualifications.other|default:"Не вказано" }}
                                                     </p>
                                                 </div>
@@ -1754,7 +1771,11 @@
                                                             {% render_field field class="form-control is-valid" %}
                                                           {% endif %}
                                                         {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                            {% if forloop.counter == 1 %}
+                                                              {% render_field field value=user.post_qualifications.specialization class="form-control" %}
+                                                            {% else %}
+                                                              {% render_field field class="form-control" %}
+                                                            {% endif %}
                                                         {% endif %}
                                                         {% if field.help_text %}
                                                           <small class="form-text text-muted">
@@ -2288,6 +2309,9 @@
                                               {% if user.post_qualifications %}
                                                 <div class="list-group-item">
                                                     <p>
+                                                        <mark>Спеціалізація:</mark> {{ user.post_qualifications.specialization|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
                                                         <mark>Читання креслень:</mark> {{ user.post_qualifications.draw_reading|default:"Не вказано" }}
                                                     </p>
                                                     <p>
@@ -2396,7 +2420,11 @@
                                                         {% render_field field class="form-control is-valid" %}
                                                       {% endif %}
                                                     {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                            {% if forloop.counter == 1 %}
+                                                              {% render_field field value=user.post_qualifications.specialization class="form-control" %}
+                                                            {% else %}
+                                                              {% render_field field class="form-control" %}
+                                                            {% endif %}
                                                     {% if field.help_text %}
                                                       <small class="form-text text-muted">
                                                         {{ field.help_text }}
@@ -2411,6 +2439,9 @@
                                           {% elif user.position.pk == 3 %}
                                               {% if user.post_qualifications %}
                                                 <div class="list-group-item">
+                                                    <p>
+                                                        <mark>Спеціалізація:</mark> {{ user.post_qualifications.specialization|default:"Не вказано" }}
+                                                    </p>
                                                     <p>
                                                         <mark>Спосіб зварювання:</mark> {{ user.post_qualifications.welding_method|default:"Не вказано" }}
                                                     </p>
@@ -2457,7 +2488,11 @@
                                                             {% render_field field class="form-control is-valid" %}
                                                           {% endif %}
                                                         {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                            {% if forloop.counter == 1 %}
+                                                              {% render_field field value=user.post_qualifications.specialization class="form-control" %}
+                                                            {% else %}
+                                                              {% render_field field class="form-control" %}
+                                                            {% endif %}
                                                         {% endif %}
                                                         {% if field.help_text %}
                                                           <small class="form-text text-muted">
@@ -2539,6 +2574,9 @@
                                               {% if user.post_qualifications %}
                                                 <div class="list-group-item">
                                                     <p>
+                                                        <mark>Спеціалізація:</mark> {{ user.post_qualifications.specialization|default:"Не вказано" }}
+                                                    </p>
+                                                    <p>
                                                         <mark>Рівень кваліфікації:</mark> {{ user.post_qualifications.other|default:"Не вказано" }}
                                                     </p>
                                                 </div>
@@ -2572,7 +2610,11 @@
                                                             {% render_field field class="form-control is-valid" %}
                                                           {% endif %}
                                                         {% else %}
-                                                          {% render_field field class="form-control" %}
+                                                            {% if forloop.counter == 1 %}
+                                                              {% render_field field value=user.post_qualifications.specialization class="form-control" %}
+                                                            {% else %}
+                                                              {% render_field field class="form-control" %}
+                                                            {% endif %}
                                                         {% endif %}
                                                         {% if field.help_text %}
                                                           <small class="form-text text-muted">

@@ -72,6 +72,7 @@ class LocksmithCreateForm(forms.ModelForm):
     class Meta:
         model = QualificationLevel
         fields = (
+            'specialization',
             'draw_reading',
             'candle',
             'bulgarian',
@@ -84,6 +85,7 @@ class WelderCreateForm(forms.ModelForm):
     class Meta:
         model = QualificationLevel
         fields = (
+            'specialization',
             'welding_method',
             'metal_brand',
             'connection_type',
@@ -97,6 +99,7 @@ class OtherCreateForm(forms.ModelForm):
     class Meta:
         model = QualificationLevel
         fields = (
+            'specialization',
             'other',
         )
 
@@ -106,6 +109,7 @@ class PostLocksmithCreateForm(forms.ModelForm):
     class Meta:
         model = PostQualificationLevel
         fields = (
+            'specialization',
             'draw_reading',
             'candle',
             'bulgarian',
@@ -118,6 +122,7 @@ class PostWelderCreateForm(forms.ModelForm):
     class Meta:
         model = PostQualificationLevel
         fields = (
+            'specialization',
             'welding_method',
             'metal_brand',
             'connection_type',
@@ -131,6 +136,7 @@ class PostOtherCreateForm(forms.ModelForm):
     class Meta:
         model = PostQualificationLevel
         fields = (
+            'specialization',
             'other',
         )
 
@@ -239,6 +245,7 @@ class LocksmithUpdateForm(forms.ModelForm):
     class Meta:
         model = QualificationLevel
         fields = (
+            'specialization',
             'draw_reading',
             'candle',
             'bulgarian',
@@ -251,6 +258,7 @@ class WelderUpdateForm(forms.ModelForm):
     class Meta:
         model = QualificationLevel
         fields = (
+            'specialization',
             'welding_method',
             'metal_brand',
             'connection_type',
@@ -264,6 +272,7 @@ class OtherUpdateForm(forms.ModelForm):
     class Meta:
         model = QualificationLevel
         fields = (
+            'specialization',
             'other',
         )
 
@@ -273,6 +282,7 @@ class PostLocksmithUpdateForm(forms.ModelForm):
     class Meta:
         model = PostQualificationLevel
         fields = (
+            'specialization',
             'draw_reading',
             'candle',
             'bulgarian',
@@ -285,6 +295,7 @@ class PostWelderUpdateForm(forms.ModelForm):
     class Meta:
         model = PostQualificationLevel
         fields = (
+            'specialization',
             'welding_method',
             'metal_brand',
             'connection_type',
@@ -298,5 +309,6 @@ class PostOtherUpdateForm(forms.ModelForm):
     class Meta:
         model = PostQualificationLevel
         fields = (
+            'specialization',
             'other',
         )

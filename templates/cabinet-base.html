@@ -112,7 +112,7 @@
 
 
        var table = $('#example').DataTable( {
-        lengthChange: false,
+        lengthChange: true,
         buttons: [
             { extend: 'copy', text: 'Копіювати' },
             { extend: 'excel', text: 'Конвертувати в Excel' },
@@ -120,10 +120,34 @@
             { extend: 'print', text: 'Роздрукувати' },
             { extend: 'colvis', text: 'Вибрати колонки' },
         ],
+           "language": {
+                "decimal":        "",
+                "emptyTable":     "Дані для відображення відсутні",
+                "info":           "Показати від _START_ до _END_ з _TOTAL_ працівників",
+                "infoEmpty":      "Показати від 0 до 0 з 0 працівників",
+                "infoFiltered":   "(відфільтровано з _MAX_ празівників)",
+                "infoPostFix":    "",
+                "thousands":      ",",
+                "lengthMenu":     "Показати _MENU_ працівників",
+                "loadingRecords": "Завантаження...",
+                "processing":     "Опрацювання...",
+                "search":         "Пошук:",
+                "zeroRecords":    "Співпадінь не знайденоо",
+                "paginate": {
+                    "first":      "Перша",
+                    "last":       "Остання",
+                    "next":       "Наступна",
+                    "previous":   "Попередня",
+            },
+            "aria": {
+                "sortAscending":  ": сортувати в порядку зростання",
+                "sortDescending": ": сортувати в порядку спадання",
+            }
+        },
       } );
 
      table.buttons().container()
-        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+        .appendTo( '#example_wrapper .col-md-9:eq(0)' );
 
       } );
 
